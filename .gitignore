@@ -1,0 +1,13 @@
+*~
+*.*~
+*.zip
+*.tar.gz
+
+*.srt
+
+# videos
+*.mp4
+
+# manuals
+courses/
+books/

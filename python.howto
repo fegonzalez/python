@@ -1,0 +1,73 @@
+################################################################################
+#
+# Index
+#
+# 1) Help: available methods for a data type: dir, help
+# 2) Built.in data structures
+#
+################################################################################
+
+
+################################################################################
+## 1) Help: available methods for a data type: dir, help
+################################################################################
+
+>>> mystring='this is my string';
+>>> dir(mystring);       #show all string methods
+>>> help(mystring.join)  #show detail of a method
+
+
+################################################################################
+## 2) Built.in data structures
+################################################################################
+
+# -----------------
+# <type 'list'>: store a sequence of mutable items:
+# -----------------
+# operators:
+# |+|  concatenation
+# Indexing
+# [1]  positive indexing: watch value; value substitution
+# [-1] negative indexing:  watch value; value substitution
+# [start:stop]| will get the elements in |start, start+1, ..., stop-1|
+# [start:], [:end]
+# len(fruits): number of elements
+>>> fruits = ['apple','orange','pear','banana']
+
+# The items stored in lists can be any Python data type. So for instance
+# we can have lists of lists:
+>>> lstOfLsts = [['a','b','c'],[1,2,3],['one','two','three']]
+>>> lstOfLsts[1][2]
+
+
+# -----------------
+# <type 'tuple'>: like a list except that it is immutable once it is created
+# -----------------
+
+>>> fruits = ('apple','orange','pear','banana')
+>>> pair = (3,5)
+>>> pair[0]
+3
+>>> x,y = pair
+>>> x
+3
+
+
+# -----------------
+# <type 'set'>: UNORDERED collection of UNIQUE elements.
+# -----------------
+# set() -> new empty set object
+# set(iterable) -> new set object # iterable: list, tuple, ...
+# operators:
+# A + B
+# A & B: intersection
+# A | B: union
+# in  : a in A 
+>>> shapes = ['circle','square','triangle','circle']
+>>> A = set(shapes)
+A
+set(['circle', 'square', 'triangle'])
+>>> 'square' in A
+True
+
+

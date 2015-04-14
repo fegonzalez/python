@@ -1,0 +1,11 @@
+* Courses
+
+[Intro_Berkeley_Python]  http://ai.berkeley.edu/tutorial.html#PythonBasics
+
+[Programming Foundations with Python]  https://www.udacity.com/course/ud036
+
+
+
+* Books
+
+[BuildingSkillsinPython.pdf]  Building Skills in Python, Steven F. Lott, 2010.
