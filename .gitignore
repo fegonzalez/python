@@ -9,5 +9,5 @@
 *.mp4
 
 # manuals
-courses/
-books/
+courses/*
+books/*
