@@ -4,6 +4,12 @@
 #
 # 1) Help: available methods for a data type: dir, help
 # 2) Built.in data structures
+# 3) Writing Scripts
+# Annex) python in Emacs
+#        - python-mode
+#        - run-python
+#
+# References )
 #
 ################################################################################
 
@@ -18,19 +24,26 @@
 
 
 ################################################################################
-## 2) Built.in data structures
+## 2) Built.in data structures [2.1]
 ################################################################################
 
 # -----------------
-# <type 'list'>: store a sequence of mutable items:
+# <type 'list'>: store a sequence of MUTABLE (non-const)
 # -----------------
+#
+# - WARNING: fixed ordering
+# - WARNING: allows NESTING (list of lists)
+# - WARNING: allows MIXED data type content
+#
 # operators:
 # |+|  concatenation
+# 
 # Indexing
+# [0..n-1] 
 # [1]  positive indexing: watch value; value substitution
-# [-1] negative indexing:  watch value; value substitution
-# [start:stop]| will get the elements in |start, start+1, ..., stop-1|
-# [start:], [:end]
+# [-1] negative indexing (inverse order):  watch value; value substitution
+# [from_index:to_index]| will get the elements in |from_index, ..., to_index-1|
+# [from_index:], [:to_index]
 # len(fruits): number of elements
 >>> fruits = ['apple','orange','pear','banana']
 
@@ -41,7 +54,7 @@
 
 
 # -----------------
-# <type 'tuple'>: like a list except that it is immutable once it is created
+# <type 'tuple'>: IDEM lists except that it is immutable once it is created
 # -----------------
 
 >>> fruits = ('apple','orange','pear','banana')
@@ -56,6 +69,11 @@
 # -----------------
 # <type 'set'>: UNORDERED collection of UNIQUE elements.
 # -----------------
+#
+# - WARNING: unordered.
+# - WARNING: allows NESTING (tuples of tuples, tuples of any Python data type)
+# - WARNING: unique data type content (due to tthe constructors)
+#
 # set() -> new empty set object
 # set(iterable) -> new set object # iterable: list, tuple, ...
 # operators:
@@ -71,3 +89,42 @@ set(['circle', 'square', 'triangle'])
 True
 
 
+# -----------------
+# <type 'dictionarie'>: (key, value)
+# -----------------
+
+# - key: immutable type (string, number, or tuple)
+# - value: any Python data type
+# - WARNING: not fixed ordering (depends on the hashing algorithm)
+# - WARNING: allows NESTING (dictionaries of dictionaries)
+# - WARNING: allows MIXED data type content
+
+# basic operators: keys(), values(), items()
+# construction
+>>> studentIds = {'knuth': 42.0, 'turing': 56.0, 'nash': 92.0 }
+# getter
+>>> studentIds['turing']                   
+56.0
+# setter
+studentIds['turing'] = [56.0, 'fifty-six'] 
+>>> print(studentIds)
+{'knuth': 21, 'nash': 92.0, 'turing': [56.0, 'fifty-six']}
+#nested dictionaries
+global_dir={'studentIds': studentIds, 'minids': {'knuth': 42.0, 'turing': 56.0}}
+
+
+
+
+################################################################################
+## 2) Built.in data structures [2.1]
+################################################################################
+
+
+
+################################################################################
+# References
+################################################################################
+
+[2] Data types
+
+[2.1] https://docs.python.org/2/tutorial/datastructures.html
