@@ -9,5 +9,7 @@
 *.mp4
 
 # manuals
-courses/*
-books/*
+language/courses/*
+language/books/*
+
+environment/emacs_use/*_files/*

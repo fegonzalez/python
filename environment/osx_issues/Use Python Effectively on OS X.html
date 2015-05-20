@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640px">
+<style>
+body{
+	background-color: #fff;
+	color: #333;
+	font-size:1.0em;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	word-wrap:break-word;
+	width:95%;
+    max-width:600px;
+	margin:0 auto;
+	line-height:1.6em;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/* Logo Manbolo is now retina */
+#m {
+	display: block;
+	width:48px;
+	height:48px;
+	margin:0;
+	background-size:48px 48px; 
+	background-image: url(/m@2x.png);
+}
+
+h1{
+	padding-left: 60px;
+	font-size:1.1em;
+	margin-bottom: 0;
+	float:clear;
+}
+
+#description{
+	padding-left: 60px;
+	margin-top:0;
+	margin-bottom:50px;
+	color: #999;
+}
+
+h2{
+	border-bottom: 1px solid #EEE;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	line-height:1.2;
+}
+
+p {
+   margin-bottom: 0;
+   margin-top:0.7em;
+}
+
+img{
+	display: block; 
+	margin:0 auto;
+}
+
+a{
+	color:#7208bf;
+	text-decoration:none;
+	outline:none;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+a:active{
+	outline:none;
+}
+
+a:visited{
+	text-decoration:none;
+}
+
+
+time{
+    color:#999;
+}
+
+article{
+	margin-bottom: 4em;
+}
+
+blockquote {
+	border-left: 2px solid #DDD;
+	padding-left: 0.5em;
+}
+.footnotes { 
+    margin-top: 1em;
+    font-size: 0.7em;
+	font-family:Arial, Verdana, Geneva, sans-serif;
+}
+.footnotes hr { margin-bottom: 1em; }
+
+.footnotes a[rev=footnote] { text-decoration: none; }
+
+.author{
+	color:#999;
+}
+
+.none{
+	float:none;
+}
+
+.left{
+	float:left;
+}
+.right{
+	float:right;
+}
+.clear{
+	clear:both;
+}
+.center{
+	text-align: center;
+}
+.inline{
+	display:inline;
+	margin:0;
+}
+.caption{
+	display:block;
+	text-align: center;
+}
+
+.gray{
+	color:#999;
+}
+
+.archive_date{
+	width:100px;
+	float:left;
+}
+
+hr {
+  border: 0;
+  width: 30%;
+  color: #eee;
+  background-color: #eee;
+  height: 1px;
+}
+
+#archive_header_link{
+	float:right;
+}
+
+.thumbnail{
+	display: inline; 
+	margin:2px 2px 3px 3px;
+}
+
+table{
+	border-width: 1px;
+	border-style: outset;
+
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 50%;
+}
+th{
+	background-color: #eee;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+
+.table-centered{
+	border-collapse:collapse;
+}
+.table-centered th{
+	border: 1px solid white;
+	text-align: left;
+}
+.table-centered td{
+	text-align: center;
+	color: #7208bf;
+	border: 1px solid #ddd;
+}
+
+.table-centered td:first-of-type{
+	text-align: left;
+	color:black;
+}
+
+pre{
+	line-height:1.4em;
+	background-color: #f8f8f8;
+	border: 1px solid #ccc;
+	overflow: auto;
+	padding: 6px 10px;
+	border-radius: 3px;
+}
+
+.bordered{
+	border: 1px solid #ccc;
+}
+
+.inline{
+	display:inline;
+}
+
+code{
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	hyphens: none;
+}
+
+/*Some div background image for retina... maybe future improvement*/
+
+/* 2012-07-18 */
+#tinywings-icon {
+	display:block;
+	top:0;
+	left: 0;
+	z-index: 1;
+	width:600px;
+	height:450px;
+	margin:0 auto;
+	background-size: 600px 450px; 
+	background-image: url(http://blog.manbolo.com/2012/07/18/tiny-header.jpg);
+}
+@media 	only screen and (-moz-min-device-pixel-ratio: 1.5), 
+		only screen and (-o-min-device-pixel-ratio: 3/2), 
+		only screen and (-webkit-min-device-pixel-ratio: 1.5), 
+		only screen and (min-devicepixel-ratio: 1.5),
+		only screen and (min-resolution: 1.5dppx) {
+  		#tinywings-icon {
+    	background-image: url(http://blog.manbolo.com/2012/07/18/tiny-header@2x.jpg);
+  		}
+}
+
+
+
+</style>
+<link rel="shortcut icon" type="image/png" href="http://blog.manbolo.com/favicon.png">
+<title>Use Python Effectively on OS X</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://blog.manbolo.com/rss.xml">
+<style type="text/css">.clear { /* generic container (i.e. div) for floating buttons */
+	overflow: hidden !important;
+	width: 100% !important;
+}
+
+a.fantasybutton {
+	background: transparent url("chrome://aimersoft/content/img/button_normal.png") no-repeat !important;
+	color: #444 !important;
+	display: block !important;
+	float: left !important;
+	font: normal 12px arial, sans-serif !important;
+	height: 29px !important;
+	width: 112px !important;
+    
+}
+
+a.fantasybutton:active {
+	background: transparent url("chrome://aimersoft/content/img/button_down.png") no-repeat !important;
+	background-position: bottom right !important;
+	color: #000 !important;
+	outline: none !important; /* hide dotted outline in Firefox */
+}
+
+a.playlistbutton{
+    background: transparent url("chrome://aimersoft/content/img/down_all_normal.png") no-repeat !important;
+	color: #444 !important;
+	display: block !important;
+	float: left !important;
+	font: normal 12px arial, sans-serif !important;
+	height: 28px !important;
+	width: 124px !important;
+    margin-left:8px !important;
+    margin-top:2px !important;
+}
+
+a.playlistbutton:active{
+    background: transparent url("chrome://aimersoft/content/img/down_all_down.png") no-repeat !important;
+
+}
+
+button.wsplaylist {
+	background: transparent url("chrome://aimersoft/content/img/down_all_normal.png") no-repeat !important;
+	height: 28px !important;
+	width: 124px !important;
+    margin-left: 10px !important;
+    margin-top: 0px !important;
+    padding-left:1px !important;
+    padding-right:4px !important;
+    padding-top:6px !important;
+
+}
+
+button.wsplaylist:active {
+	background: transparent url("chrome://aimersoft/content/img/down_all_down.png") no-repeat !important;
+}
+
+#mytubem {
+	margin: 0 !important;
+	padding: 0 !important;
+	z-index: 30 !important;
+}
+
+#mytubem li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	float: left;
+	font: bold 11px arial
+}
+
+#mytubem div {
+	position: absolute;
+	top: 28px;
+	width: 110px;
+	visibility: hidden;
+	margin: 0;
+	padding: 0;
+	background: #9CC02B;
+	border: 1px solid #4C4C4C !important
+}
+
+#mytubem div a {
+	position: relative !important;
+	display: block !important;
+	margin: 0 !important;
+	padding: 5px 10px !important;
+	width: auto;
+	white-space: nowrap !important;
+	text-align: center !important;
+	text-decoration: none !important;
+	background: #000000 !important;
+	color: #FFFFFF !important;
+	font: 12px arial, sans-serif !important
+}
+
+#mytubem div a:hover {
+	background: rgb(135,10,10) !important;
+	color: #FFFFFF !important
+}</style></head>
+<body>
+<div id="m" class="left"></div><h1><a href="http://blog.manbolo.com/">Manbolo Blog</a></h1>
+<p id="description"><a href="http://www.manbolo.com/">Manbolo</a> Team Blog, creators of <a href="http://www.manbolo.com/meon">Meon</a><span id="archive_header_link"><a href="http://blog.manbolo.com/archives">Archives</a></span></p><section>
+<article>
+<header>
+<h2><a href="http://blog.manbolo.com/2014/09/27/use-python-effectively-on-os-x">Use Python Effectively on OS X</a></h2>
+<time datetime="2014-09-27" pubdate="">September 27, 2014</time>
+<div class="right"><a class="gray" href="http://twitter.com/share?url=http://blog.manbolo.com/2014/09/27/use-python-effectively-on-os-x&amp;text=Use+Python+Effectively+on+OS+X&amp;via=ManboloGames&amp;related=manboloGames">tweet</a><span class="gray"> • </span><a class="gray" href="https://news.ycombinator.com/item?id=8378007">hacker news</a></div><div class="clear"></div></header>
+
+<p>This post is an unorganised collection of notes about how I use Python <em>effectively</em>
+ on OS&nbsp;X. Disclaimer: I don’t pretend to be a Python expert, by a 
+far mesure, so there could be some Pythonic horrors in this article; if 
+you think so, just <a href="mailto:contact@manbolo.com">drop us a mail</a>, and we’ll update this article.</p>
+
+<p><strong>TL&amp;DR</strong>: don’t use the pre-installed OS&nbsp;X Python. Use Python with <a href="http://brew.sh/">Homebrew</a>. Never ever <code>sudo pip</code>. Use <a href="http://virtualenv.readthedocs.org/en/latest/index.html">virtualenv</a> / <a href="http://virtualenvwrapper.readthedocs.org/en/latest/index.html">virtualenvwrapper</a>. <a href="http://www.jetbrains.com/pycharm/">PyCharm</a> worth the price. Python rocks.</p>
+
+<ol><li><a href="#p1"><strong>OS X default Python installation</strong></a></li>
+<li><a href="#p2"><strong>Installing brew</strong></a></li>
+<li><a href="#p3"><strong>Installing Python 2.7 with brew</strong></a></li>
+<li><a href="#p4"><strong>Installing third-party libraries</strong></a>
+
+<ul><li><a href="#p4.1">Essential</a></li>
+<li><a href="#p4.2">virtualenv</a></li>
+<li><a href="#p4.3">virtualenvwrapper</a></li>
+</ul></li>
+<li><a href="#p5"><strong>Shell scripts with Python</strong></a></li>
+<li><a href="#p6"><strong>Must-have  packages</strong></a></li>
+<li><a href="#p7"><strong>Python 3</strong></a></li>
+<li><a href="#p8"><strong>IDEs on OS X</strong></a></li>
+<li><a href="#p9"><strong>Various tools</strong></a>
+
+<ul><li><a href="#p9.1">Fabric</a></li>
+</ul></li>
+</ol><hr><h3 id="p1">1. OS X default Python installation</h3>
+
+<p>A quick word about the default Python installation. Python comes 
+pre-installed on OS X. If you open a terminal, and simply ask for the 
+location of the <code>python</code> binary, you will see:</p>
+
+<pre><code>$ which python
+/usr/bin/python
+</code></pre>
+
+<p>Launching the interpreter in a terminal window:</p>
+
+<pre><code>$ python
+Python 2.7.5 (default, Mar  9 2014, 22:15:05)
+[GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.0.68)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt;
+</code></pre>
+
+<p>So Python 2.7.5 is the default <code>python</code> interpreter. If you need to, Python 2.6.8 and Python 2.5.6 are also available on a vanilla OS X.</p>
+
+<p>Simply use <code>python2.6</code> for Python 2.6.8:</p>
+
+<pre><code>$ python2.6
+Python 2.6.8 (unknown, Mar  9 2014, 22:16:00)
+[GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.0.68)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt;
+</code></pre>
+
+<p>And <code>python2.5</code> for Python 2.5.6:</p>
+
+<pre><code>$ python2.5
+Python 2.5.6 (r256:Unversioned directory, Mar  9 2014, 22:15:03)
+[GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.0.68)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt;
+</code></pre>
+
+<p>While it can be convenient to have a pre-installed Python, my rookie advise <strong>is to not use it</strong>:
+ Apple doesn’t always do a good job on keeping the Python runtime 
+environment up to date, plus it can be cumbersome to play with 
+permissions just to install third-party Python librairies, and finally, 
+Apple has a tendency to wipe-out your <a href="https://docs.python.org/2/install/">site-packages</a> with every major OS upgrade.</p>
+
+<p>So I simply recommend to install Python <em>aside</em> the default one, with <a href="http://brew.sh/">Homebrew</a>. You’ll never have to use <code>sudo</code> or have permissions problem; if you have any issues, you can drop <code>/usr/local</code> and start from fresh without having messed up your OS X system. Let’s do it now!</p>
+
+<hr><h3 id="p2">2. Installing brew</h3>
+
+<p>There are many package installers on OS X but I find <a href="http://brew.sh/">Homebrew</a> very pleasant, simple and convenient. Homebrew, originally started by <a href="https://twitter.com/mxcl">Max Howell</a>, simplify the installation of open source tools (like <a href="http://www.imagemagick.org/">ImageMagick</a>, <a href="http://www.gnu.org/software/wget/">wget</a>, <a href="https://github.com/ggreer/the_silver_searcher">ag</a> etc..) that are not by default on OS X.</p>
+
+<p>What I really like with Homebrew is that everything is installed in a
+ directory that is not conflicting with the system directories. By 
+default, it’s on <code>/usr/local</code> but you can change to whatever you like.</p>
+
+<p>Installing Homebrew is very simple: open a Terminal window and type</p>
+
+<pre><code>ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+</code></pre>
+
+<hr><h3 id="p3">3. Installing Python 2.7 with brew</h3>
+
+<p>Now that our Homebrew installation is done, we can install Python. We’re going to start by installing Python 2.7:</p>
+
+<pre><code>$ brew install python
+</code></pre>
+
+<p>Now, we need to tell the system to use our freshly new Python interpreter instead of the default one.</p>
+
+<pre><code>$ which python
+/usr/bin/python
+</code></pre>
+
+<p>The default Python interpreter is under <code>/usr/bin</code>, and the Homebrew’s one is under <code>/usr/local/bin</code> so we’re going to edit <code>/etc/paths</code> so the <code>/usr/local/bin</code> binaries will be prioritised over <code>/usr/bin</code>.</p>
+
+<pre><code>$ sudo vi /etc/paths
+</code></pre>
+
+<p>If you open <code>/etc/paths</code>, you should see this:</p>
+
+<pre><code>/usr/bin
+/bin
+/usr/sbin
+/sbin
+/usr/local/bin  
+</code></pre>
+
+<p>Move <code>/usr/local/bin</code> at the beginning of the file so Homebrew binaries take on system binaries;</p>
+
+<pre><code>/usr/local/bin  
+/usr/bin
+/bin
+/usr/sbin
+/sbin
+</code></pre>
+
+<p>Finally, check everything is ok: typing <code>python</code> should launch the Homebrew version</p>
+
+<pre><code>$ source /etc/paths
+$ which python
+/usr/local/bin/python
+
+$ python
+Python 2.7.8 (default, Jul  2 2014, 10:14:46)
+[GCC 4.2.1 Compatible Apple LLVM 5.1 (clang-503.0.40)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+</code></pre>
+
+<p><a href="https://github.com/pypa/pip">pip</a> has been also installed alongside our brewed Python; pip will allow us to easily install and manage Python packages.</p>
+
+<pre><code>$ which pip
+/usr/local/bin/pip  
+</code></pre>
+
+<p>With this setup (brewed python), <strong>you’ll NEVER have to use <code>sudo</code> to install any Python relative stuff</strong>. If you end up doing this, something is broken in your brewed Python installation.</p>
+
+<hr><h3 id="p4">4. Installing third-party libraries</h3>
+
+<h4 id="p4.1">4.1. Essential</h4>
+
+<p>There are two kind of third-party libraries: those you want <em>to be installed anytime with your default Python</em>,
+ and those you like to play with, or use only for your toys projects. 
+You don’t want to mess your default Python, so I recommend to install 
+only the essential libraries in your default Python (which is <code>/usr/bin/local/python</code> if you’ve followed my previous advices).</p>
+
+<p>Those essentials libraries depends on your needs, and will be different from one person to another. In <a href="#p6">Must-have packages</a>, I’ve listed some open source packages that I found convenient to be always present in my system.</p>
+
+<p>You’ll be able to install the other libraries in a <em>virtual Python environment</em>, that could be used and / or trash anytime, without messing up your brewed installation.</p>
+
+<p>Let’s take the example of a library that I want to always be available in my Python interpreter: <a href="http://docs.python-requests.org/en/latest/">Requests</a>. To install it, I simply <code>pip install request</code> in a terminal window. This way, each time I use my default Python, I can do HTTP requests really easily.</p>
+
+<pre><code>$ pip install requests
+
+$ python
+Python 2.7.8 (default, Jul  2 2014, 10:14:46)
+[GCC 4.2.1 Compatible Apple LLVM 5.1 (clang-503.0.40)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import requests
+&gt;&gt;&gt; requests.__path__
+[’/usr/local/lib/python2.7/site-packages/requests’]
+&gt;&gt;&gt;
+</code></pre>
+
+<h4 id="p4.2">4.2. virtualenv</h4>
+
+<p>Now, you could theoretically install all the third parties libraries 
+you need in your default Python. But, imagine you have a script that 
+needs version 1 of LibFoo, but another script requires version 2. How 
+can you use both these scripts? If you install everything into <code>/usr/local/lib/python2.7/site-packages/</code>, it’s easy to end up in a situation where you unintentionally upgrade something that shouldn’t be upgraded.</p>
+
+<p>Or more generally, what if you want to install an application and 
+leave it be? If an application works, any change in its libraries or the
+ versions of those libraries can break the application.</p>
+
+<p>To address this, we’re going to use <a href="http://virtualenv.readthedocs.org/en/latest/index.html">virtualenv</a>. <a href="http://virtualenv.readthedocs.org/en/latest/index.html">virtualenv</a>
+ allows you to create an optimised, independent and sandboxed copy of 
+your default Python. You’ll be able to install packages in this <em>virtual Python environment</em>, and <strong>only</strong> in this environnement. You will be able to use this Python interpreter (or <em>activate</em> it), play with it, and comes back (<em>deactivate</em>)
+ to the default environnement. You will be able to have multiple venvs 
+(shortcut for virtual Python environment), each one being completely 
+independent of the others; you will be able to switch between 
+environment, execute periodic scripts in a given environment etc…</p>
+
+<p>To install <a href="http://virtualenv.readthedocs.org/en/latest/index.html">virtualenv</a>, just use your default pip:</p>
+
+<pre><code>pip install virtualenv
+</code></pre>
+
+<p>Example: you want to play with latest version of <a href="https://www.djangoproject.com/">Django</a>. So the first step is to create a venv for the latest version of <a href="https://www.djangoproject.com/">Django</a>. You can create a venv anywhere on your disk, and <strong>you do not need to be root to do this</strong>, you just need write permissions. For example, you can install a new venv in your Documents directory:</p>
+
+<pre><code>$ cd ~/Documents
+$ virtualenv -p /usr/local/bin/python2.7 venv-django
+</code></pre>
+
+<p>This command has created a sandboxed version of your Python 
+environment under the folder venv-django. By default, this copy comes 
+clean, without the third-party packages that are installed in your 
+default Python. This allows you to start from a clean, new state. You 
+can open the folder <code>~/Documents/venv-django</code> and you will see a sandboxed Python environment:</p>
+
+<pre><code>$ cd ~/Documents/venv-django
+$ ls -l
+total 0
+drwxr-xr-x  19 jc  staff  646 Sep 27 11:43 bin
+drwxr-xr-x   3 jc  staff  102 Sep 27 11:43 include
+drwxr-xr-x   3 jc  staff  102 Sep 27 11:43 lib
+$ cd bin
+$ ls -l
+total 160
+-rw-r--r--  1 jc  staff   2203 Sep 27 11:43 activate
+-rw-r--r--  1 jc  staff   1259 Sep 27 11:43 activate.csh
+-rw-r--r--  1 jc  staff   2472 Sep 27 11:43 activate.fish
+-rw-r--r--  1 jc  staff   1129 Sep 27 11:43 activate_this.py
+-rwxr-xr-x  1 jc  staff    253 Sep 27 11:43 easy_install
+-rwxr-xr-x  1 jc  staff    253 Sep 27 11:43 easy_install-2.7
+-rwxr-xr-x  1 jc  staff    150 Sep 27 11:43 get_env_details
+-rwxr-xr-x  1 jc  staff    225 Sep 27 11:43 pip
+-rwxr-xr-x  1 jc  staff    225 Sep 27 11:43 pip2
+-rwxr-xr-x  1 jc  staff    225 Sep 27 11:43 pip2.7
+-rw-r--r--  1 jc  staff     72 Sep 27 11:43 postactivate
+-rw-r--r--  1 jc  staff     74 Sep 27 11:43 postdeactivate
+-rwxr-xr-x  1 jc  staff     69 Sep 27 11:43 preactivate
+-rw-r--r--  1 jc  staff     75 Sep 27 11:43 predeactivate
+lrwxr-xr-x  1 jc  staff      9 Sep 27 11:43 python -&gt; python2.7
+lrwxr-xr-x  1 jc  staff      9 Sep 27 11:43 python2 -&gt; python2.7
+-rwxr-xr-x  1 jc  staff  12744 Sep 27 11:43 python2.7
+</code></pre>
+
+<p>A new python interpreter is here and ready to serve! But currently the Python interpreter is still the default one.</p>
+
+<pre><code>$ which python
+/usr/local/bin/python
+</code></pre>
+
+<p>To switch to the interpreter of the venv, you need <em>to activate</em> it. <code>source</code> the <code>bin/activate</code> script that have been created in the venv folder:</p>
+
+<pre><code>$ source ~/Documents/venv-django/bin/activate
+(venv-django)$ 
+
+(venv-django)$ which python 
+/Users/jc/Documents/venv-django/bin/python
+
+(venv-django)$ which pip
+/Users/jc/Documents/venv-django/bin/pip
+</code></pre>
+
+<p>You can see that your shell prompt is now prefixed with the name of the current activated environment (<em>very convenient</em>). You can test that no third-party packages have been installed and that your virtual env is clean:</p>
+
+<pre><code>(venv-django)$ python
+Python 2.7.8 (default, Jul  2 2014, 10:14:46)
+[GCC 4.2.1 Compatible Apple LLVM 5.1 (clang-503.0.40)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import requests
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+ImportError: No module named requests
+&gt;&gt;&gt;
+</code></pre>
+
+<p>You can use this new Python environment without fearing to break anything, or to bloat you default Python. <code>activate</code> simply add the virtual env Python binaries to your PATH, in front of system defined binaries. Each time we’ll use <code>pip</code> or <code>python</code>, we’ll use the ones that are in this sandbox.</p>
+
+<p>Now, we can safely install Django in your new environment:</p>
+
+<pre><code>(venv-django)$ pip install django
+(venv-django)$ python
+Python 2.7.8 (default, Jul  2 2014, 10:14:46)
+[GCC 4.2.1 Compatible Apple LLVM 5.1 (clang-503.0.40)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import django
+&gt;&gt;&gt;
+</code></pre>
+
+<p>To leave the current virtualenv, and go back to the default Python, just  type <code>deactivate</code> in any path.</p>
+
+<pre><code>$(venv-django) deactivate   
+</code></pre>
+
+<p>Back to the default Python, Django is not installed and everything is clear.</p>
+
+<p>You don’t need to do the activate/deactivate dance each time you want
+ to use a particular venv. Let’s say you want to execute a cron task <code>checker.py</code>. <code>checker.py</code> is using a virtual env defined at <code>~/Documents/venvs/myvenv</code>. You can use the venv python interpreter to launch <code>checker.py</code> (without calling <code>activate</code>), and everything will just works, your script  will be able to import any module defined in your venv:</p>
+
+<pre><code>$ ~/Documents/venvs/myvenv/bin/python checker.py
+</code></pre>
+
+<h4 id="p4.3">4.3. virtualenvwrapper</h4>
+
+<p>Working with multiple virtualenv can become really teddy and 
+cumbersome: you have to switch and remember where is located the venv 
+you want to use. This is where <a href="http://virtualenvwrapper.readthedocs.org/en/latest/index.html">virtualenvwrapper</a>
+ comes to place: virtualenvwrapper is a set of extensions to virtualenv 
+tool. You can easily list, create and delete virtual environments; all 
+of your virtual environments are organized in one place.</p>
+
+<p>Installing virtualenv is really simple, with your main Python:</p>
+
+<pre><code>pip install virtualenvwrapper
+</code></pre>
+
+<p>Next, you have to add <code>source /usr/local/bin/virtualenvwrapper.sh</code> to your shell startup file (on OS X, you can put this at the end of <code>~/.bash_profile</code>).</p>
+
+<p>Then, everything is set up and you can create a new venv:</p>
+
+<pre><code>$ mkvirtualenv env1
+New python executable in env1/bin/python2.7
+Also creating executable in env1/bin/python
+Installing setuptools, pip…done.
+(env1)~ $
+</code></pre>
+
+<p>By default, all your virtual environments will be created under <code>~/.virtualenvs/</code> but you can change it.</p>
+
+<p>List all environnement:</p>
+
+<pre><code>$ workon
+env1
+env2
+</code></pre>
+
+<p>Switch on environnement env1:</p>
+
+<pre><code>$ workon env1
+</code></pre>
+
+<hr><h3 id="p5">5. Shell scripts with Python</h3>
+
+<p>If you write shell scripts in Python, you can launch your script by simply call:</p>
+
+<pre><code>$ python myscript.py
+</code></pre>
+
+<p>This will execute your script, with the current python interpreter. 
+If your script need a particular virtual environnement to run, you can 
+run it in this virtual environment without having to activate it before.
+ Simply hard code the python interpreter binary that ways:</p>
+
+<pre><code>$ /Users/jc/.virtualenvs/env1/bin/python myscript.py
+</code></pre>
+
+<p>This will execute the script <code>myscript.py</code> in the virtual environnement defined at <code>/Users/jc/.virtualenvs/env1</code>. All the packages that you have installed in this virtual environnement will be callable in the script.</p>
+
+<p>If you want to call directly your script without typing <code>python</code>, add the proper  permission on your script</p>
+
+<pre><code>$ chmod u+x myscript.py
+</code></pre>
+
+<p>And add the following <a href="http://en.wikipedia.org/wiki/Shebang_%28Unix%29">shebang</a> at the beginning of your script:</p>
+
+<pre><code>#!/usr/bin/env python
+</code></pre>
+
+<p>You can also point to a particular python interpreter if you want:</p>
+
+<pre><code>#!/Users/jc/.virtualenvs/env1/bin/python
+</code></pre>
+
+<p>Which is considerably less portable. <code>#!/usr/bin/env python</code> will use the current python interpreter of your shell session (which can be a <code>virtualenv</code> ones).</p>
+
+<p>Finally, it’s a best practice to declare the encoding of your script file. On OS X, use UTF-8.</p>
+
+<p>For example, the following script:</p>
+
+<pre><code>#!/usr/bin/env python
+
+
+if __name__ == ’__main__’:
+    print("Hello こんにちは!")
+</code></pre>
+
+<p>will produced this error when executed:</p>
+
+<pre><code>File "./testutf8.py", line 5
+SyntaxError: Non-ASCII character ’\xe3’ in file ./testutf8.py on line 5, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+</code></pre>
+
+<p>With the proper encoding hint, everything works as it should be (you can even use <a href="http://blog.manbolo.com/2012/10/29/supporting-new-emojis-on-ios-6">emojis</a> if you want!):</p>
+
+<pre><code>#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+if __name__ == ’__main__’:
+    print("Hello こんにちは!")
+
+
+$ ./testutf8.py
+Hello こんにちは!
+</code></pre>
+
+<hr><h3 id="p6">6. Must-have packages</h3>
+
+<p>I’m not a Python expert, and everyone’s needs are different so take this list with a grain of salt.</p>
+
+<ul><li><a href="http://docs.python-requests.org/en/latest/">Requests</a>: simply HTTP for humans. If you deals with HTTP requests, just use Request and your life will get <strong>a lot</strong> easier.</li>
+<li><a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>: parsing HTML and XML data. So good.</li>
+<li><a href="http://www.sqlalchemy.org/">SQLAlchemy</a>: efficient and high-performing SQL toolkit.</li>
+<li><a href="http://pillow.readthedocs.org/en/latest/">Pillow</a>: imaging library (fork of the venerable PIL). Just works.</li>
+<li><a href="http://lxml.de/">lxml</a>: another HTML XML processing 
+tookit. You can prefer BeautifulSoup APIs, but BeautifulSoup can also 
+use lxml as a parser. It’s a matter of choice, I prefer BeautifulSoup.</li>
+<li><a href="http://jinja.pocoo.org/">Jinga</a>: full featured template engine.</li>
+<li><a href="http://pygments.org/">Pyments</a>: generic syntax 
+highlighter for general use in all kinds of software such as forum 
+systems, wikis or other applications that need to prettify source code.</li>
+</ul><p>If you want to do web development, you could try:</p>
+
+<ul><li><a href="https://www.djangoproject.com/">Django</a>: 
+unavoidable. Django is the behemoth of the Python web framework. I love 
+it, for the documentation, the admin interface, the ORM, and the 
+built-in authentication support. If you need something smaller, you can 
+use <a href="http://flask.pocoo.org/">Flask</a> or <a href="http://bottlepy.org/docs/dev/index.html">Bottle</a>.</li>
+<li><a href="http://flask.pocoo.org/">Flask</a>: fast, simple and lightweight micro web framework.</li>
+<li><a href="http://bottlepy.org/docs/dev/index.html">Bottle</a>: fast, simple and lightweight micro web framework.</li>
+</ul><p>Flask and Bottle are both excellent. Give both a try before deciding which one to use.</p>
+
+<hr><h3 id="p7">7. Python 3</h3>
+
+<p>Everything I’ve just said works for Python 2 or Python 3. Python 3 
+doesn’t come pre-installed on OS X, so if you want to install it, just 
+use brew.</p>
+
+<pre><code>brew install python3
+</code></pre>
+
+<p>Then you can launch <code>python3</code> and play with the new <a href="https://docs.python.org/3/library/asyncio.html">asyncio</a> module:</p>
+
+<pre><code>$ python3
+Python 3.4.1 (default, May 19 2014, 13:10:29)
+[GCC 4.2.1 Compatible Apple LLVM 5.1 (clang-503.0.40)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import asyncio
+&gt;&gt;&gt;
+</code></pre>
+
+<p>Python 2 and Python 3 can coexist without any problem. If you want to launch the Python 2 interpreter, just use <code>python</code>. If you want to use the Python 3 interpreter, just use <code>python3</code>; if you want to install packages in Python 2 library, just use <code>pip</code>, if you want to install packages in your Python 3 library, just use <code>pip3</code>….<strong>et voilà!!!</strong>.</p>
+
+<p>You can create virtual env that will use Python 2 or Python 3, just use the <code>-p</code> option flag to target a specific Python. For instance:</p>
+
+<pre><code>mkvirtualenv -p /usr/local/bin/python3 testasyncio
+</code></pre>
+
+<p>Will construct a venv with Python 3.</p>
+
+<hr><h3 id="p8">8. IDEs on OS X</h3>
+
+<p>You can write Python code with <code>vim</code> but there are good and complete Python IDEs on OS X.</p>
+
+<ul><li><a href="http://www.jetbrains.com/pycharm/">PyCharm</a>: my Python IDE of choice. Starting at $99, it <strong>totally worths it</strong>.
+ There is also a free edition. My only (minor) grip is that it isn’t a 
+totally native OS X app (and there are too much preferences!).</li>
+<li><a href="http://celestialteapot.com/exedore/">Exedore</a>: much 
+lighter than PyCharm and written entirely in Cocoa/Objective-C so it 
+feels right at home on your Mac. Give-it a try (free trial, then $9.99).</li>
+<li><a href="http://pydev.org/">PyDev</a>: if you like Eclipse, PyDev is for you. <a href="http://blog.manbolo.com/2013/02/04/how-to-install-python-3-and-pydev-on-osx">I’ve tried it</a> but prefer PyCharm.</li>
+</ul><hr><h3 id="p9">9. Various tools</h3>
+
+<h4 id="p9.1">9.1. Fabric</h4>
+
+<p><a href="http://www.fabfile.org/">Fabric</a> is a command-line tool 
+for streamlining the use of SSH for application deployment or systems 
+administration tasks. I use it for deploying this blog from my Mac for 
+instance. With Fabric, you can launch command as if you were on your 
+server, and execute arbitrary Python functions via the command line.</p>
+
+<p>For exemple, in a fabfile.py file you code:</p>
+
+<pre><code>from fabric.api import local
+
+def prepare_deploy():
+    local("./manage.py test my_app")
+    local("git add -p &amp;&amp; git commit")
+    local("git push")
+</code></pre>
+
+<p>And then on the command line, you can launch:</p>
+
+<pre><code>$ fab prepare_deploy
+</code></pre>
+
+<p>And the commands will be executed locally.</p>
+
+<p>But the real power of Fabric it that it can run commands on your server, from your Mac! For instance:</p>
+
+<pre><code>env.hosts = [’example.com’]
+
+def deploy():
+    code_dir = ’/srv/django/myproject’
+    with cd(code_dir):
+        run("git pull")
+        run("touch app.wsgi")
+</code></pre>
+
+<p>If you execute <code>fab deploy</code>, the commands will be sent 
+from your Mac to your server (via SSH) and executed here! Fabric really 
+simplify you deployment needs and you can deploy, run scripts on 
+multiple servers easily. I use it to deploy the blog on our server, and 
+we use it also to deploy our various Django projects.</p>
+
+<p><span class="author">From jc.</span></p>
+
+
+</article>
+<p><a href="http://blog.manbolo.com/archives">All Posts</a></p>
+<footer><p>© 2015 <a href="http://www.manbolo.com/">Manbolo</a> Team Blog  • <a href="http://twitter.com/manboloGames">Twitter</a>  • <a href="http://blog.manbolo.com/rss.xml">RSS feed</a></p></footer>
+</section>
+
+
+</body></html>
