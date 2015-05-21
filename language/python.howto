@@ -2,21 +2,121 @@
 #
 # Index
 #
-# 1) Help: available methods for a data type: dir, help
-# 2) Built.in data structures
-# 3) Writing Scripts
-# 4) Python's list comprehension construction
-# 5) Writing Functions
 
-# ZZZ) Python issues
-#      Indentation WARNING
+# 0) Python facts & issues)
+#    i)   Indentation
+#    ii)  Strings & Chars
+#    iii) Indexing (strings, lists, ...)
+#    iv)  Control flow issues
+#    v)   Assignation: value vs memory address
+
+# 1) Help: available methods for a data type: dir, help
+
+# 2) Control flow [1.1]
+
+# 3) Data structures: list, tuple, set, dictionary [1.2]
+
+# 3000) Writing Scripts
+
+# 4000) Python's list comprehension construction
+
+# 5000) Writing Functions
 
 # References)
+
 # Annex) python in Emacs
+
 # Annex) python in shell console
+
 ################################################################################
 
 
+
+################################################################################
+# 0) Python facts & issues
+################################################################################
+
+# i) Indentation
+
+- Python uses the indentation in the source code for interpretation -> it needs
+  to keep track of the level of indentation across code blocks.
+
+- Tabs vs Spaces: switching TABS & spaces -> throw an exception
+
+
+# ii) Strings & Chars
+
+- NO char type -> a character is simply a string of size one.
+
+
+# iii) Indexing (strings, lists, ...)
+
+- Normal indexing (from left to right):   0 .. n-1
+- Negative indexing (from right to left): -1 .. -n  #warning: -0 = 0
+- slicing [from_index:to_index]: from_index  .. to_index-1
+          [from_index:] , [:to_index] , [-from_index:] , [:-to_index]
+
+WARNING: out of range slice indexes does not rise an error!
+         e.g. >>> word="unos"
+         >>> word[1:444]
+         'nos'
+
+WARNING: Python strings are immutable -> assigning to an indexed position in
+         the string results in an error
+
+         >>> word[2]="k"
+         TypeError: 'str' object does not support item assignment
+
+WARNING Variable assigning is VALID: not changing the value, but changing the
+	address of the variable instead.
+
+	>>> word="new_object"
+	'new_object'
+
+
+# iv) Control flow issues
+
+WARNING: no 'switch' in Python: if ... elif ... elif ... sequence instead
+
+WARNING: 'elif': useful to avoid excessive indentation
+
+WARNING: 'for' to modify a sequence -> first make a copy of the sequence, and
+	 then iterate over the copy and modify the original; otherwise infinite
+	 loop (see 2.2.b).
+	 
+
+v) Assignation: value vs memory address (lists and dictionaries)
+ 
+WARNING: lists.- Given two lists a,b:
+b = a     # b = POINTER to a:  &b = &a, *b = *a; changing a -> changing b
+b = a[:]  # b = COPY of a:  &b != &a, *b = *a; changing a -> b doesn't
+
+WARNING: dictionaries.- Given two dictionaries a,b:
+b = a       # b = POINTER to a
+b = dict(a) # b = copy of a
+
+# e.g. lists (pointer):
+>>> a=[1,2,3]
+>>> b=a
+>>> a,b
+([1, 2, 3], [1, 2, 3])
+>>> a+=[4]                   # changing a -> change b too
+>>> a,b
+([1, 2, 3, 4], [1, 2, 3, 4]) 
+>>> b=["bb"]                 # changing b -> does not affect a
+>>> a,b
+([1, 2, 3, 4], ['bb'])      
+
+# e.g. lists (copy):
+>>> a=[1,2,3]
+>>> b=a[:]
+>>> a,b
+>>> a+=[4]                   # changing a -> does not affect b
+>>> a,b
+([1, 2, 3, 4], [1, 2, 3])
+
+
+ 
 ################################################################################
 ## 1) Help: available methods for a data type: dir, help
 ################################################################################
@@ -27,7 +127,54 @@
 
 
 ################################################################################
-## 2) Built.in data structures [2.1]
+# 2) Control flow [1.1]
+################################################################################
+
+# 2.1. if Statements
+
+>>> if x < 0:
+...     x = 0
+...     print('Negative changed to zero')
+... elif x == 0:        # 'elif': useful to avoid excessive indentation
+...     print('Zero')
+... elif x == 1:
+...     print('Single')
+... else:
+...     print('More')
+...
+
+WARNING: no 'switch' in Python: if ... elif ... elif ... sequence instead
+
+
+# 2.2. for Statements
+
+a) Observer mode: iterating over a sequence:
+
+>>> # Measure some strings:
+... words = ['cat', 'window', 'defenestrate']
+>>> for w in words:
+...     print(w, len(w))
+...
+
+b) Setter mode: (BEST PRACTICE) first make a copy of the sequence, and then
+iterate over the copy and modify the original; the slice notation is fine for
+this:
+
+>>> for w in words[:]:  # Loop over a slice copy of the entire list.
+...     if len(w) > 6:
+...         words.insert(0, w)
+...
+>>> words
+['defenestrate', 'cat', 'window', 'defenestrate']
+
+# ERROR example.-
+>>> for w in words:
+...     words.insert(0, w) # infinite loop
+
+
+
+################################################################################
+## 3) Data structures: list, tuple, set, dictionary [1.2]
 ################################################################################
 
 # -----------------
@@ -37,24 +184,21 @@
 # - WARNING: fixed ordering
 # - WARNING: allows NESTING (list of lists)
 # - WARNING: allows MIXED data type content
-#
+# - WARNING: assignation: copy (b=a[:]) vs pointer (b=a)   (see 0.v)
+# 
 # operators:
 # |+|  concatenation
 # 
-# Indexing
-# [0..n-1] 
-# [1]  positive indexing: watch value; value substitution
-# [-1] negative indexing (inverse order):  watch value; value substitution
-# [from_index:to_index]| will get the elements in |from_index, ..., to_index-1|
-# [from_index:], [:to_index]
+# Indexing: getter & setter operation
 # len(fruits): number of elements
+
 >>> fruits = ['apple','orange','pear','banana']
 
 # The items stored in lists can be any Python data type. So for instance
 # we can have lists of lists:
 >>> lstOfLsts = [['a','b','c'],[1,2,3],['one','two','three']]
 >>> lstOfLsts[1][2]
-
+>>> lstOfLsts + ["fin", "lista"] #concat
 
 # -----------------
 # <type 'tuple'>: IDEM lists except that it is immutable once it is created.
@@ -102,7 +246,8 @@ True
 # - WARNING: not fixed ordering (depends on the hashing algorithm)
 # - WARNING: allows NESTING (dictionaries of dictionaries)
 # - WARNING: allows MIXED data type content in the 'value' field.
-
+# - WARNING: assignation: copy (b=dict(a)) vs pointer (b=a)   (see 0.v)
+# 
 # basic operators: keys(), values(), items()
 # construction
 >>> studentIds = {'knuth': 42.0, 'turing': 56.0, 'nash': 92.0 }
@@ -119,7 +264,7 @@ global_dir={'studentIds': studentIds, 'minids': {'knuth': 42.0, 'turing': 56.0}}
 
 
 ################################################################################
-## 3) Writing Scripts
+## 3000) Writing Scripts
 ################################################################################
 
 3.1)  Allow execution from console:
@@ -141,7 +286,7 @@ global_dir={'studentIds': studentIds, 'minids': {'knuth': 42.0, 'turing': 56.0}}
      # -*- coding: utf-8 -*-
 
      e.g. try this code:
-          print("Hello こんにちは!")    
+          print("Hello こんにちは!")
      
      i.e.
 
@@ -151,7 +296,7 @@ global_dir={'studentIds': studentIds, 'minids': {'knuth': 42.0, 'turing': 56.0}}
 
 
 ################################################################################
-# 4) Python's list comprehension construction
+# 4000) Python's list comprehension construction
 ################################################################################
 
 e.g.:
@@ -163,7 +308,7 @@ print([x+1 for x in nums if x % 2 ==1])
 
 
 ################################################################################
-# 5) Writing Functions
+# 5000) Writing Functions
 ################################################################################
 
 5.1) Internal functions
@@ -190,34 +335,6 @@ if __name__ == '__main__':
     buyFruit('apples',2.4)
     buyFruit('coconuts',2)        
 
-
-
-    
-################################################################################
-# 5) Python's Indentation
-################################################################################
-
-- Python uses the indentation in the source code for interpretation -> it needs
-  to keep track of the level of indentation across code blocks.
-
-- Tabs vs Spaces: switching TABS & spaces -> throw an exception
-
-
-
-
-
-
-
-
-################################################################################
-# References
-################################################################################
-
-[0] Python (3) tutorial - https://docs.python.org/3/tutorial/index.html
-
-[2] Data types
-
-[2.1] https://docs.python.org/2/tutorial/datastructures.html
 
 
 ################################################################################
@@ -247,3 +364,14 @@ if __name__ == '__main__':
            pdb.set_trace() 
      ... Now type M-x shell to get a shell prompt. When you run your program,
      you'll be dumped into pdb at the point where pdb.set_trace() is executed.
+
+
+
+################################################################################
+# References
+################################################################################
+
+[1] Python (3) tutorial - https://docs.python.org/3/tutorial/index.html
+[1.1] Control flow - https://docs.python.org/3/tutorial/controlflow.html
+[1.2] Data structures - https://docs.python.org/3/tutorial/datastructures.html
+
