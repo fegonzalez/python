@@ -11,5 +11,6 @@
 # manuals
 language/courses/*
 language/books/*
+language/temp/*
 
 environment/emacs_use/*_files/*
