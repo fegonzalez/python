@@ -2,7 +2,8 @@
 #
 # Index
 #
-
+################################################################################
+#
 # 0. Python facts & issues)
 #    i)   Indentation
 #    ii)  Strings & Chars
@@ -10,9 +11,9 @@
 #    iv)  Control flow issues
 #    v)   Object's Mutability
 #    XXX) (temporal) modules: import / reload
-
+#
 # 1. Help: available methods for a data type: dir, help
-
+#
 # 2. Control flow [1.1]
 #    2.1. if Statements
 #    2.2. for Statements
@@ -29,13 +30,21 @@
 # 	  2.7.6. Documentation Strings
 # 	  2.7.7. Function Annotations
 # 	  2.7.8. Coding Style
-
-
-# 3. Data structures: list, tuple, set, dictionary [1.2]
+#
+# 3. Data structures [1.3]
+#    3.1. List
+#    	  3.1.1. Using Lists as Stacks
+# 	  3.1.2. Using Lists as Queues
+#	  3.1.3. List Comprehensions
+#    3.2. The 'del' statement
+#    3.3. Tuples and Sequences
+#    3.4. Sets                             (AKI LO DEJO)
+#    3.5. dictionaries
+#    3.6. Looping techniques
+#    3.7. More on conditions
+#    3.8. Comparing Sequences and Other Types
 
 # 3000) Writing Scripts
-
-# 4000) Python's list comprehension construction
 
 # 5000) Writing Functions
 
@@ -44,7 +53,7 @@
 # Annex) python in Emacs
 
 # Annex) python in shell console
-
+# 
 ################################################################################
 
 
@@ -436,39 +445,30 @@ More help in [1.2]
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ################################################################################
-## 3. Data structures: list, tuple, set, dictionary [1.2]
+## 3. Data structures: list, tuple, set, dictionary [1.3]
 ################################################################################
 
-# -----------------
-# <type 'list'>: store a sequence of MUTABLE (element values can be changed)
-# -----------------
-#
-# - WARNING: fixed ordering
-# - WARNING: allows NESTING (list of lists)
-# - WARNING: allows MIXED data type content
-# - WARNING: assignation: copy (b=a[:]) vs pointer (b=a)   (see 0.v)
-# 
-# operators:
-# |+|  concatenation
-# 
-# Indexing: getter & setter operation
-# len(fruits): number of elements
+WARNING 'None' value returned: for all methods which have no return value
+	printed – they return the default None. This is a design principle for
+	all mutable data structures in Python.
 
+WARNING Sequence Types — list, tuple, range
+
+# 3.1. List
+
+- <type 'list'>: store a sequence of MUTABLE elements
+
+WARNING: fixed ordering
+WARNING: allows NESTING (list of lists)
+WARNING: allows MIXED data type content
+WARNING: assignation: copy (b=a[:]) vs pointer (b=a)   (see 0.v)
+
+- operators (all operators at [1.3].5.1.)
+- |+|  concatenation
+-  Indexing: getter & setter operation
+
+(e.g)
 >>> fruits = ['apple','orange','pear','banana']
 
 # The items stored in lists can be any Python data type. So for instance
@@ -477,19 +477,73 @@ More help in [1.2]
 >>> lstOfLsts[1][2]
 >>> lstOfLsts + ["fin", "lista"] #concat
 
-# -----------------
-# <type 'tuple'>: IDEM lists except that it is immutable once it is created.
-# -----------------
 
-# - WARNING: allows NESTING (tuples of tuples, tuples of any Python data type)
+#   3.1.1. Using Lists as Stacks
 
->>> fruits = ('apple','orange','pear','banana')
->>> pair = (3,5)
->>> pair[0]
-3
->>> x,y = pair
->>> x
-3
+WARNING list is LIFO: pop() ==> remove the last element
+
+Stack: append() & pop()
+
+
+#   3.1.2. Using Lists as Queues
+
+WARNING insert() & pop() from the beginning is slow -> TO IMPLEMENT A QUEUE,
+	USE collections.deque which was designed to have fast appends and pops
+	from both ends. (see [1.3] at 5.1.2)
+
+
+#   3.1.3. List Comprehensions
+
+- provide a concise way to create lists.
+
+  >>> nums = [-4, -3, 0, 1, 4]
+  >>> odd_nums = [x for x in nums if x % 2 == 1]
+  >>> squares = [x**2 for x in range(10)]
+  >>> [(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
+
+- List comprehensions can contain complex expressions and nested functions
+
+- In the real world, you should prefer built-in functions to complex flow
+  statements (see zip() function).
+
+
+# 3.2. The 'del' statement
+
+- To remove an item from a list given its index instead of its value (faster)
+
+  >>> a = [-1, 1, 66.25, 333, 333, 1234.5]
+  >>> del a[0]                              # del elements: ONE position
+  >>> del a[2:4]                            # del elements: SLICE list
+  >>> del a[:]
+  >>> del a                                 # delete entire variables
+
+
+# 3.3. Tuples and Sequences
+
+  >>> fruits = ('apple','orange','pear','banana')
+
+- <type 'tuple'>: IDEM list but IMMUTABLE
+
+- Use of tuples: elements that are accessed via unpacking or indexing (or even
+  by attribute in the case of 'namedtuples').
+
+
+3.3.1. tuple packing and sequence unpacking
+
+  a) tuple packing:       mytuple = 12345, 54321, 'hello!'
+  b) sequence unpacking:  a, b, c = mytuple
+
+3.3.2. tuple vs list
+
+    TUPLE               LIST
+  ------------------------------
+
+ - list:  mutable    ;  homogeneous elements     ; access via iteration on list
+ - tuple: inmutable  ;  (usually) heterogeneous  ; unpacking/indexing
+   
+
+ 
+# 3.4. Sets  (AKI LO DEJO)
 
 
 # -----------------
@@ -512,6 +566,10 @@ A
 set(['circle', 'square', 'triangle'])
 >>> 'square' in A
 True
+
+
+
+# 3.5. dictionaries
 
 
 # -----------------
@@ -537,6 +595,16 @@ studentIds['turing'] = [56.0, 'fifty-six']
 {'knuth': 21, 'nash': 92.0, 'turing': [56.0, 'fifty-six']}
 #nested dictionaries
 global_dir={'studentIds': studentIds, 'minids': {'knuth': 42.0, 'turing': 56.0}}
+
+
+
+# 3.6. Looping techniques
+
+
+# 3.7. More on conditions
+
+
+# 3.8. Comparing Sequences and Other Types
 
 
 
@@ -571,16 +639,6 @@ global_dir={'studentIds': studentIds, 'minids': {'knuth': 42.0, 'turing': 56.0}}
      # -*- coding: utf-8 -*-
      scrip-code-here
 
-
-################################################################################
-# 4000) Python's list comprehension construction
-################################################################################
-
-e.g.:
-nums = [1,2,3,4,5,6]
-plusOneNums = [x+1 for x in nums]
-oddNums = [x for x in nums if x % 2 == 1]
-print([x+1 for x in nums if x % 2 ==1])
 
 
 
@@ -623,7 +681,5 @@ print([x+1 for x in nums if x % 2 ==1])
 [1] Python (3) tutorial - https://docs.python.org/3/tutorial/index.html
 [1.1] Control flow - https://docs.python.org/3/tutorial/controlflow.html
 [1.2] lambda tutorial - https://pythonconquerstheuniverse.wordpress.com/2011/08/29/lambda_tutorial/
-
-
-[1.2] Data structures - https://docs.python.org/3/tutorial/datastructures.html
+[1.3] Data structures - https://docs.python.org/3/tutorial/datastructures.html
 
