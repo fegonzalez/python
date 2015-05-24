@@ -8,7 +8,8 @@
 #    ii)  Strings & Chars
 #    iii) Indexing (strings, lists, ...)
 #    iv)  Control flow issues
-#    v)   Assignation: value vs memory address
+#    v)   Object's Mutability
+#    XXX) (temporal) modules: import / reload
 
 # 1. Help: available methods for a data type: dir, help
 
@@ -101,38 +102,67 @@ WARNING: 'for' to modify a sequence -> first make a copy of the sequence, and
 	 loop (see 2.2.b).
 	 
 
-v) Assignation: value vs memory address (lists and dictionaries)
- 
-WARNING: lists.- Given two lists a,b:
-b = a     # b = POINTER to a:  &b = &a, *b = *a; changing a -> changing b
-b = a[:]  # b = COPY of a:  &b != &a, *b = *a; changing a -> b doesn't
+# v) Object's Mutability (assignations & function arguments)
 
-WARNING: dictionaries.- Given two dictionaries a,b:
-b = a       # b = POINTER to a
-b = dict(a) # b = copy of a
+   An object’s mutability is determined by its type:
+   - Inmutable: numbers, strings and tuples.
+   - Mutable: Dictionaries and lists.
 
-# e.g. lists (pointer):
->>> a=[1,2,3]
->>> b=a
->>> a,b
-([1, 2, 3], [1, 2, 3])
->>> a+=[4]                   # changing a -> change b too
->>> a,b
-([1, 2, 3, 4], [1, 2, 3, 4]) 
->>> b=["bb"]                 # changing b -> does not affect a
->>> a,b
-([1, 2, 3, 4], ['bb'])      
+- e.g. Asssignation: given two lists a,b:
 
-# e.g. lists (copy):
->>> a=[1,2,3]
->>> b=a[:]
->>> a,b
->>> a+=[4]                   # changing a -> does not affect b
->>> a,b
-([1, 2, 3, 4], [1, 2, 3])
+  b = a     # b = POINTER to a:  &b = &a, *b = *a; changing a -> changing b
+  b = a[:]  # b = COPY of a:  &b != &a, *b = *a; changing a -> b doesn't
+
+# lists (pointer):
+  >>> a=[1,2,3]
+  >>> b=a
+  >>> a,b
+  ([1, 2, 3], [1, 2, 3])
+  >>> a+=[4]                   # changing a -> change b too
+  >>> a,b
+  ([1, 2, 3, 4], [1, 2, 3, 4]) 
+  >>> b=["bb"]                 # changing b -> does not affect a
+  >>> a,b
+  ([1, 2, 3, 4], ['bb'])      
+
+# list (copy):
+  >>> a=[1,2,3]
+  >>> b=a[:]
+  >>> a,b
+  >>> a+=[4]                   # changing a -> does not affect b
+  >>> a,b
+  ([1, 2, 3, 4], [1, 2, 3])
 
 
- 
+- e.g. Function arguments  (see 2.6.2 example)
+
+
+# XXX) (temporal) modules: import / reload modules (or how call functions
+#      defined within a script
+
+i) import the module: <<import module_name>> ; where module_name = script_name
+   without '.py' suffix
+  
+ii) call the function: module_name.function_name([param values])
+
+iii) Optional: reload a module after been changed
+     >>> import importlib
+     >>> importlib.reload (test_functions)
+
+     WARNING importlib is new since  Python3.4 (imp module deprecated)
+
+
+(e.g)
+script name:   test_functions.py
+function:      def fname(b, a=5, alist=[]):
+>>> import test_functions
+>>> test_functions.fname(1,2)
+(test_functions.py updated)
+>>> import importlib
+>>> importlib.reload (test_functions)
+
+
+
 ################################################################################
 ## 1. Help: available methods for a data type: dir, help
 ################################################################################
@@ -275,9 +305,8 @@ if __name__ == '__main__':
 
 
 WARNING arguments are passed using call by object reference (where the value is
-	always an object reference, not the value of the object), thus:
-	* IF argument is a BASIC TYPE (int, double): NOT CHANGED after return
-	* ELSE (lists, ...): CHANGED (i.e. items inserted into a list)
+	always an object reference, not the value of the object): ( see 0.v)
+	Object's Mutability)
 
 (e.g.)
 
@@ -288,10 +317,10 @@ def test_call_by_object_reference (param):
 
 ### just to test script. Remove otherwise.
 if __name__ == '__main__':        
-    p1= ["a1", "b2", 33];
-    print("param (off-before call f) : ", p1)
-    test_call_by_object_reference(p1)
-    print("param (off-after  call f) : ", p1)
+    mutable_param= ["a1", "b2", 33];
+    print("param (off-before call f) : ", mutable_param)
+    test_call_by_object_reference(mutable_param)
+    print("param (off-after  call f) : ", mutable_param)
 
 
 
