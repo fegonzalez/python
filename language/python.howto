@@ -3,15 +3,14 @@
 # Index
 #
 ################################################################################
-#
+
 # 0. Python facts & issues)
 #    i)   Indentation
 #    ii)  Strings & Chars
 #    iii) Indexing (strings, lists, ...)
 #    iv)  Control flow issues
 #    v)   Object's Mutability
-#    XXX) (temporal) modules: import / reload
-#
+
 # 1. Help: available methods for a data type: dir, help
 #
 
@@ -57,19 +56,13 @@
 #         4.1.1. Executing modules as scripts
 #         4.1.2. The Module Search Path
 #         4.1.3. “Compiled” Python files
-#     4.2. Standard Modules
+#     4.2. Standard Modules (like C++'s STL) [1.7]
 #     4.3. The dir() Function
 #     4.4. Packages
 #         4.4.1. Importing * From a Package
 #         4.4.2. Intra-package References
 #         4.4.3. Packages in Multiple Directories
 
-
-
-
-# 3000) Writing Scripts
-
-# 5000) Writing Functions
 
 # References)
 
@@ -164,34 +157,6 @@ WARNING: 'for' to modify a sequence -> first make a copy of the sequence, and
   >>> a+=[4]                   # changing a -> does not affect b
   >>> a,b
   ([1, 2, 3, 4], [1, 2, 3])
-
-
-- e.g. Function arguments  (see 2.6.2 example)
-
-
-# XXX) (temporal) modules: import / reload modules (or how call functions
-#      defined within a script
-
-i) import the module: <<import module_name>> ; where module_name = script_name
-   without '.py' suffix
-  
-ii) call the function: module_name.function_name([param values])
-
-iii) Optional: reload a module after been changed
-     >>> import importlib
-     >>> importlib.reload (test_functions)
-
-     WARNING importlib is new since  Python3.4 (imp module deprecated)
-
-
-(e.g)
-script name:   test_functions.py
-function:      def fname(b, a=5, alist=[]):
->>> import test_functions
->>> test_functions.fname(1,2)
-(test_functions.py updated)
->>> import importlib
->>> importlib.reload (test_functions)
 
 
 
@@ -654,7 +619,7 @@ i) import the module: 'import module_name' ; where module_name = script_name
 ii) call the function: module_name.function_name([param values])
 
   >>> fibonacci.fib(2000)
-  >>> ffibo = fibonacci.fib; ffibo(2000)  # (optional) local name assignment
+  >>> aliasfibo = fibonacci.fib; aliasfibo(2000)  # (optional) local name
 
 iii) Optional: reload a module after been changed
   >>> import importlib
@@ -664,14 +629,14 @@ iii) Optional: reload a module after been changed
 
 iv) Optional: see module name as a string
   
-  >>> ffibo.__name__
+  >>> aliasfibo.__name__
   'fib'
   
 
 # 4.1. More on Modules
 
-- Each module has its own private symbol table: functions & executable
-  statements (imports, variables)
+- Each module has its own private symbol table: functions (in fact they are
+  exec. statements), and executable statements (imports, variables)
 
 WARNING executable statements can be modified off the module (module.variable =
 	new_value) & remain changed until the module is reloaded again
@@ -693,7 +658,7 @@ WARNING executable statements can be modified off the module (module.variable =
 
      >>> from fibonacci import *
 
-WARNING 'from modulename import * ' is a BAD PRACTICE: (i) it it introduces an
+WARNING 'from package import * ' is a BAD PRACTICE: (i) it it introduces an
 	unknown set of names into the interpreter, possibly hiding some things
 	you have already defined; (ii) it often causes poorly readable code.
 
@@ -704,7 +669,7 @@ a) Allowing execution from console:
 
     a) Add execution permission (+x) to the file
 
-    b) Add the following shebang at the beginning of your script:
+    b) Add the following SHEBANG at the beginning of your script:
 
     #!/usr/bin/env python   # for python 2
     #!/usr/bin/env python3  # for python 3
@@ -727,6 +692,7 @@ b) Declaring the encoding of your script file (BEST PRACTICE). (OSX use UTF-8.)
      # -*- coding: utf-8 -*-
      SCRIP-CODE-HERE
 
+     
 c) Making the file usable as a script as well as an importable module (optional)
 
    - Add main code at the end of the module:
@@ -737,7 +703,7 @@ c) Making the file usable as a script as well as an importable module (optional)
    i) CALL: 'import module': main code is not executed
    ii CALL: 'python3 module.py': main executed
 
-   - How to add params to the 'script call':  argv[1..n]
+   - How to add params to the 'script call':  sys.argv[1..n]
 
    >>>   if __name__ == "__main__":
     	 import sys
@@ -761,28 +727,130 @@ WARNING A program is free to modify 'sys.path' for its own purposes. Be careful!
 
 # 4.1.3. “Compiled” Python files
 
-# 4.2. Standard Modules
+WARNING why compile?: to speed up loading files, but NOT to run faster.   !!!
+
+- compiled module:  filename.pyc
+- optimized compiled module:  filename.pyo
+- compiled module = source file + compiled version
+
+Hint: Modules loaded form the command line are always recompiled.
+
+Hint: To support a non-source (compiled only) distribution, the compiled module
+      must be in the source directory, and there must not be a source module.
+
+Hint: Optimization: -O (remove asserts), -OO (remove docstring) [1.6] 
+
+Hint: The module 'compileall' can create .pyc files (or .pyo) for all modules
+      in a directory.
+
+
+# 4.2. Standard Modules (like C++'s STL) [1.7] 
+
+- 'sys' library (e.g.: sys.ps1, sys.ps2 # primary / secondary prompts)
+
 
 # 4.3. The dir() Function
 
+- dir(): list of all names (variables) already defined (except the built-in)
+- dir(name): list of names defined by a module (data type / variable)
+
+- Hint: How to list the names of built-in functions and variables:
+      	>>> import builtins
+      	>>> dir(builtins)
+
+
 # 4.4. Packages
+
+(e.g.)
+_______________________________________________________________________________
+sound/                          Top-level package
+      __init__.py               Initialize the sound package
+      formats/                  Subpackage for file format conversions
+              __init__.py
+              wavread.py
+              wavwrite.py
+              ...
+      effects/                  Subpackage for sound effects
+              __init__.py
+              echo.py
+              reverse.py
+              ...
+      filters/                  Subpackage for filters
+              __init__.py
+              equalizer.py
+              karaoke.py
+              ...
+_______________________________________________________________________________
+
+a) '__init__.py' files:
+
+   - required to make Python treat the directories as containing packages.
+
+   - empty file / init. code for the package / set the '__all__' variable.
+
+b) Import modes:
+
+   b1) 'import item.subitem.subsubitem'
+
+       - The last item can be a module or a package but can’t be a class or
+         function or variable.
+
+       >>> import sound.effects.echo       
+       >>> sound.effects.echo.echofilter(input, output, delay=0.7, atten=4)
+
+   b2) 'from package import item'
+
+       -'item' can be either a submodule or a name defined in the package. If
+        not a name, the interpreter tries to load it (ImportError exception)
+       
+       >>> from sound.effects import echo
+       >>> echo.echofilter(input, output, delay=0.7, atten=4)
+
+       >>> from sound.effects.echo import echofilter
+       >>> echofilter(input, output, delay=0.7, atten=4)
+
 
 # 4.4.1. Importing * From a Package
 
+  - ' from package import * ' ??
+
+  i) variable '__all__' at __init__.py defined: import the content in __all__
+
+     (e.g) sound/effects/__init__.py
+  	   __all__ = ["echo", "surround", "reverse"]
+
+  ii) otherwise:
+      - DOES NOT import all submodules from the package sound.effects.
+      - it only ensures that the package sound.effects has been imported and
+        then imports whatever names are defined in the package.
+  
+WARNING 'from package import * ' is a BAD PRACTICE (see 4.1)
+
+
 # 4.4.2. Intra-package References
+
+- Absolute imports & Relative imports are valid
+
+  e.g. of relative imports:
+
+     from . import echo
+     from .. import formats
+     from ..filters import equalizer
+
+
+WARNING modules intended for use as the main module of a Python application
+	must always use absolute imports. (__main__ common to all the modules)
+
 
 # 4.4.3. Packages in Multiple Directories
 
+- special attribute, __path__. This is initialized to be a list containing the
+  name of the directory holding the package’s __init__.py before the code in
+  that file is executed.
 
-
-################################################################################
-## 3000) Writing Scripts
-################################################################################
-
-
-
-
-
+- Uses [1.8]
+  * split package files into several dirs
+  * select between different package version in execution time
 
 
 ################################################################################
@@ -824,7 +892,14 @@ WARNING A program is free to modify 'sys.path' for its own purposes. Be careful!
 [1.2] lambda tutorial - https://pythonconquerstheuniverse.wordpress.com/2011/08/29/lambda_tutorial/
 [1.3] Data structures - https://docs.python.org/3/tutorial/datastructures.html
 
-[1.4] Mapping types-dict - file:///Users/fer_gonzalez_rodriguez/u/workspace/python/language/courses/tutorial/3.4/library/stdtypes.html#typesmapping
+[1.4] Mapping types-dict - https://docs.python.org/3/tutorial/3.4/library/stdtypes.html#typesmapping
 
-[1.5] sys.path - file:///Users/fer_gonzalez_rodriguez/u/workspace/python/language/courses/tutorial/3.4/library/sys.html#sys.path
+[1.5] sys.path -https://docs.python.org/3/tutorial/3.4/library/sys.html#sys.path
+
+[1.6] compiled python files - https://docs.python.org/3/tutorial/3.4/tutorial/modules.html#compiled-python-files
+
+[1.7] The Python Standard Library - https://docs.python.org/3.4/library/
+
+[1.8] __path__ use example -
+http://stackoverflow.com/questions/2699287/what-is-path-useful-for
 
