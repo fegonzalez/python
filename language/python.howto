@@ -70,7 +70,7 @@
 #         5.1.1. Old string formatting
 #     5.2. Reading and Writing Files
 #         5.2.1. Methods of File Objects
-#         5.2.2. Saving structured data with json
+#         5.2.2. Saving structured data with JSON
 
 
 
@@ -936,14 +936,104 @@ WARNING modules intended for use as the main module of a Python application
 # 5. Input and Output
 ################################################################################
 
+- basic write methods
+
+  >>> mystring="Hello Goodbye"
+  >>> mystring
+  >>> print(mystring)
+  >>> sys.stdout.write(mystring)
 
 
 # 5.1. Fancier Output Formatting
-#  5.1.1. Old string formatting
+
+a) Convert ANY Python's data type to string:
+   - str(): human-readable
+   - repr(): interpreter-readable (force a SyntaxError if not)
+
+   >>> print(str('hello, world\n'))
+   hello, world
+   
+   >>> print(repr('hello, world\n'))
+   'hello, world\n'
+
+- str.ljust(width[, fillchar])  # rjust, center: justifies
+  >>> print(str("Hello").center(20))
+
+- str.zfill(width)  # left-fill with zeros until reach total 'width' string
+  >>> "-404".zfill(6)
+  '-00404'
+
+b) str.format(*args, **kwargs)
+
+   >>> print('The story of {1}, {0}, and {other}.'  # str == 'string sequence'
+   ... .format('Bill', 'Manfred', other='Georg'))
+
+Hint: pretty tables
+
+Hint: print dictionaries: var() + (**dict)
+
+
+# 5.1.1. Old string formatting (sprintf style)
+
+  >>> import math
+  >>> print('The value of PI is approximately %5.3f' % math.pi)
+  The value of PI is approximately 3.142
+
 
 # 5.2. Reading and Writing Files
+
+- open(file, mode='r', ...): returns a 'file' object
+
+WARNING In text mode, the default (implicitly) when reading is to convert
+	platform-specific line endings (\n on Unix, \r\n on Windows) to just
+	\n; and vice versa. BUT this will corrupt BINARY data.
+
+
 # 5.2.1. Methods of File Objects
-# 5.2.2. Saving structured data with json
+
+  - open / close / read / readline / numchars = write / tell / seek / closed
+
+  >>> f = open('workfile', 'w')
+  >>> f.write('This is the entire file.\n')
+  >>> f.close()
+  >>> f = open("temp/workfile")
+  >>> f.readline()
+  'This is the entire file.\n'  # end of file reached
+  >>> f.read()                  # after EOF fread() return empty string ('')
+  ''
+
+BEST PRACTICE Use the with keyword when dealing with file objects -> Always
+     	      close (implicitly) the file, even if an exception is raised).
+
+  >>> with open('workfile', 'r') as f:
+  ...     read_data = f.read()
+  >>> f.closed
+  True
+
+
+# 5.2.2. Saving structured data with JSON (JavaScript Object Notation)
+
+- serializing / deserializing python "complex" objects
+  * Lists & Dictionaries within default python.JSON
+  * Arbitrary class instances in JSON requires extra effort [2.1]
+
+- Interoperatibility: JSON used by several different languages (i.e. R)
+
+- json.dumps(): Serialize ``obj`` to a JSON formatted ``str``.
+  >>> json.dumps([1, 'simple', 'list'])
+
+- json.dump() Serialize ``obj`` to a TEXT file (already opened for writing)
+
+  # serializing
+  >>> f=open("workfile", "w")
+  >>> json.dump([1, 'simple', 'list'], f)
+  >>> f.close()
+  # decoding
+  >>> f=open("workfile")
+  >>> x=json.load(f)
+  >>> f.close()
+  >>> x
+  [1, 'simple', 'list']
 
 
 
@@ -988,6 +1078,7 @@ WARNING modules intended for use as the main module of a Python application
 
 [2] The Python Standard Library - https://docs.python.org/3/library/
 
+  [2.1] JSON encoder and decoder - https://docs.python.org/3/library/json.html#module-json
 
 [3] External references
 
