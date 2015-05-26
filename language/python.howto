@@ -10,9 +10,10 @@
 #    iii) Indexing (strings, lists, ...)
 #    iv)  Control flow issues
 #    v)   Object's Mutability
-
-# 1. Help: available methods for a data type: dir, help
+#    vi)  Help: available methods for a data type: dir, help
 #
+
+# 1. Using the Python Interpreter
 
 # 2. Control flow [1.1]
 #
@@ -56,12 +57,22 @@
 #         4.1.1. Executing modules as scripts
 #         4.1.2. The Module Search Path
 #         4.1.3. “Compiled” Python files
-#     4.2. Standard Modules (like C++'s STL) [1.7]
+#     4.2. Standard Modules (like C++'s STL) [2]
 #     4.3. The dir() Function
 #     4.4. Packages
 #         4.4.1. Importing * From a Package
 #         4.4.2. Intra-package References
 #         4.4.3. Packages in Multiple Directories
+
+# 5. Input and Output
+#
+#     5.1. Fancier Output Formatting
+#         5.1.1. Old string formatting
+#     5.2. Reading and Writing Files
+#         5.2.1. Methods of File Objects
+#         5.2.2. Saving structured data with json
+
+
 
 
 # References)
@@ -159,14 +170,81 @@ WARNING: 'for' to modify a sequence -> first make a copy of the sequence, and
   ([1, 2, 3, 4], [1, 2, 3])
 
 
-
-################################################################################
-## 1. Help: available methods for a data type: dir, help
-################################################################################
+# vi) Help: available methods for a data type: dir, help
 
 >>> mystring='this is my string';
 >>> dir(mystring);       #show all string methods
 >>> help(mystring.join)  #show detail of a method
+
+
+
+################################################################################
+# 1. Using the Python Interpreter
+################################################################################
+
+# 1.1 Invoking the Interpreter [4.1] [4.2]
+
+WARNING There are two different INCOMPATIBLE versions: 2 (old); 3 (new)
+
+- python 3: python3 module.py / python3.4 module.py
+- python 2: python  module.py / python2.7 module.py
+
+- Command line [4.3]
+
+ python3 [-bBdEhiIOqsSuvVWx?] [-c command | -m module-name | script | - ] [args]
+
+
+- Execute as module: python3 -m module [arg]
+
+- Execute as script: python3 module.py [arg]
+
+- Debug mode:
+
+  mode 1) python3 -m pdb module.py [arg] # run script in the Py debugger.
+
+  mode 2) Write this code in the script ...
+
+       	  import pdb 
+          pdb.set_trace() 
+
+	  ... Now type M-x shell to get a shell prompt. When you run your
+     program, you'll be dumped into pdb at the point where pdb.set_trace() is
+     executed.
+
+- Execute command
+
+  python3 -c command [arg]   # executes the statement(s) in command 
+
+  WARNING I can't see any result
+    (http://www.gossamer-threads.com/lists/python/python/1140519)
+
+
+# 1.1.1. Argument Passing  (sys.argv[0..n-1])
+
+
+- argv[1] .. argv[n-1] = argument values
+
+- argv[0]
+
+i) Execute as module: python3 -m module [arg] => argv[0] ="/full_path/module.py"
+
+ii) Execute as script: python3 module.py [arg] => argv[0] = "module.py"
+
+    # (e.g. test_argument_passing.py)
+    # import sys
+    # print("len(sys.argv) = ", len(sys.argv))
+    # print('sys.arg[]:', str(sys.argv))
+
+iii)  python3 -c <command> => argv[0] = "-c"
+
+
+# 1.1.2 'getopt' module: parse command-line options and arguments [4.4]
+  
+
+# 1.2 source code Encoding
+
+- By default, it is UTF-8  # -*- coding: utf-8 -*-
+
 
 
 ################################################################################
@@ -707,7 +785,7 @@ c) Making the file usable as a script as well as an importable module (optional)
 
    >>>   if __name__ == "__main__":
     	 import sys
-    	 fib(int(sys.argv[1]))
+    	 fib(int(sys.argv[1]))  # argv[0] = complete_module_path
 
    >>> python3 module.py 50 # arg[1] = 50
 
@@ -744,7 +822,7 @@ Hint: The module 'compileall' can create .pyc files (or .pyo) for all modules
       in a directory.
 
 
-# 4.2. Standard Modules (like C++'s STL) [1.7] 
+# 4.2. Standard Modules (like C++'s STL) [2] 
 
 - 'sys' library (e.g.: sys.ps1, sys.ps2 # primary / secondary prompts)
 
@@ -820,10 +898,10 @@ b) Import modes:
   	   __all__ = ["echo", "surround", "reverse"]
 
   ii) otherwise:
-      - DOES NOT import all submodules from the package sound.effects.
-      - it only ensures that the package sound.effects has been imported and
-        then imports whatever names are defined in the package.
-  
+      - DOES NOT import all submodules from the package.
+      - it only ensures that the package has been imported and then imports
+        whatever names are defined in the package.
+
 WARNING 'from package import * ' is a BAD PRACTICE (see 4.1)
 
 
@@ -848,9 +926,26 @@ WARNING modules intended for use as the main module of a Python application
   name of the directory holding the package’s __init__.py before the code in
   that file is executed.
 
-- Uses [1.8]
+- Uses [3.1]
   * split package files into several dirs
   * select between different package version in execution time
+
+
+
+################################################################################
+# 5. Input and Output
+################################################################################
+
+
+
+# 5.1. Fancier Output Formatting
+#  5.1.1. Old string formatting
+
+# 5.2. Reading and Writing Files
+# 5.2.1. Methods of File Objects
+# 5.2.2. Saving structured data with json
+
+
 
 
 ################################################################################
@@ -858,28 +953,16 @@ WARNING modules intended for use as the main module of a Python application
 ################################################################################
 
 - python-mode
+
 - run-python
+
 - M-x compile RET python myfile.py RET
+
 - Setting the default python-shell-interpreter (python/python3)
   M-x customize-variable RET python-shell-interpreter RET
   # This creates the entry '(python-shell-interpreter "python3") in .emacs
+
 - http://emacswiki.org/emacs/PythonProgrammingInEmacs
-
-
-################################################################################
-# Annex) python in shell console
-################################################################################
-
-- EXECUTE script
-  python <script.py>
-  
-- DEBUG         
-  1) python -m pdb <script.py> will run the script in the Py debugger.
-  2) Write this code in the script ...
-           import pdb 
-           pdb.set_trace() 
-     ... Now type M-x shell to get a shell prompt. When you run your program,
-     you'll be dumped into pdb at the point where pdb.set_trace() is executed.
 
 
 
@@ -888,18 +971,41 @@ WARNING modules intended for use as the main module of a Python application
 ################################################################################
 
 [1] Python (3) tutorial - https://docs.python.org/3/tutorial/index.html
-[1.1] Control flow - https://docs.python.org/3/tutorial/controlflow.html
-[1.2] lambda tutorial - https://pythonconquerstheuniverse.wordpress.com/2011/08/29/lambda_tutorial/
-[1.3] Data structures - https://docs.python.org/3/tutorial/datastructures.html
 
-[1.4] Mapping types-dict - https://docs.python.org/3/tutorial/3.4/library/stdtypes.html#typesmapping
+  [1.1] Control flow - https://docs.python.org/3/tutorial/controlflow.html
 
-[1.5] sys.path -https://docs.python.org/3/tutorial/3.4/library/sys.html#sys.path
+  [1.2] lambda tutorial -
+  https://pythonconquerstheuniverse.wordpress.com/2011/08/29/lambda_tutorial/
 
-[1.6] compiled python files - https://docs.python.org/3/tutorial/3.4/tutorial/modules.html#compiled-python-files
+  [1.3] Data structures - https://docs.python.org/3/tutorial/datastructures.html
 
-[1.7] The Python Standard Library - https://docs.python.org/3.4/library/
+  [1.4] Mapping types-dict - https://docs.python.org/3/library/stdtypes.html#typesmapping
+  
+  [1.5] sys.path - https://docs.python.org/3/library/sys.html#sys.path
 
-[1.8] __path__ use example -
-http://stackoverflow.com/questions/2699287/what-is-path-useful-for
+  [1.6] compiled python files - https://docs.python.org/3/tutorial/modules.html#compiled-python-files
+
+
+[2] The Python Standard Library - https://docs.python.org/3/library/
+
+
+[3] External references
+
+  [3.1] __path__ use example -
+  	http://stackoverflow.com/questions/2699287/what-is-path-useful-for
+
+http://www.tutorialspoint.com/python/python_command_line_arguments.htm
+
+
+[4] Environment
+
+  [4.1] Using Python on a Macintosh - https://docs.python.org/3.3/using/mac.html
+
+  [4.2] Use Python Effectively on OS X -
+  	http://blog.manbolo.com/2014/09/27/use-python-effectively-on-os-x
+
+  [4.3] Command line and environment - https://docs.python.org/3/using/cmdline.html#using-on-general
+
+  [4.4] parse command-line options and arguments -
+  	http://www.tutorialspoint.com/python/python_command_line_arguments.htm
 
