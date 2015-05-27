@@ -11,7 +11,6 @@
 #    iv)  Control flow issues
 #    v)   Object's Mutability
 #    vi)  Help: available methods for a data type: dir, help
-#
 
 # 1. Using the Python Interpreter
 
@@ -72,6 +71,39 @@
 #         5.2.1. Methods of File Objects
 #         5.2.2. Saving structured data with JSON
 
+# 6. Errors and Exceptions
+#
+#     6.1. Syntax Errors (Parsing Errors)
+#     6.2. Exceptions
+#     6.3. Handling Exceptions
+#     6.4. Raising Exceptions
+#     6.5. User-defined Exceptions
+#     6.6. Defining Clean-up Actions ('finally' clause)
+#     6.7. Predefined Clean-up Action
+
+# 7. Classes
+#
+#     7.1. A Word About Names and Objects
+#     7.2. Python Scopes and Namespaces
+#         7.2.1. Scopes and Namespaces Example
+#     7.3. A First Look at Classes
+#         7.3.1. Class Definition Syntax
+#         7.3.2. Class Objects
+#         7.3.3. Instance Objects
+#         7.3.4. Method Objects
+#         7.3.5. Class and Instance Variables
+#     7.4. Random Remarks
+#     7.5. Inheritance
+#         7.5.1. Multiple Inheritance
+#     7.6. Private Variables
+#     7.7. Odds and Ends
+#     7.8. Exceptions Are Classes Too
+#     7.7. Iterators
+#     7.10. Generators
+#     7.11. Generator Expressions
+
+
+# todo) The Python Standard Library
 
 
 
@@ -211,7 +243,7 @@ WARNING There are two different INCOMPATIBLE versions: 2 (old); 3 (new)
      program, you'll be dumped into pdb at the point where pdb.set_trace() is
      executed.
 
-- Execute command
+- Execute commands
 
   python3 -c command [arg]   # executes the statement(s) in command 
 
@@ -757,7 +789,9 @@ a) Allowing execution from console:
     #!/Users/jc/.virtualenvs/env1/bin/python
 
     
-b) Declaring the encoding of your script file (BEST PRACTICE). (OSX use UTF-8.)
+b) Declaring the encoding of your script file (BEST PRACTICE).
+
+   (Python uses UTF-8 by default)
 
      # -*- coding: utf-8 -*-
 
@@ -781,13 +815,7 @@ c) Making the file usable as a script as well as an importable module (optional)
    i) CALL: 'import module': main code is not executed
    ii CALL: 'python3 module.py': main executed
 
-   - How to add params to the 'script call':  sys.argv[1..n]
-
-   >>>   if __name__ == "__main__":
-    	 import sys
-    	 fib(int(sys.argv[1]))  # argv[0] = complete_module_path
-
-   >>> python3 module.py 50 # arg[1] = 50
+   - How to add params to the 'script call':  (see 1.1.1. Argument Passing)
 
 
 # 4.1.2. The Module Search Path
@@ -832,7 +860,7 @@ Hint: The module 'compileall' can create .pyc files (or .pyo) for all modules
 - dir(): list of all names (variables) already defined (except the built-in)
 - dir(name): list of names defined by a module (data type / variable)
 
-- Hint: How to list the names of built-in functions and variables:
+Hint: How to list the names of built-in functions and variables:
       	>>> import builtins
       	>>> dir(builtins)
 
@@ -898,9 +926,9 @@ b) Import modes:
   	   __all__ = ["echo", "surround", "reverse"]
 
   ii) otherwise:
-      - DOES NOT import all submodules from the package.
-      - it only ensures that the package has been imported and then imports
-        whatever names are defined in the package.
+      - DOES NOT IMPORT all SUBMODULES from the package.
+      - it only ensures that the package has been imported and then IMPORTS
+        WHATEVER NAMES ARE defined in the package.
 
 WARNING 'from package import * ' is a BAD PRACTICE (see 4.1)
 
@@ -946,9 +974,9 @@ WARNING modules intended for use as the main module of a Python application
 
 # 5.1. Fancier Output Formatting
 
-a) Convert ANY Python's data type to string:
-   - str(): human-readable
-   - repr(): interpreter-readable (force a SyntaxError if not)
+a) Convert ANY Python's data type to 'str' accepted by print()
+   - str(data): human-readable
+   - repr(data): interpreter-readable (force a SyntaxError if not)
 
    >>> print(str('hello, world\n'))
    hello, world
@@ -983,6 +1011,7 @@ Hint: print dictionaries: var() + (**dict)
 # 5.2. Reading and Writing Files
 
 - open(file, mode='r', ...): returns a 'file' object
+  mode: create/read/write/append
 
 WARNING In text mode, the default (implicitly) when reading is to convert
 	platform-specific line endings (\n on Unix, \r\n on Windows) to just
@@ -996,7 +1025,7 @@ WARNING In text mode, the default (implicitly) when reading is to convert
   >>> f = open('workfile', 'w')
   >>> f.write('This is the entire file.\n')
   >>> f.close()
-  >>> f = open("temp/workfile")
+  >>> f = open("test/workfile")
   >>> f.readline()
   'This is the entire file.\n'  # end of file reached
   >>> f.read()                  # after EOF fread() return empty string ('')
@@ -1037,18 +1066,212 @@ BEST PRACTICE Use the with keyword when dealing with file objects -> Always
 
 
 
+################################################################################
+# 6. Errors and Exceptions
+################################################################################
+
+# 6.1. Syntax Errors (Parsing Errors)
+
+  Nothing to add.
+
+# 6.2. Exceptions
+
+    >>> 1/0  # ZeroDivisionError: division by zero
+
+  - Built-in exceptions [2.2]
+
+
+# 6.3. Handling Exceptions
+
+- e.g.  """ multiple exception catcher example. """
+
+>>> while True:
+        try:
+            x = int(input("Please enter a number: "))
+            break
+
+        except ValueError:
+            print("Oops!  That was no valid number.  Try again...")
+
+
+	# """ exceptions name (with arguments) clause """
+        except KeyboardInterrupt as err: 
+            print(" ...Program interrupted by the user. {0}".format(err))
+	    print(err.args)
+            break
+
+	# """ tuple clause """
+        except (RuntimeError, TypeError, NameError):
+            pass
+
+	# """ catch-all clause """
+        except:
+            print("Unexpected error:", sys.exc_info()[0])
+            raise
+
+
+- e.g. """else clause: executed only if try clause does not raise exception """
+
+>>> try:
+        f = open(arg, 'r')
+
+    except IOError:
+        print('cannot open', arg)
+
+    else: # executed iff no exception raised
+        print(arg, 'has', len(f.readlines()), 'lines')
+        f.close()
+
+
+# 6.4. Raising Exceptions 
+
+    >>> try:
+    ...     raise NameError('HiThere')
+    ... except NameError:
+    ...     print('An exception flew by!')
+    ...     raise                              # re-rise
+    ...  
+
+
+# 6.5. User-defined Exceptions
+
+- Exceptions should typically be derived from the Exception class, either
+  directly or indirectly.
+
+WARNING Exception classes can do anything any other class do BUT usually aren't
+
+  >>> class MyError(Exception):
+  ...     def __init__(self, value):
+  ...         self.value = value
+  ...     def __str__(self):
+  ...         return repr(self.value)
+  ...
+  >>> try:
+  ...     raise MyError(2*2)
+  ... except MyError as e:
+  ...     print('My exception occurred, value:', e.value)
+
+
+- Typical hierarchy:
+
+  class MyError(Exception):
+    """Base class for exceptions in this module."""
+    pass
+
+  class InputError(MyError):
+    ...
+    
+  class TransitionError(Error):
+    ...	
+
+
+# 6.6. Defining Clean-up Actions ('finally' clause)
+
+Hint: In real world applications, the finally clause is useful for releasing
+     external resources (such as files or network connections), regardless of
+     whether the use of the resource was successful.
+
+- The 'finally' clause is executed in any event:
+  case) Uncached exception is raised: FIRST finally AND THEN raise exception
+  case) Otherwise: FIRST other actions AND THEN finally.
+
+  >>> def divide(x, y):
+  ...     try:
+  ...         result = x / y
+  ...     except ZeroDivisionError:
+  ...         print("division by zero!")
+  ...     else:
+  ...         print("result is", result)
+  ...     finally:
+  ...         print("executing finally clause")
+  ...
+
+  >>> divide(2, 1)             # No exceptions 
+  result is 2.0
+  executing finally clause
+
+  >>> divide(2, 0)             # Catched exception
+  division by zero!
+  executing finally clause
+
+  >>> divide("2", "1")         # Uncached exceptions: FIRST finally THEN raise
+  executing finally clause
+  TypeError: unsupported operand type(s) for /: 'str' and 'str'
+
+
+# 6.7. Predefined Clean-up Action ('with' statement)
+
+  # Always close (implicitly) the file, even if an exception is raised).
+  with open("myfile.txt") as f:
+      for line in f:
+          print(line, end="")
+
+WARNING Objects which, like files, provide predefined clean-up actions will
+	indicate this in their documentation.
+
+
+
+################################################################################
+# 7. Classes
+################################################################################
+
+Hint: everything in Python is an object.
+
+Hint: every object in Pythons is created at runtime.
+
+WARNING: Unlike C++, built-in types (int, char, ...) can be used as base
+	 classes for extension by the user.
+
+
+# 7.1. A Word About Names and Objects
+
+- Argument "Aliasing": arguments are passed using call by object reference
+  (where the value is always an object reference, not the value of the object):
+  (see 0.v) Object's Mutability)
+
+
+# 7.2. Python Scopes and Namespaces
+#     7.2.1. Scopes and Namespaces Example
+# 7.3. A First Look at Classes
+#     7.3.1. Class Definition Syntax
+#     7.3.2. Class Objects
+#     7.3.3. Instance Objects
+#     7.3.4. Method Objects
+#     7.3.5. Class and Instance Variables
+
+# 7.4. Random Remarks
+# 7.5. Inheritance
+#     7.5.1. Multiple Inheritance
+# 7.6. Private Variables
+# 7.7. Odds and Ends
+# 7.8. Exceptions Are Classes Too
+# 7.7. Iterators
+# 7.10. Generators
+# 7.11. Generator Expressions
+
+
+################################################################################
+# todo) The Python Standard Library
+################################################################################
+
+# shell commands (ls, ...)
+
+# ls
+os.listdir("./test")
+
+
 
 ################################################################################
 # Annex) python in Emacs
 ################################################################################
 
-- python-mode
+- EDIT MODE: python-mode
 
-- run-python
+- PYTHON CONSOLE: run-python
 
-- M-x compile RET python myfile.py RET
+- COMPILINING: M-x compile RET python myfile.py RET
 
-- Setting the default python-shell-interpreter (python/python3)
+- SETTING THE DEFAULT PYTHON-SHELL-INTERPRETER (python/python3):
   M-x customize-variable RET python-shell-interpreter RET
   # This creates the entry '(python-shell-interpreter "python3") in .emacs
 
@@ -1079,6 +1302,8 @@ BEST PRACTICE Use the with keyword when dealing with file objects -> Always
 [2] The Python Standard Library - https://docs.python.org/3/library/
 
   [2.1] JSON encoder and decoder - https://docs.python.org/3/library/json.html#module-json
+
+  [2.2] Built-in Exceptions - file:///Users/fer_gonzalez_rodriguez/u/workspace/python/language/courses/tutorial/3.4/library/exceptions.html#bltin-exceptions
 
 [3] External references
 

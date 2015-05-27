@@ -1,4 +1,4 @@
-#!/Users/jc/.virtualenvs/env1/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 def fib(n): #Returns the list with the Fibonacci series up to n.
