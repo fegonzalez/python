@@ -10,6 +10,7 @@
 #    iii) Indexing (strings, lists, ...)
 #    iv)  Control flow issues
 #    v)   Object's Mutability
+#    	  v.a) Asssignments
 #    vi)  Help: available methods for a data type: dir, help
 
 # 1. Using the Python Interpreter
@@ -176,7 +177,12 @@ WARNING: 'for' to modify a sequence -> first make a copy of the sequence, and
    - Inmutable: numbers, strings and tuples.
    - Mutable: Dictionaries and lists.
 
-- e.g. Asssignation: given two lists a,b:
+   v.a) Asssignments
+
+WARNING Assignments do not copy data — they just bind names to objects
+	([1.]9.2. Python Scopes and Namespaces)
+
+- e.g Asssignation: given two lists a,b:
 
   b = a     # b = POINTER to a:  &b = &a, *b = *a; changing a -> changing b
   b = a[:]  # b = COPY of a:  &b != &a, *b = *a; changing a -> b doesn't
@@ -818,6 +824,11 @@ c) Making the file usable as a script as well as an importable module (optional)
    - How to add params to the 'script call':  (see 1.1.1. Argument Passing)
 
 
+WARNING Execution order:
+	1º) global variables of the module
+	2º) __main__
+
+
 # 4.1.2. The Module Search Path
 
   >>> import name
@@ -958,6 +969,12 @@ WARNING modules intended for use as the main module of a Python application
   * split package files into several dirs
   * select between different package version in execution time
 
+
+4.4.4. Package's main module (__main__.py)
+
+ - For a package, the same effect can be achieved by including a '__main__.py'
+   module, the contents of which will be executed when the module is run with
+   -m. [2.3]
 
 
 ################################################################################
@@ -1215,12 +1232,12 @@ WARNING Objects which, like files, provide predefined clean-up actions will
 # 7. Classes
 ################################################################################
 
-Hint: everything in Python is an object.
+NOTICE: everything in Python is an object.
 
-Hint: every object in Pythons is created at runtime.
+NOTICE: every object in Pythons is created at runtime.
 
-WARNING: Unlike C++, built-in types (int, char, ...) can be used as base
-	 classes for extension by the user.
+NOTICE: Unlike C++, built-in types (int, char, ...) can be used as base classes
+	for extension by the user.
 
 
 # 7.1. A Word About Names and Objects
@@ -1231,22 +1248,139 @@ WARNING: Unlike C++, built-in types (int, char, ...) can be used as base
 
 
 # 7.2. Python Scopes and Namespaces
-#     7.2.1. Scopes and Namespaces Example
-# 7.3. A First Look at Classes
-#     7.3.1. Class Definition Syntax
-#     7.3.2. Class Objects
-#     7.3.3. Instance Objects
-#     7.3.4. Method Objects
-#     7.3.5. Class and Instance Variables
+
+NOTE attribute = any name following a dot (i.e. modname.funcname, modname is a
+     module object and funcname is an attribute of it)
+
+a) Namespace
+
+- The important thing to know about namespaces is that there is absolutely no
+  relation between names in different namespaces: you can define objects with
+  the same name in any modules, (call =  module.name).
+
+- module’s attributes and global names defined in the module: they share the
+  same namespace! (*)
+  
+  (*) except object's secret read-only attribute __dict__): NOT NEEDED
+
+- Attributes may be read-only or writable (writable can be deleted with 'del').
+
+
+a1) Namespace Creation and lifetime
+
+  - 'builtins' module: namespace containing the built-in names is created when
+    the Python interpreter starts up, and is never deleted.
+
+  - Global namespace for a module: created when the module definition is read
+    in; normally, module namespaces also last until the interpreter quits.
+
+  - Local namespace for a function is created when the function is called, and
+    deleted (forgot) when the function returns or raises an exception that is
+    not handled within the function.
+
+  - __main__module: statements executed by the top-level invocation of the
+    interpreter, either read from a script file or interactively.
+
+
+WARNING namespace __name__ 's execution order upon call a script (python3 -m ..)
+	1º) global variables of the module.
+	2º) __main__
+
+
+b) scope
+
+- SCOPES are DETERMINED STATICALLY
+
+- But Scopes are USED DYNAMICALLY.
+
+WARNING however, the language definition is evolving towards static name
+	resolution, at “compile” time, so don’t rely on dynamic name
+	resolution! (In fact, local variables are already determined
+	statically.)
+
+- At any time during execution, there are at least three nested scopes whose
+  namespaces are directly accessible:
+
+  i)   Innermost scope (searched first): local names.
+       - Inside functions: local variables/arguments.
+       - Outside functions: module's namespace.
+
+  ii)  Medium scope: current module’s global names.
+
+  iii) Outermost scope (searched last): built-in names
+
+
+WARNING if no global statement is in effect – assignments to names always go
+	into the innermost scope.
+
+WARNING Assignments do not copy data — they just bind names to objects (see
+	0.v.a). The same is true for deletions.
+ 
+
+- 'global' statement: can be used to indicate that particular variables live in
+  the global scope and should be rebound there;
+
+- 'nonlocal' statement indicates that particular variables live in an enclosing
+  scope and should be rebound there. [2.4]
+
+
+# 7.2.1. Scopes and Namespaces Example
+
+def scope_test():
+    def do_local():
+        spam = "local spam"
+    def do_nonlocal():
+        nonlocal spam
+        spam = "nonlocal spam"
+    def do_global():
+        global spam
+        spam = "global spam"
+    spam = "test spam"
+    do_local()
+    print("After local assignment:", spam)
+    do_nonlocal()
+    print("After nonlocal assignment:", spam)
+    do_global()
+    print("After global assignment:", spam)
+
+
+scope_test()
+print("In global scope:", spam) # spam defined inside do_global()
+
+# ------------------------------------------
+# Expected result
+#
+# After local assignment: test spam
+# After nonlocal assignment: nonlocal spam
+# After global assignment: nonlocal spam
+# In global scope: global spam
+# ------------------------------------------
+
+
+
+# 7.3. A First Look at Classes                (AKI LO DEJO)
+
+# 7.3.1. Class Definition Syntax
+# 7.3.2. Class Objects
+# 7.3.3. Instance Objects
+# 7.3.4. Method Objects
+# 7.3.5. Class and Instance Variables
 
 # 7.4. Random Remarks
+
 # 7.5. Inheritance
-#     7.5.1. Multiple Inheritance
+# 7.5.1. Multiple Inheritance
+
 # 7.6. Private Variables
+
 # 7.7. Odds and Ends
+
 # 7.8. Exceptions Are Classes Too
+
 # 7.7. Iterators
+
 # 7.10. Generators
+
 # 7.11. Generator Expressions
 
 
@@ -1303,7 +1437,11 @@ os.listdir("./test")
 
   [2.1] JSON encoder and decoder - https://docs.python.org/3/library/json.html#module-json
 
-  [2.2] Built-in Exceptions - file:///Users/fer_gonzalez_rodriguez/u/workspace/python/language/courses/tutorial/3.4/library/exceptions.html#bltin-exceptions
+  [2.2] Built-in Exceptions - https://docs.python.org/3/library/exceptions.html#bltin-exceptions
+
+  [2.3] Top-level script environment - https://docs.python.org/3/library/__main__.html#module-__main__
+
+  [2.4] The nonlocal statement - https://docs.python.org/3/reference/simple_stmts.html#nonlocal
 
 [3] External references
 
