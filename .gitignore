@@ -8,9 +8,13 @@
 # videos
 *.mp4
 
+
+# python stuff
+
+
 # manuals
 language/courses/*
 language/books/*
-language/temp/*
+language/test/__pycache__/*
 
 environment/emacs_use/*_files/*
