@@ -1089,7 +1089,7 @@ BEST PRACTICE Use the with keyword when dealing with file objects -> Always
 
 # 6.1. Syntax Errors (Parsing Errors)
 
-  Nothing to add.
+(Nothing to add.)
 
 # 6.2. Exceptions
 
@@ -1240,6 +1240,11 @@ NOTICE: Unlike C++, built-in types (int, char, ...) can be used as base classes
 	for extension by the user.
 
 
+- Standard Features: the class inheritance mechanism allows multiple base
+  classes, a derived class can override any methods of its base class or
+  classes, and a method can call the method of a base class with the same name.
+
+
 # 7.1. A Word About Names and Objects
 
 - Argument "Aliasing": arguments are passed using call by object reference
@@ -1263,7 +1268,7 @@ a) Namespace
   
   (*) except object's secret read-only attribute __dict__): NOT NEEDED
 
-- Attributes may be read-only or writable (writable can be deleted with 'del').
+- Attributes may be read-only or writable (writable can be reset with 'del').
 
 
 a1) Namespace Creation and lifetime
@@ -1282,7 +1287,7 @@ a1) Namespace Creation and lifetime
     interpreter, either read from a script file or interactively.
 
 
-WARNING namespace __name__ 's execution order upon call a script (python3 -m ..)
+WARNING namespace __name__ execution order upon call a script (python3 -m ..)
 	1º) global variables of the module.
 	2º) __main__
 
@@ -1335,6 +1340,7 @@ def scope_test():
     def do_global():
         global spam
         spam = "global spam"
+
     spam = "test spam"
     do_local()
     print("After local assignment:", spam)
@@ -1342,7 +1348,6 @@ def scope_test():
     print("After nonlocal assignment:", spam)
     do_global()
     print("After global assignment:", spam)
-
 
 scope_test()
 print("In global scope:", spam) # spam defined inside do_global()
@@ -1357,27 +1362,218 @@ print("In global scope:", spam) # spam defined inside do_global()
 # ------------------------------------------
 
 
-
-# 7.3. A First Look at Classes                (AKI LO DEJO)
+# 7.3. A First Look at Classes
 
 # 7.3.1. Class Definition Syntax
+
+    class ClassName:
+        <statement-1>
+        .
+        <statement-N>
+
+
 # 7.3.2. Class Objects
-# 7.3.3. Instance Objects
+
+- Operations supported: attribute references and instantiation
+
+
+a) attribute references: data attributes (C++ data members) & methods: obj.name
+
+INFO All the attributes must be defined (init.), compilation error otherwise.
+
+INFO Data member's VALUES can be CHANGED, and RESET (del).
+
+INFO '.__doc__' attribute returns the docstring of the class.
+
+INFO Constructors: '__init__' method
+
+WARNING self: (see 7.3.4.a bellow.)
+
+
+(e.g)
+     
+  class Complex:
+
+      i = 12345  # Class variable (shared by all the objects of type Complex)
+
+      def __init__(self, realpart=0.0, imagpart=0.0):
+          self.r = realpart  # Instance variable (object's attribute)
+          self.i = imagpart
+
+
+b) instantiation:   
+
+  >>> x = Complex(3.0, -4.5)
+  >>> x.r, x.i
+  (3.0, -4.5)   
+
+  # Use example
+  i=23;  # attr. changed
+  del(i) # attr. reset   (i=12345 again)
+     
+
+WARNING instantiation creates an empty object if '__init__' not defined.
+
+
+# 7.3.3. Instance Objects 
+
+ (instantiation of data attributes & methods)
+
+
 # 7.3.4. Method Objects
-# 7.3.5. Class and Instance Variables
+
+WARNING Function/Method overloading not valid in Python (Overloading is
+	resolved at compile time). If more than one are written, all but the
+	last one are ignored by the interpreter. [3.2]
+
+
+- usual call:  x.f()  //  - alternative call:  xf = x.f  -> and later ->  xf()
+
+- 'self' argument
+
+WARNING in every method instantiation, the object is (implicitly) passed as
+	the first argument to the method (as happens with argv[0] to the
+	scripts) => ALL METHOD DEFINITIONS MUST EXPLICITLY DECLARE 'self' AS
+	ITS FIRST ARGUMENT).
+
+NOTICE	'self' is the name by convention, but any other name would be valid.
+
+	- def f1(self):       YES (convention)
+	- def f2(antonio):    YES (not recommended)
+	- def f3():	      NO  (TypeError exception)
+
+INFO Variable instantiation from inside a method -> 'self' required as prefix:
+
+    def class_method(self):
+        print(self.object_variable)  # YES
+        print(self.class_variable)   # YES	
+        print(object_variable)       # NO: NameError: 'the_real' is not defined
+     
+
+# 7.3.5. Class Variables vs Instance Variables
+
+(e.g)
+     class Complex:
+
+      i = 12345  # Class variable (shared by all the objects of type Complex)
+
+      def __init__(self, realpart=0.0, imagpart=0.0):
+          self.r = realpart  # Instance variable (object's attribute)
+
+
+!!!! In Python, 'INSTANCE VARIABLES' ARE THE ONES DEFINED INSIDE __init__
+     constructors, and 'Class variables' are those defined outside constructors.
+
+
+INFO Both object variables and class variables can be instantiated from within
+     of a method (see 7.3.4.a)
+
+WARNING Mutable objects should not be used as Class Variables.
+
+
 
 # 7.4. Random Remarks
 
+- 'object.__class__': stores object's type.
+
+- isinstance(x, classes.MyClass)
+
+WARNING Data attributes override method attrs. with the same name -> trick bugs.
+
+INFO 	EVERYTHING IS PUBLIC in Python -> classes are not usable to implement
+	pure abstract data types -> nothing in Python makes it possible to
+	enforce data hiding — it is all based upon convention.
+
+WARNING (it can be done using extensions written in C)
+
+
+BAD PRACTICE: Strange but valid function assignment / function use
+
+  def f1(self, x, y): # Function defined outside the class
+      return min(x, x+y)
+
+  class FuncTest:
+      f = f1
+      def g(self):
+          return 'hello world'
+      h = g
+
+
 # 7.5. Inheritance
+
+- Syntax:
+
+  class DerivedClassName(BaseClassName):
+  class DerivedClassName(modname.BaseClassName):
+
+
+WARNING (For C++ programmers) ALL METHODS in Python ARE effectively VIRTUAL =>
+	all can be overridden.
+
+
+- Calling base class methods: 'BaseClassName.methodname(self, arguments)'
+  (Idem C++'s BaseClassName::methodname(...))
+
+- isinstance(object, classinfo): true if object is an instance of the classinfo
+
+- issubclass(class, classinfo): true if class is a subclass [2].#issubclass
+
+
 # 7.5.1. Multiple Inheritance
+
+  class DerivedClassName(Base1, Base2, Base3):
+    <statement-1>
+    ...
+
+- Search for attrs. inherited (brief): depth-first, left-to-right, not
+  searching twice.
+
 
 # 7.6. Private Variables
 
+WARNING "private" does not really exists in Python -> naming convention & name
+	mangling are used instead.
+
+- Convention ('_name'): a name (attribute or function) prefixed with an
+  underscore SHOULD be treated as a non-public part of the API
+
+- Name mangling: Any identifier of the form __spam (at least two leading
+  underscores, at most one trailing underscore) is textually replaced with
+  _classname__spam.
+
+Hint: Name mangling is helpful for letting subclasses override methods without
+      breaking intraclass method calls. (see example at [1])
+     
+
 # 7.7. Odds and Ends
+
+Hint: using an empty class to create a data type similar to "STRUCT".
+
+  class Employee:
+      pass
+
+  john = Employee() # Create an empty employee record
+
+  # Fill the fields of the record
+  john.name = 'John Doe'
+  john.dept = 'computer lab'
+  john.salary = 1000
+
+Hint: Object emulation (wrapping): a piece of Python code that expects a
+      particular abstract data type can often be passed a class that emulates
+      the methods of that data type instead. For instance, if you have a
+      function that formats some data from a file object, you can define a
+      class with methods read() and readline() that get the data from a string
+      buffer instead, and pass it as an argument.
 
 # 7.8. Exceptions Are Classes Too
 
-# 7.7. Iterators
+- raise Class    # instance of type or of a class derived from it
+
+- raise Instance
+
+
+# 7.7. Iterators    (AKI LO DEJO)
 
 # 7.10. Generators
 
@@ -1392,7 +1588,7 @@ print("In global scope:", spam) # spam defined inside do_global()
 
 # ls
 os.listdir("./test")
-
+os.chdir("test")
 
 
 ################################################################################
@@ -1443,12 +1639,16 @@ os.listdir("./test")
 
   [2.4] The nonlocal statement - https://docs.python.org/3/reference/simple_stmts.html#nonlocal
 
+
 [3] External references
 
   [3.1] __path__ use example -
   	http://stackoverflow.com/questions/2699287/what-is-path-useful-for
 
 http://www.tutorialspoint.com/python/python_command_line_arguments.htm
+
+  [3.2] function overloading alternatives -
+  http://stackoverflow.com/questions/6434482/python-function-overloading
 
 
 [4] Environment
