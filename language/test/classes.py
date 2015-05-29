@@ -18,8 +18,15 @@
 # \class NameOverrideTest:
 # \test Data attributes override method attrs. with the same name -> trick bugs.
 
+# \class StudentAthlete:
+# \test Multiple Inheritance in Python (included diamond inheritance)
+
+# \class ReverseIterator:
+# \test Iterator behavior in user classes.
+
 ##==============================================================================
 
+from enum import Enum, unique
 
 
 ##==============================================================================
@@ -179,3 +186,168 @@ class NameOverrideTest:
 
 
 ##==============================================================================
+# \class StudentAthlete:
+# \test Multiple Inheritance in Python (included diamond inheritance)
+##==============================================================================
+
+@unique
+class GenderEnum(Enum):
+    Male=1
+    Female=2
+
+# genero=classes.GenderEnum.Female
+# if genero==classes.GenderEnum.Female:
+
+##------------------------------------------------------------------------------
+
+class Person:
+
+    def __init__(self,
+                 name,
+                 age,
+                 gender, # GenderEnum value required
+                 employed = False,
+                 address="Unknown"):
+        assert(isinstance(gender, GenderEnum))
+        self._name = name
+        self._age = age
+        self._gender = gender
+        self.address = address
+        self.employed = employed
+
+    @property # use: object.name  (NOT object.name())
+    def name(self):
+        return self._name
+
+    @property
+    def age(self):
+        return self._age
+
+    @property
+    def gender(self):
+        return self._gender.name
+
+    def __str__(self):
+        retval = "(" + str(self.name) + ", " + str(self.age)+ ", " + str(self.gender) + ", " + str(self.address) + ", " + str(self.employed) + ")"
+        return retval        
+
+    def my_class_is(self):
+        print("My data type is: ", self.__class__)
+    
+##------------------------------------------------------------------------------
+
+class Student(Person):
+
+    _id = 0
+
+    # ERROR: NOT compilation error (like C++), instead creates the object
+    # without the Base attributes
+    #     
+    # def __init__(self, subject):  # subject example = "History"
+    #     self._id+=1
+    #     self.subject=subject
+
+    def __init__(self,
+                 subject,
+                 name,
+                 age,
+                 gender, # GenderEnum value required
+                 employed = False,
+                 address="Unknown"):
+        Person.__init__(self, name, age, gender, employed, address)
+        self._id+=1
+        self.subject=subject
+
+    
+    @property
+    def id(self):
+        return self._id
+
+    def __str__(self):
+        retval = Person.__str__(self) + "(" + str(self.id) + ", " + str(self.subject) + ")"
+        return retval        
+
+    
+
+##------------------------------------------------------------------------------
+
+class Athlete(Person):
+
+    _id = 0
+
+    def __init__(self,
+                 sport,
+                 name,
+                 age,
+                 gender, # GenderEnum value required
+                 employed = False,
+                 address="Unknown"):
+        Person.__init__(self, name, age, gender, employed, address)
+        self._id+=1
+        self.sport=sport
+
+    @property
+    def id(self):
+        return self._id
+
+
+    def __str__(self):
+        retval = Person.__str__(self) + "(" + str(self.id) + ", " + str(self.sport) + ")"
+        return retval  
+    
+##------------------------------------------------------------------------------
+# \class StudentAthlete:
+# \test Multiple Inheritance in Python.
+##------------------------------------------------------------------------------
+
+# ERROR How to call both fathers ???
+class StudentAthlete(Student, Athlete):
+
+    def __init__(self,
+                 subject,
+                 sport,
+                 name,
+                 age,
+                 gender, # GenderEnum value required
+                 employed = False,
+                 address="Unknown"):
+        Student.__init__(self, subject, name, age, gender, employed, address)
+        Athlete.__init__(self, sport, "weeeee", age, gender, employed, address)
+        self._id+=1
+
+        
+    # def __str__(self):
+    #     return Student.__str__(self) + Athlete.__str__(self)
+
+
+
+##==============================================================================
+# \class ReverseIterator:
+# \test Iterator behavior in user classes.
+##==============================================================================
+
+class ReverseIterator:
+
+    def __init__(self, data):
+        self.data = data
+        self._index = len(data)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._index==0:
+            raise StopIteration
+        self._index-=1        
+        return self.data[self._index]
+
+# use:
+# >>> rev=classes.ReverseIterator("spam")
+# >>> for char in rev:
+# ...     print(char)
+# m
+# a
+# p
+# s
+
+# EOF

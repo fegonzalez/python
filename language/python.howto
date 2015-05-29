@@ -100,21 +100,22 @@
 #     	   7.6.1. Read-only attributes: using the '@property' decorator
 #     7.7. Odds and Ends
 #     7.8. Exceptions Are Classes Too
-#     7.7. Iterators
+#     7.9. Iterators
+#     	   7.9.1. Iterators behind the scenes
+#     	   7.9.2. Adding iterator behavior to your classes
 #     7.10. Generators
 #     7.11. Generator Expressions
 
 
 # todo) The Python Standard Library
 
-
-
-# References)
+# error) Errors to solve
 
 # Annex) python in Emacs
 
-# Annex) python in shell console
-# 
+# References)
+
+
 ################################################################################
 
 
@@ -159,6 +160,9 @@ WARNING Variable assigning is VALID: not changing the value, but changing the
 
 	>>> word="new_object"
 	'new_object'
+
+- object.__str__(self): return the string representation of an object. Override
+  to be used by print(), format(), ...
 
 
 # iv) Control flow issues
@@ -643,8 +647,9 @@ WARNING insert() & pop() from the beginning is slow -> TO IMPLEMENT A QUEUE,
 INFO a Python's dictionary is a hash table ->  ~= O(1)
 
 - <type 'dictionary'>: (key, value)
-  - key: immutable type (string, number, or tuples(of inmutables elements))
-  - value: any Python data type (mixing types allowed)
+  - key: immutable type (string, number, or tuples(of inmutables elements), or
+    enum values since Python3.4)
+- value: any Python data type (mixing types allowed)
 
 - constructors:
   - phones = {'kack': 1234, 'nido': {'movil': 222, 'casa': 1234}}
@@ -1013,7 +1018,7 @@ a) Convert ANY Python's data type to 'str' accepted by print()
 
 b) str.format(*args, **kwargs)
 
-   >>> print('The story of {1}, {0}, and {other}.'  # str == 'string sequence'
+   >>> print('The story of {1}, {0}, and {other}'  # str == 'string sequence'
    ... .format('Bill', 'Manfred', other='Georg'))
 
 Hint: pretty tables
@@ -1458,6 +1463,11 @@ INFO Variable instantiation from inside a method -> 'self' required as prefix:
 WARNING Class methods does not exists (*3)
 
 
+INFO Instance method objects have attributes, too:
+     - m.__self__ is the instance object with the method m()
+     - m.__func__ is the function object corresponding to the method.
+
+
 # 7.3.5. Class Variables vs Instance Variables
 
 (e.g)
@@ -1543,6 +1553,9 @@ WARNING (For C++ programmers) ALL METHODS in Python ARE effectively VIRTUAL =>
   searching twice.
 
 
+ERROR How to call both fathers ???
+
+
 # 7.6. Private Variables
 
 WARNING "private" does not really exists in Python -> naming convention & name
@@ -1603,6 +1616,7 @@ Hint: Object emulation (wrapping): a piece of Python code that expects a
       class with methods read() and readline() that get the data from a string
       buffer instead, and pass it as an argument.
 
+
 # 7.8. Exceptions Are Classes Too
 
 - raise Class    # instance of type or of a class derived from it
@@ -1610,11 +1624,92 @@ Hint: Object emulation (wrapping): a piece of Python code that expects a
 - raise Instance
 
 
-# 7.7. Iterators    (AKI LO DEJO)
+# 7.9. Iterators
+
+7.9.1. Iterators behind the scenes
+
+- Library functions: iter(object[, sentinel]), next(iterator[, default]) [2]
+ 
+ 1) my_iterator = iter(object)  # Create an iterator over object
+
+ 2) next(my_iterator())
+    # Get the next value in object by calling object.__next__()
+    # Raise StopIteration exception if next() beyond the end of the object
+
+7.9.2. Adding iterator behavior to your classes
+
+- define an __iter__() method which returns an object with a __next__()
+  method. If the class already defines __next__(), then __iter__() can just
+  return self.
+
+(e.g.)
+class ReverseIterator:
+    def __init__(self, data):
+        self.data = data
+        self._index = len(data)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._index==0:
+            raise StopIteration
+        self._index-=1        
+        return self.data[self._index]
+
+# use:
+# >>> rev=classes.ReverseIterator("spam")
+# >>> for char in rev:
+# ...     print(char)
+
 
 # 7.10. Generators
 
-# 7.11. Generator Expressions
+- RECOMMENDED Generators simplifies creation of iterators: a generator is also
+  an iterator, but simpler.
+
+INFO  __iter__() and __next__() methods are created automatically.
+INFO when generators terminate, they automatically raise StopIteration.
+
+
+- They are written like regular functions but use the 'YIELD' statement whenever
+  they want to return data. Each time next() is called on it, the generator
+  resumes where it left off (IT REMEMBERS ALL THE DATA VALUES AND WHICH
+  STATEMENT WAS LAST EXECUTED).
+
+WARNING Using yield in a function definition is sufficient to cause that
+	definition to create a generator function instead of a normal function.
+
+(e.g)
+def reverse(data):
+    for index in range(len(data)-1, -1, -1):
+        yield data[index]
+
+>>> for char in reverse('golf'):
+...     print(char)
+
+
+# 7.11. Generator Expressions [3.5]
+
+- Generator Expressions are generator version of list comprehensions. They look
+  like list comprehensions (with parentheses instead of brackets), but returns a
+  generator back instead of a list.
+
+WARNING Syntax: '(' expression ')' #  '()' marks it as a generator-expression
+
+(e.g. this is a generator expression) 
+>>> (i*i for i in range(10))
+<generator object <genexpr> at 0x10ce2daf8>
+
+(e.g. uses)
+>>> sum(i*i for i in range(10))
+285
+>>> data = 'golf'
+>>> list(data[i] for i in range(len(data)-1, -1, -1))
+['f', 'l', 'o', 'g']
+>>> def grep(pattern, lines): # [3.5]
+    return (line for line in lines if pattern in lines)
+
 
 
 ################################################################################
@@ -1626,6 +1721,12 @@ Hint: Object emulation (wrapping): a piece of Python code that expects a
 # ls
 os.listdir("./test")
 os.chdir("test")
+
+################################################################################
+# error) Errors to solve
+################################################################################
+
+ERROR_1  Multiple Inheritance: How to call both fathers ???
 
 
 ################################################################################
@@ -1692,6 +1793,10 @@ http://www.tutorialspoint.com/python/python_command_line_arguments.htm
 
   [3.4] Properties vs. Getters and Setters -
   	http://www.python-course.eu/python3_properties.php
+
+  [3.5] Iterators & Generators -
+  	http://anandology.com/python-practice-book/iterators.html
+
 
 [4] Environment
 
