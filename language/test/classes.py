@@ -350,4 +350,25 @@ class ReverseIterator:
 # p
 # s
 
+
+
+##==============================================================================
+# \fn def reverse_iterator(data)
+# \test Generator to create an Iterator
+##==============================================================================
+
+def reverse_iterator(data):
+    for index in range(len(data)-1, -1, -1):
+        yield data[index]
+
+
+# use:
+# >>> for char in classes.reverse_iterator("spam"):
+# ...     print(char)
+# m
+# a
+# p
+# s
+        
+
 # EOF

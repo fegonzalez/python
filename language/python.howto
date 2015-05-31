@@ -1,3 +1,4 @@
+
 ################################################################################
 #
 # Index
@@ -7,11 +8,15 @@
 # 0. Python facts & issues)
 #    i)   Indentation
 #    ii)  Strings & Chars
+#         ii.a) Raw & Unicode strings
 #    iii) Indexing (strings, lists, ...)
 #    iv)  Control flow issues
 #    v)   Object's Mutability
 #    	  v.a) Asssignments
 #    vi)  Help: available methods for a data type: dir, help
+#    vii) Memory management
+#    viii) The Interactive Startup File [2].15
+
 
 # 1. Using the Python Interpreter
 
@@ -106,8 +111,33 @@
 #     7.10. Generators
 #     7.11. Generator Expressions
 
+# 8. Brief Tour of the Standard Library
+#
+#     8.1. Operating System Interface
+#     8.2. File Wildcards
+#     8.3. Command Line Arguments
+#     8.4. Error Output Redirection and Program Termination
+#     8.5. String Pattern Matching
+#     8.6. Mathematics
+#     8.7. Internet Access
+#     8.8. Dates and Times
+#     8.9. Data Compression
+#     8.10. Performance Measurement
+#     8.11. Quality Control (unitary test module)
+#     	    8.11.1 import doctest [3.6]
+#     	    8.11.2 import unittest  [3.7]
+#     8.12. "Batteries Included" Philosophy
 
-# todo) The Python Standard Library
+# 9. Brief Tour of the Standard Library – Part II
+#
+#     9.1. Output Formatting
+#     9.2. Templating
+#     9.3. Working with Binary Data Record Layouts
+#     9.4. Multi-threading
+#     9.5. Logging
+#     9.6. Weak References
+#     9.7. Tools for Working with Lists
+#     9.8. Decimal Floating Point Arithmetic
 
 # error) Errors to solve
 
@@ -135,6 +165,15 @@
 # ii) Strings & Chars
 
 - NO char type -> a character is simply a string of size one.
+
+#    ii.a) Raw strings [2.5]
+
+     - raw strings treat backslashes as literal characters
+
+       >>> print(r'\tf[a-z]*')
+       \tf[a-z]*
+       >>> print('\tf[a-z]*')
+       f[a-z]*
 
 
 # iii) Indexing (strings, lists, ...)
@@ -219,6 +258,24 @@ WARNING Assignments do not copy data — they just bind names to objects
 >>> dir(mystring);       #show all string methods
 >>> help(mystring.join)  #show detail of a method
 
+
+# vii) Memory management
+
+GOTO (9.6. Weak References)
+
+
+viii) The Interactive Startup File [2].15
+
+- When you use Python interactively, it is frequently handy to have some
+standard commands executed every time the interpreter is started. You can do
+this by setting an environment variable named PYTHONSTARTUP to the name of a
+file containing your start-up commands. This is similar to the .profile feature
+of the Unix shells.
+
+ix) The Customization Modules [2].15.1.4.
+
+- Python provides two hooks to let you customize it: sitecustomize and
+  usercustomize.
 
 
 ################################################################################
@@ -531,9 +588,13 @@ WARNING 'None' value returned: for all methods which have no return value
 	printed – they return the default None. This is a design principle for
 	all mutable data structures in Python.
 
-WARNING Sequence Types — list, tuple, range
+INFO	 Sequence Types — list, tuple, range
+
+WARNING	 More specific types (array, ): GOTO 9.7. Tools for Working with Lists
+
 
 # 3.1. List
+
 
 - <type 'list'>: store a sequence of MUTABLE elements
 
@@ -1572,7 +1633,7 @@ Hint: Name mangling is helpful for letting subclasses override methods without
       breaking intraclass method calls. (see example at [1])
 
 
-# 7.6.1. Read-only attributes: using the '@property' decorator [3.3] & [3.4]
+# 7.6.1. Read-only attributes: using the '@property' DECORATOR [3.3] & [3.4]
 
 WARNING @property overrides (alias) attribute 'a.a', NOT the method a.a()
 
@@ -1663,7 +1724,7 @@ class ReverseIterator:
 # ...     print(char)
 
 
-# 7.10. Generators
+# 7.10. Generators [5.2]
 
 - RECOMMENDED Generators simplifies creation of iterators: a generator is also
   an iterator, but simpler.
@@ -1681,46 +1742,339 @@ WARNING Using yield in a function definition is sufficient to cause that
 	definition to create a generator function instead of a normal function.
 
 (e.g)
-def reverse(data):
+def reverse_iterator(data):
     for index in range(len(data)-1, -1, -1):
         yield data[index]
+# use:
+# >>> for char in classes.reverse_iterator("spam"):
+# ...     print(char)
 
->>> for char in reverse('golf'):
-...     print(char)
 
+# 7.11. Generator Expressions  [5.1], [3.5] 
 
-# 7.11. Generator Expressions [3.5]
+- RECOMMENDED high performance, memory efficient generalization of list
+  comprehensions [1] and generators [2] .
 
-- Generator Expressions are generator version of list comprehensions. They look
-  like list comprehensions (with parentheses instead of brackets), but returns a
-  generator back instead of a list.
+- They look like list comprehensions (with parentheses instead of brackets),
+  but returns a generator back instead of a list -> memory saving.
 
-WARNING Syntax: '(' expression ')' #  '()' marks it as a generator-expression
+WARNING Conclusion: use list comprehensions iff you need to store the result
+	into memory.
+
+INFO Syntax: '(' expression ')' #  '()' marks it as a generator-expression
+
 
 (e.g. this is a generator expression) 
 >>> (i*i for i in range(10))
 <generator object <genexpr> at 0x10ce2daf8>
 
 (e.g. uses)
->>> sum(i*i for i in range(10))
+>>> sum(i*i for i in range(10))  # sum(generator_expr) ~= sum(func)
 285
 >>> data = 'golf'
->>> list(data[i] for i in range(len(data)-1, -1, -1))
+>>> list(data[i] for i in range(len(data)-1, -1, -1))  # ~= list(func) 
 ['f', 'l', 'o', 'g']
 >>> def grep(pattern, lines): # [3.5]
     return (line for line in lines if pattern in lines)
 
 
 
+
 ################################################################################
-# todo) The Python Standard Library
+# 8. Brief Tour of the Standard Library
 ################################################################################
 
-# shell commands (ls, ...)
+# 8.1. Operating System Interface
 
-# ls
-os.listdir("./test")
-os.chdir("test")
+- import os
+
+WARNING Be sure to use the import os style instead of from os import *.
+
+>>> os.getcwd()
+>>> os.listdir("./test")
+>>> os.system('mkdir today')   # Run the command mkdir
+
+- import shutil # higher level interface that is easier to use
+                # For daily file and directory management tasks
+>>> shutil.copyfile('data.db', 'archive.db')
+>>> shutil.move('/build/executables', 'installdir')
+
+
+# 8.2. File Wildcards
+
+- import glob # making file lists from directory wildcard searches
+
+>>> glob.glob('*.py')
+['primes.py', 'random.py', 'quote.py']
+
+
+# 8.3. Command Line Arguments
+
+- import sys
+
+
+# 8.4. Error Output Redirection and Program Termination
+
+- sys.exit
+- sys.stderr, stdin, stdout
+
+
+# 8.5. String Pattern Matching
+
+import re  # regular expression tools for advanced string processing.
+
+>>> re.findall(r'\bf[a-z]*', 'which foot or hand fell fastest')
+['foot', 'fell', 'fastest']
+>>> re.sub(r'(\b[a-z]+) \1', r'\1', 'cat in the the hat')
+'cat in the hat'
+
+
+# 8.6. Mathematics
+
+- import math
+
+- import random
+
+WARNING random.randrange() preferred vs randint(start, stop)
+
+
+# 8.7. Internet Access
+
+- import smtplib         # sending email
+
+- import urllib.request  # retrieving data form URLs
+
+
+# 8.8. Dates and Times
+
+- import datetime  (datetime.date, datetime.time)
+
+>>> datetime.date.today()
+
+INFO While date and time arithmetic is supported, the focus of the
+     implementation is on efficient member extraction for output formatting and
+     manipulation.
+
+
+# 8.9. Data Compression
+
+- import  zlib, gzip, bz2, lzma, zipfile,  tarfile.
+
+>>> t = zlib.compress(s)
+>>> len(t)
+>>> zlib.decompress(t)
+
+
+# 8.10. Performance Measurement
+
+- import timeit             # fine level of granularity
+- import profile, pstats    # tools for identifying time critical sections in
+			    # larger blocks of code.
+
+(e.g) tuple packing-unpacking feature vs traditional swapping arguments:
+>>> from timeit import Timer
+>>> Timer('t=a; a=b; b=t', 'a=1; b=2').timeit()
+0.06954108199988696
+>>> Timer('a,b = b,a', 'a=1; b=2').timeit()
+0.04595019299995329
+
+
+# 8.11. Quality Control (unitary test module)
+
+# 8.11.1 import doctest [3.6]
+
+- The doctest module provides a tool for scanning a module and validating TESTS
+  EMBEDDED IN a program’s DOCSTRINGS.
+
+
+  (e.g) Testing functions in the module named standard_lib.py
+
+def average(values):
+    """Computes the arithmetic mean of a list of numbers.
+
+    >>> print(average([20, 30, 70]))  # copy-paste the call & the result here
+    40.0
+    """
+    
+    return sum(values) / len(values)
+
+
+# a) Interactive mode:
+>>> import doctest
+>>> doctest.testmod(standard_lib) # automatically validate the embedded tests
+
+# b) shell:
+python3 -m doctest standard_lib.py
+
+
+
+# 8.11.2 import unittest  [3.7]
+
+- Allows a more comprehensive set of tests to be maintained in a separate file:
+
+INFO Similar to my usual unit test (make_success module_test)
+
+- The standard workflow is:
+  1. You define your own class derived from unittest.TestCase.
+  2. Then you fill it with functions that start with ‘test_’.
+  3. You run the tests by placing unittest.main() in your file, usually at the
+     bottom.
+
+# WARNING Never name your own script unittest.py as the standard library module.
+# 	...  AttributeError: 'module' object has no attribute 'TestCase'
+
+- One of the many benefits of unittest, that you’ll use when your tests get
+bigger than the toy examples I’m showing on this blog, is the use of ‘setUp’
+and ‘tearDown’ functions to get your system ready for the tests.
+
+
+  (e.g)
+
+  # 1) Create the test file:
+
+  import unittest                  # Unit Test standard library 
+  from standard_lib import average # Import functions to be tested
+
+  # a test-unt class
+  class TestStatisticalFunctions(unittest.TestCase): # test unit
+      def test_average(self):    # Test function
+          self.assertEqual(average([20, 30, 70]), 40.0)       # test
+          self.assertEqual(round(average([1, 5, 7]), 1), 4.3) # test
+          with self.assertRaises(ZeroDivisionError):
+              average([])
+          with self.assertRaises(TypeError):
+              average(20, 30, 70)
+
+  if __name__ == '__main__':
+      unittest.main()
+
+
+# 2) Calling from the command line invokes all tests
+
+#shell:
+ python3 my_unittest.py
+
+
+
+# 8.12. "Batteries Included" Philosophy
+
+- xml.dom and xml.sax packages
+
+
+
+################################################################################
+# 9. Brief Tour of the Standard Library – Part II
+################################################################################
+
+# 9.1. Output Formatting
+
+- import reprlib   # provides a version of repr() customized for abbreviated
+		   # displays of large or deeply nested containers
+
+- import pprint    # "pretty printer" readable by user & interpreter
+
+- import textwrap  # formats paragraphs of text to fit a given screen width
+
+- import locale    # accesses a database of culture specific data formats
+		   # (English, Spanish, ...)
+
+
+# 9.2. Templating
+
+The string module includes a versatile Template class with a simplified syntax
+suitable for editing by end-users. This allows users to customize their
+applications without having to alter the application.
+
+- from string import Template
+
+
+# 9.3. Working with Binary Data Record Layouts
+
+The struct module provides pack() and unpack() functions for working with
+variable length binary record formats.
+
+- import struct
+
+(e.g. [1]) example shows how to loop through header information in a ZIP file
+without using the zipfile module.
+
+
+# 9.4. Multi-threading
+
+- import threading
+
+
+(e.g. [1]) threading module can run tasks in background while the main program
+continues to run:
+
+>>> class AsyncZip(threading.Thread):
+    ...
+    
+
+
+INFO The threading module provides a number of synchronization primitives
+     including LOCKS, EVENTS, CONDITION VARIABLES, and SEMAPHORES.
+
+
+WARNING the preferred approach to task coordination is to concentrate all
+	access to a resource in a single thread and then use the QUEUE MODULE
+	to feed that thread with requests from other threads. Applications
+	using Queue objects for inter-thread communication and coordination are
+	easier to design, more readable, and more reliable.
+
+
+# 9.5. Logging
+
+- import logging   # log messages are sent to a file or to sys.stderr
+
+>>> logging.debug('Debugging information')
+>>> logging.info('Informational message')
+>>> logging.warning('Warning:config file %s not found', 'server.conf')
+>>> logging.error('Error occurred')
+>>> logging.critical('Critical error -- shutting down')
+
+... This produces the following output:
+
+WARNING:root:Warning:config file server.conf not found
+ERROR:root:Error occurred
+CRITICAL:root:Critical error -- shutting down
+
+
+# 9.6. Weak References
+
+INFO Python does automatic memory management (reference counting for most
+     objects and garbage collection to eliminate cycles). The memory is freed
+     shortly after the last reference to it has been eliminated.
+
+PROBLEM Need of temporal tracking of some variables -> weakref module provides
+	tools for tracking objects without creating a reference.
+
+- import weakref
+
+
+# 9.7. Tools for Working with Lists
+
+- from array import array          # list that stores only homogeneous data and
+				   # stores it more compactly.
+
+- from collections import deque    # implementing queues and breadth first tree.
+
+- import bisect    # functions for manipulating sorted lists.
+
+- import heapq     # functions for implementing heaps based on regular lists.
+
+
+# 9.8. Decimal Floating Point Arithmetic
+
+
+import decimal.Decimal # Decimal datatype for decimal floating point arithmetic.
+                       # more precision, financial calcs., by hand calcs.
+		       
+WARNING Python only prints a decimal approximation to the true decimal value of
+	the binary approximation stored by the machine. See [2].14. "Floating
+	Point Arithmetic: Issues and Limitations"
+
+
 
 ################################################################################
 # error) Errors to solve
@@ -1777,8 +2131,19 @@ ERROR_1  Multiple Inheritance: How to call both fathers ???
 
   [2.4] The nonlocal statement - https://docs.python.org/3/reference/simple_stmts.html#nonlocal
 
+  [2.5] Lexical analysis -
+  	https://docs.python.org/3.4/reference/lexical_analysis.html
 
-[3] External references
+
+[5] PEPs
+
+  [5.1] PEP 0289 -- Generator Expressions -
+  	https://www.python.org/dev/peps/pep-0289/
+
+  [5.2] PEP 255 -- Simple Generators - https://www.python.org/dev/peps/pep-0255/
+
+
+[3] Other references
 
   [3.1] __path__ use example -
   	http://stackoverflow.com/questions/2699287/what-is-path-useful-for
@@ -1796,6 +2161,10 @@ http://www.tutorialspoint.com/python/python_command_line_arguments.htm
 
   [3.5] Iterators & Generators -
   	http://anandology.com/python-practice-book/iterators.html
+
+  [3.6] doctest introduction - pythontesting.net/framework/doctest/doctest-introduction/#example
+
+  [3.7] unittest introduction - http://pythontesting.net/framework/unittest/unittest-introduction/
 
 
 [4] Environment
