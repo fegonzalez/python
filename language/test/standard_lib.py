@@ -58,7 +58,7 @@ def average(values):
     """Computes the arithmetic mean of a list of numbers.
 
     >>> print(average([20, 30, 70]))  # copy-paste the call & the result here
-    41.0
+    40.0
     """
 
     return sum(values) / len(values)

@@ -139,7 +139,7 @@
 #     9.7. Tools for Working with Lists
 #     9.8. Decimal Floating Point Arithmetic
 
-# error) Errors to solve
+# todo) Todos to solve
 
 # Annex) python in Emacs
 
@@ -194,14 +194,14 @@ WARNING: Python strings are immutable -> assigning to an indexed position in
          >>> word[2]="k"
          TypeError: 'str' object does not support item assignment
 
-WARNING Variable assigning is VALID: not changing the value, but changing the
-	address of the variable instead.
+WARNING But Variable reassignation is VALID: thus, not changing the value, but
+	changing the address of the variable instead.
 
 	>>> word="new_object"
 	'new_object'
 
 - object.__str__(self): return the string representation of an object. Override
-  to be used by print(), format(), ...
+  the function used by print(), format(), ...
 
 
 # iv) Control flow issues
@@ -278,6 +278,7 @@ ix) The Customization Modules [2].15.1.4.
   usercustomize.
 
 
+
 ################################################################################
 # 1. Using the Python Interpreter
 ################################################################################
@@ -317,6 +318,9 @@ WARNING There are two different INCOMPATIBLE versions: 2 (old); 3 (new)
 
   WARNING I can't see any result
     (http://www.gossamer-threads.com/lists/python/python/1140519)
+
+
+- Execute package (GOTO 4.4.4. Package's main module (__main__.py))
 
 
 # 1.1.1. Argument Passing  (sys.argv[0..n-1])
@@ -642,7 +646,7 @@ WARNING insert() & pop() from the beginning is slow -> TO IMPLEMENT A QUEUE,
 
 - List comprehensions can contain complex expressions and nested functions
 
-- In the real world, you should prefer built-in functions to complex flow
+- IN THE REAL WORLD, you should prefer built-in functions to complex flow
   statements (see zip() function).
 
 
@@ -1388,7 +1392,7 @@ WARNING however, the language definition is evolving towards static name
 
 WARNING if no global statement is in effect – assignments to names always go
 	into the innermost scope.
-
+ 
 WARNING Assignments do not copy data — they just bind names to objects (see
 	0.v.a). The same is true for deletions.
  
@@ -1411,7 +1415,6 @@ def scope_test():
     def do_global():
         global spam
         spam = "global spam"
-
     spam = "test spam"
     do_local()
     print("After local assignment:", spam)
@@ -1419,7 +1422,7 @@ def scope_test():
     print("After nonlocal assignment:", spam)
     do_global()
     print("After global assignment:", spam)
-
+    
 scope_test()
 print("In global scope:", spam) # spam defined inside do_global()
 
@@ -1518,7 +1521,7 @@ INFO Variable instantiation from inside a method -> 'self' required as prefix:
     def class_method(self):
         print(self.object_variable)  # YES
         print(self.class_variable)   # YES	
-        print(object_variable)       # NO: NameError: 'the_real' is not defined
+        print(object_variable)       # NO: NameError
 
 
 WARNING Class methods does not exists (*3)
@@ -1555,7 +1558,7 @@ WARNING Mutable objects should not be used as Class Variables.
 
 - 'object.__class__': stores object's type.
 
-- isinstance(x, classes.MyClass)
+- isinstance(object, class)
 
 
 INFO EVERYTHING IS PUBLIC in Python -> classes are not usable to implement pure
@@ -1577,7 +1580,7 @@ BAD PRACTICE: Strange but valid function assignment / function use
       h = g
 
 
-WARNING Attribute references OVERRIDE method attrs. WITH THE SAME NAME ->
+WARNING Attribute references OVERRIDE method & attrs. WITH THE SAME NAME ->
 	tricky bugs. Checked: when two attribute references (one var & one
 	method) are defined with the same name, the one defined later in the
 	class is the one used by the Python interpreter; all the others raise
@@ -1614,7 +1617,7 @@ WARNING (For C++ programmers) ALL METHODS in Python ARE effectively VIRTUAL =>
   searching twice.
 
 
-ERROR How to call both fathers ???
+TODO How to call both fathers ???
 
 
 # 7.6. Private Variables
@@ -1625,9 +1628,9 @@ WARNING "private" does not really exists in Python -> naming convention & name
 - Convention ('_name'): a name (attribute or function) prefixed with an
   underscore SHOULD be treated as a non-public part of the API
 
-- Name mangling: Any identifier of the form __spam (at least two leading
+- Name mangling: Any identifier of the form __id (at least two leading
   underscores, at most one trailing underscore) is textually replaced with
-  _classname__spam.
+  _classname__id.
 
 Hint: Name mangling is helpful for letting subclasses override methods without
       breaking intraclass method calls. (see example at [1])
@@ -1641,12 +1644,12 @@ WARNING anyway it is possible to break the decorator: a._ReadOnlyTest__a = 56
 
 class ReadOnlyTest(object):
     def __init__(self, the_ro_param):
-        self.__the_ro_param = the_ro_param
+        self._the_ro_param = the_ro_param
     # WARNING @property overrides (alias) attribute 'the_ro_param', NOT the
     # method the_ro_param()
     @property  
     def the_ro_param(self):
-        return self.__the_ro_param
+        return self._the_ro_param
 
     # use example.-
     >>> a = ReadOnlyTest('test')
@@ -1689,7 +1692,8 @@ Hint: Object emulation (wrapping): a piece of Python code that expects a
 
 7.9.1. Iterators behind the scenes
 
-- Library functions: iter(object[, sentinel]), next(iterator[, default]) [2]
+- Library functions: iter(object[, sentinel]), next(iterator[, default]),
+  	  	     StopIteration [2]
  
  1) my_iterator = iter(object)  # Create an iterator over object
 
@@ -1726,8 +1730,8 @@ class ReverseIterator:
 
 # 7.10. Generators [5.2]
 
-- RECOMMENDED Generators simplifies creation of iterators: a generator is also
-  an iterator, but simpler.
+- RECOMMENDED USE Generators simplifies creation of iterators: a generator is
+  also an iterator, but simpler.
 
 INFO  __iter__() and __next__() methods are created automatically.
 INFO when generators terminate, they automatically raise StopIteration.
@@ -1752,8 +1756,8 @@ def reverse_iterator(data):
 
 # 7.11. Generator Expressions  [5.1], [3.5] 
 
-- RECOMMENDED high performance, memory efficient generalization of list
-  comprehensions [1] and generators [2] .
+- RECOMMENDED USE high performance, memory efficient generalization of list
+  comprehensions [1] and generators [2].
 
 - They look like list comprehensions (with parentheses instead of brackets),
   but returns a generator back instead of a list -> memory saving.
@@ -1953,6 +1957,7 @@ and ‘tearDown’ functions to get your system ready for the tests.
 
 #shell:
  python3 my_unittest.py
+ python3 -m my_unittest 
 
 
 
@@ -2077,10 +2082,10 @@ WARNING Python only prints a decimal approximation to the true decimal value of
 
 
 ################################################################################
-# error) Errors to solve
+# todo) Todos to solve
 ################################################################################
 
-ERROR_1  Multiple Inheritance: How to call both fathers ???
+TODO_1  Multiple Inheritance: How to call both fathers ???
 
 
 ################################################################################
