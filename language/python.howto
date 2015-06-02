@@ -6,16 +6,21 @@
 ################################################################################
 
 # 0. Python facts & issues)
-#    i)   Indentation
-#    ii)  Strings & Chars
+#    i) Indentation
+#    ii) Strings & Chars
 #         ii.a) Raw & Unicode strings
 #    iii) Indexing (strings, lists, ...)
 #    iv)  Control flow issues
 #    v)   Object's Mutability
 #    	  v.a) Asssignments
-#    vi)  Help: available methods for a data type: dir, help
-#    vii) Memory management
+#    vi) Help: available methods for a data type: dir, help
+#    vii)  Memory management
 #    viii) The Interactive Startup File [2].15
+#    ix) The Customization Modules [2].15.1.4.
+#    x) Operator precedence
+
+
+Chapters 1 - 9:  The Python Tutorial [1] 
 
 
 # 1. Using the Python Interpreter
@@ -60,7 +65,7 @@
 #
 #     4.1. More on Modules
 #         4.1.1. Executing modules as scripts
-#         4.1.2. The Module Search Path
+#         4.1.2. The Module Search Path (sys.path) [1.5]
 #         4.1.3. “Compiled” Python files
 #     4.2. Standard Modules (like C++'s STL) [2]
 #     4.3. The dir() Function
@@ -111,7 +116,7 @@
 #     7.10. Generators
 #     7.11. Generator Expressions
 
-# 8. Brief Tour of the Standard Library
+# 8. Brief Tour of the Standard Library [2] 
 #
 #     8.1. Operating System Interface
 #     8.2. File Wildcards
@@ -128,7 +133,7 @@
 #     	    8.11.2 import unittest  [3.7]
 #     8.12. "Batteries Included" Philosophy
 
-# 9. Brief Tour of the Standard Library – Part II
+# 9. Brief Tour of the Standard Library – Part II [2] 
 #
 #     9.1. Output Formatting
 #     9.2. Templating
@@ -138,8 +143,26 @@
 #     9.6. Weak References
 #     9.7. Tools for Working with Lists
 #     9.8. Decimal Floating Point Arithmetic
+#     9.9. Python object serialization (pickle)
+
+
+Chapters 10 - ...:  The Python Standard Library [2]
+
+
+# 10. Built-in Functions [2]   (TODO)
+
+# 11. Built-in Constants       (TODO)
+#     11.1. Constants added by the site module
+
+# 12. Built-in Types  	       (TODO)
+
+# 13. Built-in Exceptions      (TODO)
+
 
 # todo) Todos to solve
+
+
+# Annex) python mini-quizz (http://www.mypythonquiz.com/question.php)
 
 # Annex) python in Emacs
 
@@ -223,13 +246,23 @@ WARNING: 'for' to modify a sequence -> first make a copy of the sequence, and
 
    v.a) Asssignments
 
-WARNING Assignments do not copy data — they just bind names to objects
-	([1.]9.2. Python Scopes and Namespaces)
+WARNING Assignments do not copy data — they just bind names to objects, thus
+	provide another reference to the same object, ([1.]9.2. Python Scopes
+	and Namespaces)
 
-- e.g Asssignation: given two lists a,b:
+
+- i.e.  Assignation on INMUTABLE objects: only copy
+
+  b=a == b=a[:]  # b = COPY of a: changing a -> b doesn't
+
+
+- i.e.  Asssignation on MUTABLE objects: given two lists a,b:
 
   b = a     # b = POINTER to a:  &b = &a, *b = *a; changing a -> changing b
-  b = a[:]  # b = COPY of a:  &b != &a, *b = *a; changing a -> b doesn't
+  b = a[:]  # b = COPY of a:     &b != &a, *b = *a; changing a -> b doesn't
+
+
+(e.g.) Assignation on Mutable objects:
 
 # lists (pointer):
   >>> a=[1,2,3]
@@ -252,6 +285,25 @@ WARNING Assignments do not copy data — they just bind names to objects
   ([1, 2, 3, 4], [1, 2, 3])
 
 
+WARNING ".copy() method does not performs a copy of the inner mutable elements
+of a mutable container -> use copy.deepcopy() instead. [2.7]
+
+  >>> aList = [1,2]
+  >>> bList = [3,4]
+  >>> kvps = { '1' : aList, '2' : bList }
+
+  >>> theCopy = kvps.copy()         # WARNING above: aList, bList are not copies
+  >>> import copy
+  >>> theCopy = copy.deepcopy(kvps) # WARNING above: aList, bList now are copies
+
+  >>> kvps['1'][0] = 5
+  >>> theCopy
+  {'1': [1, 2], '2': [3, 4]}
+  >>> kvps
+  {'1': [5, 2], '2': [3, 4]}
+
+
+
 # vi) Help: available methods for a data type: dir, help
 
 >>> mystring='this is my string';
@@ -272,10 +324,41 @@ this by setting an environment variable named PYTHONSTARTUP to the name of a
 file containing your start-up commands. This is similar to the .profile feature
 of the Unix shells.
 
+
 ix) The Customization Modules [2].15.1.4.
 
 - Python provides two hooks to let you customize it: sitecustomize and
   usercustomize.
+
+
+x) Operator precedence: FROM LOWEST precedence (lambda)  TO HIGHEST  [2.6]
+
+ LOWEST
+
+    lambda
+    if – else
+    
+    or		# Boolena expressions
+    and
+    not x
+
+    in, not in, is, is not, <, <=, >, >=, !=, ==	# Comparisons
+
+    
+    |		# bitwise operators (OR, XOR, AND) 
+    ^
+    &
+
+    <<, >>	# shifts
+    +, -
+    *, /, //, % # '%' both for mult. remainder or string formatting 
+    +x, -x, ~x  # Positive, NEgation, bitwise NOT
+    **	    	# i.e. 2**-1 is 0.5
+    x[index, x[index:index], x(arguments...), x.attribute
+    (expressions...), [expressions...], {key: value...}, {expressions...}
+
+ HIGHEST
+
 
 
 
@@ -695,6 +778,10 @@ WARNING insert() & pop() from the beginning is slow -> TO IMPLEMENT A QUEUE,
   >>> B = {'pentagon', 'hexagon', 'triangle'}
   >>> C = set()
 
+WARNING {} is a dictionary, not a set.:
+	>>> type({}), type({1})
+	(<class 'dict'>, <class 'set'>)
+
 - operators:
   A - B:  difference
   A & B:  intersection
@@ -712,16 +799,18 @@ WARNING insert() & pop() from the beginning is slow -> TO IMPLEMENT A QUEUE,
 INFO a Python's dictionary is a hash table ->  ~= O(1)
 
 - <type 'dictionary'>: (key, value)
-  - key: immutable type (string, number, or tuples(of inmutables elements), or
-    enum values since Python3.4)
-- value: any Python data type (mixing types allowed)
+
+  - key: immutable type (string, number-type, or tuples(of inmutables
+    elements), or enum values since Python3.4)
+
+  - value: any Python data type (mixing types allowed)
 
 - constructors:
   - phones = {'kack': 1234, 'nido': {'movil': 222, 'casa': 1234}}
   - phones = dict([('key1',  123), ('key2', 456)])
   - phones = dict(sape=4139, guido=4127, jack=4098)
 
-- basic operators: keys(), values(), items(), del(phones['nido'])
+- basic operators: clear(), keys(), values(), items(), del(phones['nido'])
 
 - getter: phones['nido']           
 
@@ -735,6 +824,10 @@ WARNING allows NESTING (dictionaries of dictionaries)
 
 WARNING if a tuple contains any mutable object either directly or indirectly,
 	it cannot be used as a key
+
+WARNING keys are case-sensitive.
+
+WARNING 1 == 1.0 interchangeable as key
 
 
 # 3.6. Looping techniques
@@ -898,19 +991,24 @@ c) Making the file usable as a script as well as an importable module (optional)
 
 
 WARNING Execution order:
-	1º) global variables of the module
+	1º) Module's instantiations: vars. defs. & function calls.
 	2º) __main__
 
 
-# 4.1.2. The Module Search Path
+# 4.1.2. The Module Search Path (sys.path) [1.5]
 
   >>> import name
 
-  Where do the interpreter looks for?
-
-  	First: built-in module with that name
+  If PYTHONPATH is set in the environment, which directories are searched for
+  modules?
   
-	Second: file "name.py" in a list of dirs. given by 'sys.path' [1.5]
+  	First: built-in module with that name
+
+	Second: the current directory             (path[0])
+
+	THIRD:  the PYTHONPATH directory if set   (path[1..])
+
+	FOURTH: the installation dependent default path
 
 WARNING A program is free to modify 'sys.path' for its own purposes. Be careful!
 
@@ -1341,7 +1439,9 @@ a) Namespace
 - module’s attributes and global names defined in the module: they share the
   same namespace! (*1)
   
-  (*1) except object's secret read-only attribute __dict__): NOT NEEDED
+  (*1) except object's secret read-only attribute __dict__): is a dictionary
+  with an entry per each instance-variable. The user can add/get/modify entries
+  via 'object.__dir__['key']= value'
 
 - Attributes may be read-only (goto 7.6.1) or writable (can be reset with 'del')
 
@@ -1359,10 +1459,10 @@ a1) Namespace Creation and lifetime
     not handled within the function.
 
   - __main__module: statements executed by the top-level invocation of the
-    interpreter, either read from a script file or interactively.
+    interpreter, either read from a script file or interactively (see
+    __main__.py at 4.4.4. )
 
-
-WARNING namespace __name__ execution order upon call a script (python3 -m ..)
+WARNING namespace __name__ execution order upon calling a script (python3 -m ..)
 	1º) global variables of the module.
 	2º) __main__
 
@@ -1406,7 +1506,11 @@ WARNING Assignments do not copy data — they just bind names to objects (see
 
 # 7.2.1. Scopes and Namespaces Example
 
+# global-scope
+counter =1
+
 def scope_test():
+# scope_test-scope
     def do_local():
         spam = "local spam"
     def do_nonlocal():
@@ -1414,6 +1518,8 @@ def scope_test():
         spam = "nonlocal spam"
     def do_global():
         global spam
+        global counter
+        counter = 22
         spam = "global spam"
     spam = "test spam"
     do_local()
@@ -1422,9 +1528,11 @@ def scope_test():
     print("After nonlocal assignment:", spam)
     do_global()
     print("After global assignment:", spam)
-    
+
+#global-scope
 scope_test()
 print("In global scope:", spam) # spam defined inside do_global()
+print("counter value = ", counter)
 
 # ------------------------------------------
 # Expected result
@@ -1433,6 +1541,7 @@ print("In global scope:", spam) # spam defined inside do_global()
 # After nonlocal assignment: nonlocal spam
 # After global assignment: nonlocal spam
 # In global scope: global spam
+# counter value = 22
 # ------------------------------------------
 
 
@@ -1785,7 +1894,7 @@ INFO Syntax: '(' expression ')' #  '()' marks it as a generator-expression
 
 
 ################################################################################
-# 8. Brief Tour of the Standard Library
+# 8. Brief Tour of the Standard Library [2] 
 ################################################################################
 
 # 8.1. Operating System Interface
@@ -1827,9 +1936,16 @@ WARNING Be sure to use the import os style instead of from os import *.
 
 import re  # regular expression tools for advanced string processing.
 
->>> re.findall(r'\bf[a-z]*', 'which foot or hand fell fastest')
+- regex.match(string[, pos[, endpos]]): find regex at the beginning of string.
+- regex.search(string[, pos[, endpos]]): find regex at any place of string.
+>>> pattern="back"
+if (re.match(pattern, "abackup.txt")): print("OK") 
+if (re.search(pattern, "abackup.txt")): print("OK")  # OK
+
+- re.findall(r'\bf[a-z]*', 'which foot or hand fell fastest')
 ['foot', 'fell', 'fastest']
->>> re.sub(r'(\b[a-z]+) \1', r'\1', 'cat in the the hat')
+
+- re.sub(r'(\b[a-z]+) \1', r'\1', 'cat in the the hat')
 'cat in the hat'
 
 
@@ -1968,7 +2084,7 @@ and ‘tearDown’ functions to get your system ready for the tests.
 
 
 ################################################################################
-# 9. Brief Tour of the Standard Library – Part II
+# 9. Brief Tour of the Standard Library – Part II [2] 
 ################################################################################
 
 # 9.1. Output Formatting
@@ -2080,12 +2196,136 @@ WARNING Python only prints a decimal approximation to the true decimal value of
 	Point Arithmetic: Issues and Limitations"
 
 
+# 9.9. Python object serialization (pickle)
+
+- import pickle  (BINARY vs Json's text)
+
+The pickle module implements BINARY protocols for serializing and
+de-serializing a Python object structure.
+
+* Pickling:    Python object hierarchy -> byte stream  
+* Unpickling: the inverse operation
+
+(See serialization.py example)
+
+
+################################################################################
+# 10. Built-in Functions [2]   (TODO)
+################################################################################
+
+
+- map(function, iterable, ...): Return an iterator that APPLIES FUNCTION to
+  every item of iterable, yielding the results.
+
+
+- filter(function, iterable): Construct an iterator from those elements of
+  iterable for which function returns true.
+
+
+################################################################################
+# 11. Built-in Constants       (TODO)
+################################################################################
+
+# 11.1. Constants added by the site module
+
+
+
+################################################################################
+# 12. Built-in Types  	       (TODO)
+################################################################################
+
+
+
+################################################################################
+# 13. Built-in Exceptions      (TODO)
+################################################################################
+
+
+
 
 ################################################################################
 # todo) Todos to solve
 ################################################################################
 
 TODO_1  Multiple Inheritance: How to call both fathers ???
+
+TODO The Python Standard Library
+
+
+
+################################################################################
+# Annex) python mini-quizz (http://www.mypythonquiz.com/question.php)
+################################################################################
+
+
+- Q) Question #4: what gets printed?
+   def f(): pass
+   print type(f())   # Auto-note: about 'f()', not 'f'
+
+  S) <type 'NoneType'>
+   description:
+   The argument to the type() call is a return value of a function call, which
+   returns None
+
+
+
+- Q) Question #6: what is the output of the following code?
+
+   print type(lambda:None)
+
+  S)  <type 'function'>
+
+    description:
+    'lambda arguments: expression' yields a function object  # diff form Q4
+
+
+
+- Q) Question #16: The following code will successfully print the days and then
+     the months?
+
+     daysOfWeek = ['Monday',
+                   'Tuesday',
+                   'Sunday']
+     months =             ['Jan', \
+                           'Feb', \
+                           'Dec']
+     print "DAYS: %s, MONTHS %s" % 
+         (daysOfWeek,
+
+  S) False
+
+description:
+2 logical lines are used without a backslash to join them into a logical line:
+>>> b
+['JanFebDec']  # expected: ['Jan', 'Feb', 'Dec']
+
+
+
+- Q) Question #38: Which of the following print statements will print all the
+	    #names in the list on a seperate line
+
+  names = ['Ramesh', 'Rajesh', 'Roger', 'Ivan', 'Nico']
+  
+
+  S) print "\n".join(names) 
+
+
+- Q) Question #76: What gets printed
+
+  aList = [1,2]
+  bList = [3,4]
+  kvps = { '1' : aList, '2' : bList }
+  theCopy = kvps.copy()
+  kvps['1'][0] = 5
+  sum = kvps['1'][0] + theCopy['1'][0]
+  print sum
+
+  S) 10  # ( not  6)
+  description:
+  The copy method provides a shallow copy therefore the list being held as the
+  value inside the dictionary is the same list in the copy as the original.
+
+
 
 
 ################################################################################
@@ -2137,8 +2377,13 @@ TODO_1  Multiple Inheritance: How to call both fathers ???
   [2.4] The nonlocal statement - https://docs.python.org/3/reference/simple_stmts.html#nonlocal
 
   [2.5] Lexical analysis -
-  	https://docs.python.org/3.4/reference/lexical_analysis.html
+  	https://docs.python.org/3/reference/lexical_analysis.html
 
+  [2.6] Operator precedence -
+  	https://docs.python.org/3/reference/expressions.html
+
+  [2.7] copy — Shallow and deep copy operations -
+        https://docs.python.org/3/library/copy.html
 
 [5] PEPs
 
@@ -2183,4 +2428,3 @@ http://www.tutorialspoint.com/python/python_command_line_arguments.htm
 
   [4.4] parse command-line options and arguments -
   	http://www.tutorialspoint.com/python/python_command_line_arguments.htm
-
