@@ -1,3 +1,10 @@
+# when not working try this to update the ignored files
+# git rm -r --cached .
+# git add .
+# git commit -m "fixed untracked files"
+
+
+
 *~
 *.*~
 *.zip
@@ -10,11 +17,18 @@
 
 
 # python stuff
-
+*.pyc
+*/__pycache__/*
 
 # manuals
+environment/emacs_use/*_files/*
 language/courses/*
 language/books/*
-language/test/__pycache__/*
+# language/test/__pycache__/*
 
-environment/emacs_use/*_files/*
+#courses
+!language/courses/interactive_programming_with_python/
+language/courses/interactive_programming_with_python/projects/rock-paper-scissors-lizard-Spock/doc/*
+
+
+

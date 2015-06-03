@@ -2302,7 +2302,7 @@ description:
 
 
 - Q) Question #38: Which of the following print statements will print all the
-	    #names in the list on a seperate line
+     names in the list on a seperate line
 
   names = ['Ramesh', 'Rajesh', 'Roger', 'Ivan', 'Nico']
   
