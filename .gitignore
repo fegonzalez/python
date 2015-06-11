@@ -18,6 +18,7 @@
 
 # python stuff
 *.pyc
+*.pyo
 */__pycache__/*
 
 # manuals
