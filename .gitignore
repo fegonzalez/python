@@ -10,11 +10,14 @@
 *.zip
 *.tar.gz
 
-*.srt
+# html
+*_files/*
+
+
 
 # videos
 *.mp4
-
+*.srt
 
 # python stuff
 *.pyc
@@ -30,6 +33,8 @@ language/books/*
 #courses
 !language/courses/interactive_programming_with_python/
 language/courses/interactive_programming_with_python/projects/rock-paper-scissors-lizard-Spock/doc/*
+language/courses/interactive_programming_with_python/lectures/*
+!language/courses/interactive_programming_with_python/lectures/*.html
 
-
+!language/courses/interactive_programming_with_python/lectures/2/Interactive_applications_in_Python.html
 
