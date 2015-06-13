@@ -36,5 +36,5 @@ language/courses/interactive_programming_with_python/projects/rock-paper-scissor
 language/courses/interactive_programming_with_python/lectures/*
 !language/courses/interactive_programming_with_python/lectures/*.html
 
-!language/courses/interactive_programming_with_python/lectures/2/Interactive_applications_in_Python.html
+# !language/courses/interactive_programming_with_python/lectures/2/Interactive_applications_in_Python.html
 

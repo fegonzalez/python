@@ -1,0 +1,167 @@
+
+################################################################################
+#
+# Index
+#
+################################################################################
+
+
+# 1. Event handlers (callbacks) — Event-driven programming 
+
+# 2. Local vs global variables
+
+# 3. SimpleGUI (import simplegui)
+
+# 4. Frame controls: button, input box,
+
+# 10.5 Visualizing events: Viz Mode (http://www.codeskulptor.org/viz/)
+
+# References
+
+
+
+################################################################################
+# 1. Event handlers (callbacks) — Event-driven programming 
+################################################################################
+
+
+                                    (event)
+  Infinite Loop:   Main (WAIT)  ------------->  Handler executes 
+                                <-------------
+                                  (event-end)
+
+- Events  
+  > Input (button, text box)
+  > Keyboard (key up, ...)
+  > Mouse (click, ...)
+  > Timer
+  			
+	          
+- Even queue (FIFO by default): 
+  > Automatically managed by the system (transparent to the programmer)
+  > Programmer can change the execution order
+
+WARNING In CodeSkulptor, ONLY ONE event handler can be running at the same time.
+
+  # Example of a simple event-driven program
+
+  # CodeSkulptor GUI module
+  import simplegui
+
+  # Event handler
+  def tick():
+      print "tick!"
+
+  # Register handler
+  timer = simplegui.create_timer(1000, tick) # event occurs every 1000 ms
+
+  # Start timer
+  timer.start()
+
+  # Program end (infinite loop)
+
+
+
+################################################################################
+# 2. Local vs global variables
+################################################################################
+
+
+WARNING global variables are  unsafe
+
+- Why using globals: because they are an easy way for event handlers to
+  communicate game information.
+
+- Safer solution: object-programming techniques	
+
+
+
+################################################################################
+# 3. SimpleGUI (import simplegui)
+################################################################################
+
+WARNING codeSkulptor internal library, does not works outside.
+
+INFO doc within codeSkulptor 
+
+- Objects: frame, Control Objects, canvas, timer, ... (see codeSkulptor doc)
+
+- Frame: is a window, which is a container for the controls, status
+  	 information, and canvas. A program can create only one frame.
+
+# 3.1) Recommended Program Structure (7 steps not always needed)
+
+  import simplegui
+
+  i)   define Globals (state)
+  ii)  help functions, event handlers, & classes 
+  iii) create Frame & Event Handlers (timer, ...)
+  iv)  start Frame & Event Handlers
+
+
+- Example (http://www.codeskulptor.org/#user40_XpnRreje4vUDCCT.py)
+
+  import simplegui
+
+  #  i)   define Globals (state)
+  counter = 0
+
+  #  ii.a)  Helper functions
+
+  def increment():
+      global counter
+      counter+=1
+
+  #  ii.b) Classes
+
+  #  ii.c)  define Event Handlers
+  def tick():
+      increment()
+      print (counter)
+  def reset_counter():
+      global counter
+      counter=0
+
+  #  iii.a)   create Frame
+  frame = simplegui.create_frame('simplegui template', 100, 100)
+  frame.add_button("reset counter", reset_counter)
+
+  #  iii.b)  register Event Handlers (timer, ...)
+  timer = simplegui.create_timer(1000, tick)
+
+  #  iv) start Frame & Timers
+  frame.start()
+  timer.start())
+
+################################################################################
+# 4. Frame controls: button, input box, 
+################################################################################
+
+- Controls are part of a frame:  
+
+  > Button: 
+    frame.add_button(text, button_handler, [width])
+    def button_handler(): # control handler
+
+  > Text Input Box:
+    frame.add_input(text, input_handler, [width])
+    def input_handler(text_input): # control handler
+
+- Calculator example: http://www.codeskulptor.org/#user40_tSPSTkSKLzuDRgR.py
+
+
+################################################################################
+# 10.5 Visualizing events: Viz Mode (http://www.codeskulptor.org/viz/)
+################################################################################
+
+You can go up & down as in debug mode (click over events in the right side)
+
+- Calculator example: http://www.codeskulptor.org/viz/#user40_tSPSTkSKLzuDRgR.py
+
+
+
+
+
+################################################################################
+# References
+################################################################################

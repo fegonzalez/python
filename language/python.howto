@@ -146,13 +146,6 @@ Chapters 1 - 9:  The Python Tutorial [1]
 #     9.9. Python object serialization (pickle)
 
 
-
-Chapters 10 - ?? : Interactive Programming with Python (edx course) 
-
-
-# 10. Interactive Programming with Python
-
-
 # todo) Todos to solve
 
 # Annex A. The Python Standard Library [2]
@@ -170,7 +163,7 @@ Chapters 10 - ?? : Interactive Programming with Python (edx course)
 
 # Annex) python in Emacs
 
-# References)
+# References
 
 
 ################################################################################
@@ -376,6 +369,10 @@ WARNING There are two different INCOMPATIBLE versions: 2 (old); 3 (new)
 
 - python 3: python3 module.py / python3.4 module.py
 - python 2: python  module.py / python2.7 module.py
+
+NOTICE since 2.7 we can use 'from __future__ import print_function' for python3
+       compatibility.
+
 
 - Command line [4.3]
 
@@ -1502,7 +1499,20 @@ WARNING Assignments do not copy data — they just bind names to objects (see
  
 
 - 'global' statement: can be used to indicate that particular variables live in
-  the global scope and should be rebound there;
+  the global scope and should be rebound there. 
+
+WARNING Requires explicit declaration before used as rvalue:
+	global v1
+	def f():
+	    v1 = 5      # v1 is local & code is OK
+	def g():
+	    v1 = v1 +1  # v1 is local BUT code is wrong:
+	       	    	# local variable 'v1' referenced before assignment
+	def h():
+	    global v1	# just to advise that I'm going to use the global
+			# already defined variable
+	    v1 = v1 +1	# v1 is global & code is ok 				
+
 
 - 'nonlocal' statement indicates that particular variables live in an enclosing
   scope and should be rebound there. [2.4]
@@ -2213,119 +2223,6 @@ de-serializing a Python object structure.
 (See serialization.py example)
 
 
-################################################################################
-# 10. Interactive Programming with Python
-################################################################################
-
-# 10.1. Event handlers (callbacks) — Event-driven programming 
-
-                                    (event)
-  Infinite Loop:   Main (WAIT)  ------------->  Handler executes 
-                                <-------------
-                                  (event-end)
-
-- Events  
-  > Input (button, text box)
-  > Keyboard (key up, ...)
-  > Mouse (click, ...)
-  > Timer
-  			
-	          
-- Even queue (FIFO by default): 
-  > Automatically managed by the system (transparent to the programmer)
-  > Programmer can change the execution order
-
-WARNING Events are pop from the queue & executed once by one -> While a handler
-	is running, the rest of events wait in the queue.
-
-
-in CodeSkulptor, ONLY ONE event handler can be running at the same time
-
-
-  # Example of a simple event-driven program
-
-  # CodeSkulptor GUI module
-  import simplegui
-
-  # Event handler
-  def tick():
-      print "tick!"
-
-  # Register handler
-  timer = simplegui.create_timer(1000, tick) # event occurs every 1000 ms
-
-  # Start timer
-  timer.start()
-
-  # Program end (infinite loop)
-
-
-# 10.2. Local vs global variables
-
-WARNING global variables are  unsafe
-
-- Why using globals: because they are an easy way for event handlers to
-  communicate game information.
-
-- Safer solution: object-programming techniques	
-
-
-# 10.3. SimpleGUI (import simplegui)
-
-WARNING codeSkulptor internal library, does not works outside.
-
-INFO doc within codeSkulptor 
-
-- Objects: frame, Control Objects, canvas, timer, ... (see codeSkulptor doc)
-
-- Frame: is a window, which is a container for the controls, status
-  	 information, and canvas. A program can create only one frame.
-
-# 10.3.1) Recommended Program Structure (7 steps not always needed)
-
-  import simplegui
-
-  i)   define Globals (state)
-  ii)  Helper functions
-  iii) Classes
-  iv)  define Event Handlers
-  v)   create Frame
-  vi)  register Event Handlers
-  vii) start Frame & Timers
-
-- Example (http://www.codeskulptor.org/#user40_XpnRreje4vUDCCT.py
-
-  import simplegui
-
-  #  i)   define Globals (state)
-  counter = 0
-
-  #  ii)  Helper functions
-
-  def increment():
-      global counter
-      counter+=1
-
-  #  iii) Classes
-
-  #  iv)  define Event Handlers
-  def tick():
-      increment()
-      print (counter)
-  def reset_counter():
-      global counter
-      counter=0
-
-  #  v)   create Frame
-  frame = simplegui.create_frame('simplegui template', 100, 100)
-  frame.add_button("reset counter", reset_counter)
-
-  #  vi)  register Event Handlers
-  timer = simplegui.create_timer(1000, tick)
-
-  #  vii) start Frame & Timers
-  frame.start()
-  timer.start())
 
 
 ################################################################################
@@ -2550,3 +2447,8 @@ http://www.tutorialspoint.com/python/python_command_line_arguments.htm
 
   [4.4] parse command-line options and arguments -
   	http://www.tutorialspoint.com/python/python_command_line_arguments.htm
+
+
+[5] Python courses
+
+  [5.1] interactive_Python_within_codeskulptor.howto
