@@ -1,4 +1,8 @@
 LINKS code sculptor
- 
-# Project: Rock-paper-scissors-lizard-Spock
-# http://www.codeskulptor.org/#user40_AFNO2Kn6OCwQpIs.py
+
+- Project: Rock-paper-scissors-lizard-Spock
+  http://www.codeskulptor.org/#user40_AFNO2Kn6OCwQpIs.py
+
+- Project: Guess a number
+  http://www.codeskulptor.org/#user40_WRLGNBDZLASluUy.py
+

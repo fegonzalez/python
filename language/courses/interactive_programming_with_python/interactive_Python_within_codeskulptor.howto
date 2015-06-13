@@ -16,6 +16,10 @@
 
 # 10.5 Visualizing events: Viz Mode (http://www.codeskulptor.org/viz/)
 
+# Annex A.- Examples
+
+# Annex B.- Course mini-projects
+
 # References
 
 
@@ -131,7 +135,8 @@ INFO doc within codeSkulptor
 
   #  iv) start Frame & Timers
   frame.start()
-  timer.start())
+  timer.start()
+
 
 ################################################################################
 # 4. Frame controls: button, input box, 
@@ -144,24 +149,39 @@ INFO doc within codeSkulptor
     def button_handler(): # control handler
 
   > Text Input Box:
-    frame.add_input(text, input_handler, [width])
+    frame.add_input(text, input_handler, width)
     def input_handler(text_input): # control handler
 
-- Calculator example: http://www.codeskulptor.org/#user40_tSPSTkSKLzuDRgR.py
 
 
 ################################################################################
 # 10.5 Visualizing events: Viz Mode (http://www.codeskulptor.org/viz/)
 ################################################################################
 
-You can go up & down as in debug mode (click over events in the right side)
-
-- Calculator example: http://www.codeskulptor.org/viz/#user40_tSPSTkSKLzuDRgR.py
+- You can go up & down as in debug mode (click over events in the right side)
 
 
 
+
+################################################################################
+# Annex A.- Examples
+################################################################################
+
+- Calculator: http://www.codeskulptor.org/#user40_xv4E4O1iHS0qLQp.py
+
+
+################################################################################
+# Annex B.- Course mini-projects
+################################################################################
+
+- Project: Rock-paper-scissors-lizard-Spock
+  http://www.codeskulptor.org/#user40_AFNO2Kn6OCwQpIs.py
+
+- Project: Guess a number
+  http://www.codeskulptor.org/#user40_WRLGNBDZLASluUy.py
 
 
 ################################################################################
 # References
 ################################################################################
+
