@@ -1946,7 +1946,7 @@ WARNING Be sure to use the import os style instead of from os import *.
 - sys.stderr, stdin, stdout
 
 
-# 8.5. String Pattern Matching
+# 8.5. String Pattern Matching [2.8]
 
 import re  # regular expression tools for advanced string processing.
 
@@ -1959,8 +1959,58 @@ if (re.search(pattern, "abackup.txt")): print("OK")  # OK
 - re.findall(r'\bf[a-z]*', 'which foot or hand fell fastest')
 ['foot', 'fell', 'fastest']
 
-- re.sub(r'(\b[a-z]+) \1', r'\1', 'cat in the the hat')
-'cat in the hat'
+- re.sub(pattern, repl, string, max=0)
+
+  This method replaces all occurrences of the RE pattern in string with repl,
+  substituting all occurrences unless max provided. This method returns
+  modified string.
+
+  # Delete Python-style comments
+  num = re.sub(r'#.*$', "", phone)
+  print "Phone Num : ", num
+  # Remove anything other than digits
+  num = re.sub(r'\D', "", phone)    
+  print "Phone Num : ", num
+
+
+  # example
+  import re
+  def removePunctuation(text):
+
+    """Removes punctuation, changes to lower case, and strips leading and
+    trailing spaces.
+
+    Note: Only spaces, letters, and numbers should be retained.  Other
+    characters should should be eliminated (e.g. it's becomes its).  Leading
+    and trailing spaces should be removed after punctuation is removed.
+
+    Args:
+        text (str): A string.
+
+    Returns:
+        str: The cleaned up string.
+    """
+    # 1) lower case
+    result=text.lower()
+    # 2) Only spaces, letters, and numbers should be retained. 
+    result = re.sub("[^ 0-9a-zA-Z]", "", result)
+    # substitute every group of blanks with a single space.
+    result = re.sub("[\s]+", " ", result)
+    # remove spaces at the beginning and at the end.
+    result = re.sub("^[\s]*", "", result)
+    result = re.sub("[\s]*$", "", result)
+    return result
+
+    # 1) & 2) is equal to this two lines:
+    pattern = re.compile('[%s]' % string.punctuation)
+    return re.sub(pattern, '', text.lower().strip())
+
+
+
+    # use example
+    print (removePunctuation('Hi, you!'))
+    print (removePunctuation(' No under_score!'))
+    print ("<",removePunctuation(" The Elephant's 4 cats. "),">")
 
 
 # 8.6. Mathematics
@@ -2404,6 +2454,10 @@ description:
   [2.7] copy — Shallow and deep copy operations -
         https://docs.python.org/3/library/copy.html
 
+
+  [2.8] Python Regular Expressions tutorial -
+  	http://www.tutorialspoint.com/python/python_reg_expressions.htm
+
 [5] PEPs
 
   [5.1] PEP 0289 -- Generator Expressions -
@@ -2452,3 +2506,4 @@ http://www.tutorialspoint.com/python/python_command_line_arguments.htm
 [5] Python courses
 
   [5.1] interactive_Python_within_codeskulptor.howto
+
