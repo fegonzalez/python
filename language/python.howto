@@ -630,6 +630,12 @@ call (**args) # dict received
   square_root = lambda x: math.sqrt(x)     # def. function using 'lambda'
 
 
+INFO How to refer to collections fields in lambda functions
+
+     collection = ('id', value)
+     lambda x: x[1] > 10
+
+
 WARNING: What is lambda good for?
 
 - situations in which we need a simple one-off function: a FUNCTION that is
@@ -829,6 +835,13 @@ WARNING if a tuple contains any mutable object either directly or indirectly,
 WARNING keys are case-sensitive.
 
 WARNING 1 == 1.0 interchangeable as key
+
+# VERY USEFUL: order a MAP pairs(key,value) by value.
+
+  >>> rdd = dict([('rat', 2), ('elephant', 1), ('cat', 43)], )
+  
+  >>> (lambda x: -x[1]) # -x == descending order
+  
 
 
 # 3.6. Looping techniques
@@ -2507,3 +2520,7 @@ http://www.tutorialspoint.com/python/python_command_line_arguments.htm
 
   [5.1] interactive_Python_within_codeskulptor.howto
 
+
+[6] Plotting & Graphs
+
+    [6.1] Python plot lib (statistics graphs) - http://matplotlib.org/
