@@ -14,7 +14,13 @@
 
 # 4. Frame controls: button, input box,
 
-# 10.5 Visualizing events: Viz Mode (http://www.codeskulptor.org/viz/)
+# 5. Event-driven drawingDrawing canvas.
+
+# 6. Keyboard control
+
+# 7. Motion
+
+# 100. Visualizing events: Viz Mode (http://www.codeskulptor.org/viz/)
 
 # Annex A.- Examples
 
@@ -155,11 +161,159 @@ INFO doc within codeSkulptor
 
 
 ################################################################################
-# 10.5 Visualizing events: Viz Mode (http://www.codeskulptor.org/viz/)
+# 5. Event-driven drawingDrawing canvas.
 ################################################################################
 
-- You can go up & down as in debug mode (click over events in the right side)
+- Refresh rate is around 60 frames/sec.
+- Computer operating system requests that each application draw itself.
+- Each application has registered a special event handler called the "draw
+  handler"
 
+INFO origin [0, 0] (pixels): upper left corner; x=width, y = height
+
+- In SimpleGUI, open a frame with active draw handler
+
+
+  def just_one_draw_handler(canvas):
+    canvas.draw_text("Yay! You found me!", (100, 170), 20, "Aqua")
+    
+  simplegui.create_frame("Title", width, height)
+  frame.set_draw_handler(just_one_draw_handler)     # Here
+  frame.start()
+
+  timer = simplegui.create_timer(500, timer_handler)
+  timer.start()
+
+
+################################################################################
+# 6. Keyboard control
+################################################################################
+
+- Events: keydown and keyup 
+
+  DO: When any KEY is PRESSED, the KEYDOWN HANDLER is called ONCE.
+
+  UP: When any key is RELEASED, the KEYUP handler is called ONCE.
+
+  frame.set_keydown_handler(key_handler)
+  frame.set_keyup_handler(key_handler)
+
+  # (e.g)
+  import simplegui
+
+  def keydown_handler(key): # key: an integer representing a keyboard character.
+    if key == simplegui.KEY_MAP['down']:
+       ...
+    elif key == simplegui.KEY_MAP['7']:
+       ...
+
+
+  frame = simplegui.create_frame('Testing', 100, 100)
+  frame.set_keydown_handler(keydown_handler)
+  frame.set_keyup_handler(keyup_handler)
+  frame.start()
+
+
+################################################################################
+# 7. Motion
+################################################################################
+
+7.1. Point: Controlling position vs. velocity
+
+7.1.1. Position control of point p
+
+ - No update in draw handler
+
+ - Position update in key handler
+
+   Left arrow -> p[0] -= c
+   Right arrow -> p[0] += c
+   Up arrow -> p[1] -= c
+   Down arrow -> p[1] += c
+
+
+7.1.2. Velocity control of point p
+
+- Position update in draw handler
+  p[0] += v[0]
+  p[1] += v[1]
+
+- Velocity update in key handler
+
+  Left arrow -> v[0] -= c
+  Right arrow -> v[0] += c
+  Up arrow -> v[1] -= c
+  Down arrow -> v[1] += c
+  velocity_control-
+
+
+7.1.3. Point/point distance (Pythagorean theorem)
+
+    p0 = [1,1]
+    p1 = [2,3]
+    def dist(p, q):
+        return math.sqrt((p[0] -q[0]) ** 2 + (p[1] -q[1]) ** 2)
+
+
+7.2. Vectors and motion
+
+- Vectors as difference of two points (v = p - q)
+
+  v = [p[0]-q[0], p[1]-q[1]]
+
+
+- Move/translate point using a vector  (p = q + v)
+
+  p = [q[0]+v[0], q[1]+v[1]]
+
+
+- Update for motion: point at position 'p' with velocity 'v' (p = p + K * v)
+
+  K = multiply factor over the velocity (e.g. time )
+
+  p[0] = p[0] + v[0] * K
+  p[1] = p[1] + v[1] * K
+
+
+7.3. Collisions
+
+- Collision of point p with wall
+
+  Left wall:   p[0] <= 0
+  Right wall:  p[0] >= width - 1
+
+- Collision of ball of with center p and radius r with wall
+
+  Left wall:   p[0] <= r
+  Right wall:  p[0] >= (width -1) -r
+
+
+7.3. Reflections = update the velocity vector v
+
+- Left/Right vertical wall
+
+  v[0] = -v[0]
+  v[1] = v[1]
+
+- Up/Down horizontal 
+  v[0] = v[0]
+  v[1] = -v[1]
+
+
+
+
+
+  
+
+
+
+################################################################################
+# 100. Visualizing events: Viz Mode (http://www.codeskulptor.org/viz/)
+################################################################################
+
+- Events does not occur automatically, but after the user command instead.
+
+- You can go up & down as in debug mode (click over events in the right side)
 
 
 
@@ -169,6 +323,7 @@ INFO doc within codeSkulptor
 
 - Calculator: http://www.codeskulptor.org/#user40_xv4E4O1iHS0qLQp.py
 
+- collisions_and_reflections: 
 
 ################################################################################
 # Annex B.- Course mini-projects
@@ -180,8 +335,15 @@ INFO doc within codeSkulptor
 - Project: Guess a number
   http://www.codeskulptor.org/#user40_WRLGNBDZLASluUy.py
 
+- Project: "Stopwatch: The Game"
+  http://www.codeskulptor.org/#user40_RDJ74eo0AWypP4H.py
 
-################################################################################
+
+###############################################################################
 # References
-################################################################################
+###############################################################################
+
+
+
+http://www.codeskulptor.org/#user40_zQeZkRRlABXocuG.py
 

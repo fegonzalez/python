@@ -711,21 +711,19 @@ WARNING: assignation: copy (b=a[:]) vs pointer (b=a)   (see 0.v)
 >>> lstOfLsts + ["fin", "lista"]
 
 
-#   3.1.1. Using Lists as Stacks
+# 3.1.1. Using Lists as Stacks
 
-WARNING list is LIFO: pop() ==> remove the last element
-
-Stack: append() & pop()
+Stack: LIFO list: append() & pop() ==> fast add/remove the last element
 
     
-#   3.1.2. Using Lists as Queues
+# 3.1.2. Using Lists as Queues
 
 WARNING insert() & pop() from the beginning is slow -> TO IMPLEMENT A QUEUE,
 	USE 'collections.deque' which was designed to have fast appends and pops
 	from both ends. (see [1.3], 5.1.2)
 
 
-#   3.1.3. List Comprehensions
+# 3.1.3. List Comprehensions
 
 - provide a concise way to create lists.
 
@@ -738,6 +736,9 @@ WARNING insert() & pop() from the beginning is slow -> TO IMPLEMENT A QUEUE,
 
 - IN THE REAL WORLD, you should prefer built-in functions to complex flow
   statements (see zip() function).
+
+WARNING Conclusion: use list comprehensions iff you need to store the result
+	into memory.
 
 
 # 3.2. The 'del' statement
@@ -2074,6 +2075,14 @@ INFO While date and time arithmetic is supported, the focus of the
 0.06954108199988696
 >>> Timer('a,b = b,a', 'a=1; b=2').timeit()
 0.04595019299995329
+
+
+- import time
+
+  >>> import time
+  >>> t1=time.time()
+  >>> t2=time.time()
+  >>> print("elapsed = ", t2-t1)
 
 
 # 8.11. Quality Control (unitary test module)
