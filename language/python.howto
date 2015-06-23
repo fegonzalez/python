@@ -1525,7 +1525,22 @@ WARNING Requires explicit declaration before used as rvalue:
 	def h():
 	    global v1	# just to advise that I'm going to use the global
 			# already defined variable
-	    v1 = v1 +1	# v1 is global & code is ok 				
+	    v1 = v1 +1	# v1 is global & code is ok 
+
+WARNING lvalue: local variable is assumed. Exception if "global" statement
+	used. Exception if mutation instead assignment:
+
+  a = [4, 5, 6]
+
+  def mutate_part(x):
+    a[0] = x          # Exception: MUTATION a[1] == mutating 'a' => 'a' global
+
+  def assign_whole_global(x):
+    global a          # Exception: "global" statement => global 
+    a = x
+
+  def assign_whole(x):
+    a = x             # Default: 'a' is local
 
 
 - 'nonlocal' statement indicates that particular variables live in an enclosing
