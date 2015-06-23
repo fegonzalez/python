@@ -244,7 +244,6 @@ INFO origin [0, 0] (pixels): upper left corner; x=width, y = height
   Right arrow -> v[0] += c
   Up arrow -> v[1] -= c
   Down arrow -> v[1] += c
-  velocity_control-
 
 
 7.1.3. Point/point distance (Pythagorean theorem)
@@ -337,6 +336,10 @@ INFO origin [0, 0] (pixels): upper left corner; x=width, y = height
 
 - Project: "Stopwatch: The Game"
   http://www.codeskulptor.org/#user40_RDJ74eo0AWypP4H.py
+
+- Project: "Pong"
+  http://www.codeskulptor.org/#user40_0m6DG9x6mm_3.py
+  
 
 
 ###############################################################################
