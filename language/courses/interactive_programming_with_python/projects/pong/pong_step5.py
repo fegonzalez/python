@@ -1,7 +1,7 @@
 # Implementation of classic arcade game Pong
 
 
-# version 5: Pong Mini-project development process steps 1-5
+# version 5: Mini-project development process steps 1-5
 # http://www.codeskulptor.org/#user40_DxZ2UgqghVUKSvV_5.py
 
 import simplegui
