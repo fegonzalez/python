@@ -284,7 +284,7 @@ INFO origin [0, 0] (pixels): upper left corner; x=width, y = height
 - Collision of ball of with center p and radius r with wall
 
   Left wall:   p[0] <= r
-  Right wall:  p[0] >= (width -1) -r
+  Right wall:  p[0] >= (width - 1) - r
 
 
 7.3. Reflections = update the velocity vector v
@@ -297,13 +297,6 @@ INFO origin [0, 0] (pixels): upper left corner; x=width, y = height
 - Up/Down horizontal 
   v[0] = v[0]
   v[1] = -v[1]
-
-
-
-
-
-  
-
 
 
 ################################################################################
