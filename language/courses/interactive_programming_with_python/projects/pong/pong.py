@@ -1,4 +1,6 @@
 # Implementation of classic arcade game Pong
+
+# PESENTED TO EVALUATION ( 2 minor fixed since)
 # http://www.codeskulptor.org/#user40_KRnw9klLGfVvziz.py
 
 #
@@ -201,7 +203,7 @@ def init_ball_vel(direction):
 
     return [random.randrange(BALL_MIN_INIT_X_VEL, BALL_MAX_INIT_X_VEL+1) \
             * K_HORIZ, \
-            random.randrange(BALL_MIN_INIT_X_VEL, BALL_MAX_INIT_X_VEL+1) \
+            random.randrange(BALL_MIN_INIT_Y_VEL, BALL_MAX_INIT_Y_VEL+1) \
             * K_VERT]
 
 #-------------------------------------------------------------------------------
@@ -287,6 +289,7 @@ def handle_goal_or_paddle():
         if(ball_pos[1] >= (paddle1_pos[1] - HALF_PAD_HEIGHT)) and \
           (ball_pos[1] <= (paddle1_pos[1] + HALF_PAD_HEIGHT)):
            ball_vel[0] = - ball_vel[0] * BALL_DEFAULT_VEL_FACTOR
+           ball_vel[1] *= BALL_DEFAULT_VEL_FACTOR
         # goal!
         else: 
             score2+=1
@@ -298,6 +301,7 @@ def handle_goal_or_paddle():
         if(ball_pos[1] >= (paddle2_pos[1] - HALF_PAD_HEIGHT)) and \
           (ball_pos[1] <= (paddle2_pos[1] + HALF_PAD_HEIGHT)):
            ball_vel[0] = - ball_vel[0] * BALL_DEFAULT_VEL_FACTOR
+           ball_vel[1] *= BALL_DEFAULT_VEL_FACTOR
         # goal!
         else:
             score1+=1
@@ -315,7 +319,8 @@ def new_game():
     global score1, score2  # these are ints
 
     score1, score2 = 0, 0
-    new_play(random.randrange(LEFT, RIGHT+1))
+    new_play(random.choice([LEFT, RIGHT]))
+    # new_play(random.randrange(LEFT, RIGHT+1)) #not working, always to right
 
 
 #===============================================================================
