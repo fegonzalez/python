@@ -6,6 +6,9 @@
 # FIXED
 # http://www.codeskulptor.org/#user40_0mownF25skW8DKV.py
 
+# Fronton (not-mine) version
+
+
 #
 # NOTICE Game additions:
 #

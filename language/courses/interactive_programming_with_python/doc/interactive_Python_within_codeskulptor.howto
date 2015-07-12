@@ -20,6 +20,12 @@
 
 # 7. Motion
 
+# 8. Mouse
+
+# 8. Mouse
+
+# 9. Images
+
 # 100. Visualizing events: Viz Mode (http://www.codeskulptor.org/viz/)
 
 # Annex A.- Examples
@@ -297,6 +303,78 @@ INFO origin [0, 0] (pixels): upper left corner; x=width, y = height
 - Up/Down horizontal 
   v[0] = v[0]
   v[1] = -v[1]
+
+
+################################################################################
+# 8. Mouse
+################################################################################
+
+- mouse click: frame.set_mouseclick_handler(mouse_handler)
+
+- mouse drag:  frame.set_mousedrag_handler(mouse_handler)
+    
+
+import simplegui
+
+def mouse_handler(position):
+    assert(len(pos)==2) # position MUST be an creen cooordinate position
+    ...
+
+frame = simplegui.create_frame('Testing', 100, 100)
+frame.set_mouseclick_handler(mouse_handler)
+frame.start()
+
+
+################################################################################
+# 9. Images 
+################################################################################
+
+NOTICE See document images.pdf for details
+
+
+9.1. Loading Images
+
+     im = simplegui.load_image(URL)
+
+
+9.2. Drawing images
+
+     canvas.draw_image(image, center_source, width_height_source, \
+                       center_dest, width_height_dest, [rotation])
+
+     - source: rentangle on the source image (pairs of numbers)
+
+     - dest: rentangle on the canvas (pairs of numbers)
+
+     You can draw the whole image file or just part of it.
+
+WARNING Attempting to draw before load finishes causes draw to fail. Execution
+	continues.
+
+WARNING Source rectangle not lying entirely on canvas causes draw to
+	fail. Execution continues -> use Map magnifier technique.
+
+
+9.3. Map magnifier
+
+Example.- ../examples/map_mapnifier.py
+Gutenberg project map -1521 pixels wide, 1821 pixels high at
+"http://commondatastorage.googleapis.com/codeskulptor-assets/gutenberg.jpg"
+
+
+Problem: Too large to draw completely on canvas at full resolution
+
+Strategy:
+
+a) Scale resolution down by a factor of three and draw reduced resolution image.
+
+b) Click on canvas = display small portion of image as original resolution
+   around click location.
+
+   Two calls to draw_image:
+   - First draws entire map at reduced resolution
+   - Second draws magnifier panel around mouse click, over the entire map image
+
 
 
 ################################################################################

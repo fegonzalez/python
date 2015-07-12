@@ -289,9 +289,9 @@ of a mutable container -> use copy.deepcopy() instead. [2.7]
   >>> bList = [3,4]
   >>> kvps = { '1' : aList, '2' : bList }
 
-  >>> theCopy = kvps.copy()         # WARNING above: aList, bList are not copies
+  >>> theCopy = kvps.copy()         # WARNING above: aList, bList ARE NOT copies
   >>> import copy
-  >>> theCopy = copy.deepcopy(kvps) # WARNING above: aList, bList now are copies
+  >>> theCopy = copy.deepcopy(kvps) # WARNING above: aList, bList now ARE copies
 
   >>> kvps['1'][0] = 5
   >>> theCopy
@@ -844,6 +844,22 @@ WARNING 1 == 1.0 interchangeable as key
   >>> (lambda x: -x[1]) # -x == descending order
   
 
+Hint optimization example.- mydict.get(token, 0.0) + (1.0/len_tokens)
+
+def tf(tokens):
+    """ Compute TF
+    Args:
+        tokens (list of str): input list of tokens 
+    Returns:
+        dictionary: a dictionary of tokens to its TF values
+		    tf[val] = num of 'val' in 'tokens' / num 'tokens'
+    """
+    len_tokens=len(tokens)
+    mydict = dict()
+    for token in tokens:
+        mydict[token] = mydict.get(token, 0.0) + (1.0/len_tokens)
+    return mydict
+
 
 # 3.6. Looping techniques
 
@@ -1225,7 +1241,10 @@ WARNING In text mode, the default (implicitly) when reading is to convert
 
   - open / close / read / readline / numchars = write / tell / seek / closed
 
-  >>> f = open('workfile', 'w')
+  >>> baseDir = os.path.join('data')
+  >>> inputPath = os.path.join('cs100', 'lab4', 'small')
+  >>> workfile = os.path.join(baseDir, inputPath, 'workfile')
+  >>> f = open(workfile, 'w')
   >>> f.write('This is the entire file.\n')
   >>> f.close()
   >>> f = open("test/workfile")
@@ -1975,15 +1994,16 @@ WARNING Be sure to use the import os style instead of from os import *.
 - sys.stderr, stdin, stdout
 
 
-# 8.5. String Pattern Matching [2.8]
+# 8.5. String Pattern Matching [7.1] [7.2]
 
 import re  # regular expression tools for advanced string processing.
 
 - regex.match(string[, pos[, endpos]]): find regex at the beginning of string.
 - regex.search(string[, pos[, endpos]]): find regex at any place of string.
->>> pattern="back"
-if (re.match(pattern, "abackup.txt")): print("OK") 
-if (re.search(pattern, "abackup.txt")): print("OK")  # OK
+
+  >>> pattern="back"
+  if (re.match(pattern, "abackup.txt")): print("OK") 
+  if (re.search(pattern, "abackup.txt")): print("OK")  # OK
 
 - re.findall(r'\bf[a-z]*', 'which foot or hand fell fastest')
 ['foot', 'fell', 'fastest']
@@ -2019,27 +2039,38 @@ if (re.search(pattern, "abackup.txt")): print("OK")  # OK
     Returns:
         str: The cleaned up string.
     """
-    # 1) lower case
-    result=text.lower()
-    # 2) Only spaces, letters, and numbers should be retained. 
-    result = re.sub("[^ 0-9a-zA-Z]", "", result)
-    # substitute every group of blanks with a single space.
+    # 1) changes to lower case, and strips leading and trailing spaces. 
+    result=text.lower().strip()
+
+    # 2) substitute every group of blanks with a single space.
     result = re.sub("[\s]+", " ", result)
-    # remove spaces at the beginning and at the end.
-    result = re.sub("^[\s]*", "", result)
-    result = re.sub("[\s]*$", "", result)
+
+    # 3) Only letters, and numbers should be retained. 
+    result = re.sub("[^ 0-9a-zA-Z]", "", result)
+
     return result
-
-    # 1) & 2) is equal to this two lines:
-    pattern = re.compile('[%s]' % string.punctuation)
-    return re.sub(pattern, '', text.lower().strip())
-
-
 
     # use example
     print (removePunctuation('Hi, you!'))
     print (removePunctuation(' No under_score!'))
     print ("<",removePunctuation(" The Elephant's 4 cats. "),">")
+
+
+(e.g. simpleTokenize)
+def simpleTokenize(string):
+    """ A simple implementation of input string tokenization
+    Args:
+        string (str): input string
+    Returns:
+        list: a list of tokens
+    """
+    #return <FILL IN>
+    return filter(len, re.split(split_regex, string.lower().strip()))
+
+  >>> quickbrownfox = 'A quick brown fox jumps over the lazy dog.'
+  >>> split_regex = r'\W+'
+  >>> print simpleTokenize(quickbrownfox)
+  ['a', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
 
 
 # 8.6. Mathematics
@@ -2492,9 +2523,6 @@ description:
         https://docs.python.org/3/library/copy.html
 
 
-  [2.8] Python Regular Expressions tutorial -
-  	http://www.tutorialspoint.com/python/python_reg_expressions.htm
-
 [5] PEPs
 
   [5.1] PEP 0289 -- Generator Expressions -
@@ -2548,3 +2576,11 @@ http://www.tutorialspoint.com/python/python_command_line_arguments.htm
 [6] Plotting & Graphs
 
     [6.1] Python plot lib (statistics graphs) - http://matplotlib.org/
+
+[7] Regular expressions
+
+    [2.8] Python Regular Expressions tutorial -
+    	  http://www.tutorialspoint.com/python/python_reg_expressions.htm
+
+    [7.1] Online regex - https://regex101.com/
+
