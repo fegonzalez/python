@@ -710,6 +710,9 @@ WARNING: assignation: copy (b=a[:]) vs pointer (b=a)   (see 0.v)
 >>> lstOfLsts[1][2]
 >>> lstOfLsts + ["fin", "lista"]
 
+Hint Create and initialise a list to a default value
+
+     l = [False]*16  # 16 bool values init to False
 
 # 3.1.1. Using Lists as Stacks
 
