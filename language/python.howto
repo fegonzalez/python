@@ -751,8 +751,8 @@ WARNING Conclusion: use list comprehensions iff you need to store the result
   >>> a = [-1, 1, 66.25, 333, 333, 1234.5]
   >>> del a[0]                              # del elements: ONE position
   >>> del a[2:4]                            # del elements: SLICE list
-  >>> del a[:]
-  >>> del a                                 # delete entire variables
+  >>> del a[:]                              # clear = delete all the elements
+  >>> del a                                 # destroy = delete entire variable
 
 
 # 3.3. Tuples and Sequences
@@ -1631,9 +1631,11 @@ INFO All the attributes must be defined (init.), compilation error otherwise.
 
 INFO Data member's VALUES can be CHANGED, and RESET (del).
 
+INFO Constructors: '__init__' method
+
 INFO '.__doc__' attribute returns the docstring of the class.
 
-INFO Constructors: '__init__' method
+INFO - '.__str__' method: Overrides srt(object)
 
 WARNING self: (see 7.3.4.a bellow.)
 
@@ -1661,6 +1663,9 @@ b) instantiation:
      
 
 WARNING instantiation creates an empty object if '__init__' not defined.
+
+	(e.g)  class Employee:
+      	       	     pass
 
 
 # 7.3.3. Instance Objects 
@@ -1702,14 +1707,27 @@ WARNING Class methods does not exists (*3)
 
 
 INFO Instance method objects have attributes, too:
-     - m.__self__ is the instance object with the method m()
-     - m.__func__ is the function object corresponding to the method.
 
+     class MyComplexTest:
+         def __init__(self, realpart=0.0, imagpart=0.0):    # c012 
+            self.the_real = realpart
+            self.the_imag = imagpart
+
+     >>> mct = classes.MyComplexTest()
+     >>> mct.__init__.__self__
+     <classes.MyComplexTest object at 0x109509400>     # instance object
+     >>> mct.__init__.__func__
+     <function MyComplexTest.__init__ at 0x10958b598>  # function object, shared
+                                                       # by all the instances
+ 
 
 # 7.3.5. Class Variables vs Instance Variables
 
-(e.g)
-     class Complex:
+a) 'Instance Variables' are the ones defined inside __init__ constructors
+
+b) 'Class variables' are those defined outside constructors.
+
+(e.g) class Complex:
 
       i = 12345  # Class variable (shared by all the objects of type Complex)
 
@@ -1717,15 +1735,11 @@ INFO Instance method objects have attributes, too:
           self.r = realpart  # Instance variable (object's attribute)
 
 
-!!!! In Python, 'INSTANCE VARIABLES' ARE THE ONES DEFINED INSIDE __init__
-     constructors, and 'Class variables' are those defined outside constructors.
-
-
 (*3) INFO Both object variables and class variables can be instantiated from
      	  within of a method (see 7.3.4.a) => Class methods does not exists.
 
 
-WARNING Mutable objects should not be used as Class Variables.
+WARNING Mutable objects SHOULD NOT be used as Class Variables.
 
 
 # 7.4. Random Remarks
@@ -1787,7 +1801,7 @@ WARNING (For C++ programmers) ALL METHODS in Python ARE effectively VIRTUAL =>
     <statement-1>
     ...
 
-- Search for attrs. inherited (brief): depth-first, left-to-right, not
+- Searching for attrs. inherited (brief): depth-first, left-to-right, not
   searching twice.
 
 
@@ -1835,7 +1849,7 @@ class ReadOnlyTest(object):
 
 # 7.7. Odds and Ends
 
-Hint: using an empty class to create a data type similar to "STRUCT".
+Hint: (trick) using an empty class to create a data type similar to "STRUCT".
 
   class Employee:
       pass
@@ -1904,8 +1918,8 @@ class ReverseIterator:
 
 # 7.10. Generators [5.2]
 
-- RECOMMENDED USE Generators simplifies creation of iterators: a generator is
-  also an iterator, but simpler.
+- RECOMMENDED USE Generators simplifies the creation of iterators: a generator
+  is also an iterator, but simpler.
 
 INFO  __iter__() and __next__() methods are created automatically.
 INFO when generators terminate, they automatically raise StopIteration.

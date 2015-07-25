@@ -215,7 +215,10 @@ class Person:
         self.address = address
         self.employed = employed
 
-    @property # use: object.name  (NOT object.name())
+        
+    # private attributes (via the use of the '@property' decorator)
+
+    @property # use mode: object.name ( NOT object.name())
     def name(self):
         return self._name
 
@@ -227,6 +230,7 @@ class Person:
     def gender(self):
         return self._gender.name
 
+    # overwrite str()
     def __str__(self):
         retval = "(" + str(self.name) + ", " + str(self.age)+ ", " + str(self.gender) + ", " + str(self.address) + ", " + str(self.employed) + ")"
         return retval        
@@ -240,8 +244,8 @@ class Student(Person):
 
     _id = 0
 
-    # ERROR: NOT compilation error (like C++), instead creates the object
-    # without the Base attributes
+    # ERROR: tricky error because this don't rise a compilation error (like in
+    # C++), but creates the object (without the Base attributes) instead.
     #     
     # def __init__(self, subject):  # subject example = "History"
     #     self._id+=1
@@ -303,6 +307,8 @@ class Athlete(Person):
 # ERROR How to call both fathers ???
 class StudentAthlete(Student, Athlete):
 
+    _id = 0
+
     def __init__(self,
                  subject,
                  sport,
@@ -312,12 +318,22 @@ class StudentAthlete(Student, Athlete):
                  employed = False,
                  address="Unknown"):
         Student.__init__(self, subject, name, age, gender, employed, address)
-        Athlete.__init__(self, sport, "weeeee", age, gender, employed, address)
+        Athlete.__init__(self, sport, name + "weeeee", age, gender, employed, address)
         self._id+=1
-
         
-    # def __str__(self):
-    #     return Student.__str__(self) + Athlete.__str__(self)
+
+    @property
+    def id(self):
+        return self._id
+
+
+    def __str__(self):
+        retval = Person.__str__(self) + \
+                 "; (" + str(self.id) + ", " + \
+                 str(self.sport) + ", " + \
+                 str(self.subject) + ")"
+        return retval  
+
 
 
 
