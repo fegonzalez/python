@@ -1,0 +1,39 @@
+
+################################################################################
+# Physic concept -> program
+################################################################################
+
+1) linear movement
+
+   bubbles.py (linear acceleration)
+
+2) angle movement
+
+   flowers.py
+
+3) collisions and relections
+
+   simple_collisions_and_reflections.py
+   ball_physics_for_generic_2D_domain.py
+
+4) 2D domain
+
+   ball_physics_for_generic_2D_domain.py
+
+
+################################################################################
+# Program -> concecpt
+################################################################################
+
+- bubbles: linear acceleration
+
+- flowers: angle velocity
+
+- ball_physics_for_generic_2D_domain.py:
+  linear movement,
+  2D domains,
+  collisions and relections on 2D domains
+
+
+
+

@@ -1,10 +1,9 @@
 
 # implementation of card game - Memory
 
+# http://www.codeskulptor.org/#user40_B3qwDTvmuSFHmrY.py
 
-# http://www.codeskulptor.org/#user40_86vri8qi5Tl0q2l.py
 
- 
 import simplegui
 import random
 
@@ -62,7 +61,7 @@ game_over = _DECK_SIZE # _IS_GAME_OVER if all the cards has been paired.
 #===============================================================================
 
 def new_game():
-    global the_deck, the_exposed_deck, turns, the_sate, game_over
+    global the_deck, the_exposed_deck, turns, the_state, game_over
     global the_first_card_index, the_second_card_index
     
     game_over = _DECK_SIZE
