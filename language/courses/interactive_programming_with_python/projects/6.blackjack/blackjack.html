@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html class="supports-svg" xmlns:fb="http://ogp.me/ns/fb#" itemtype="http://schema.org"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=IE7"><meta name="fragment" content="!"><meta name="robots" content="NOODP"><meta charset="utf-8"><meta property="og:title" content="Coursera"><meta property="og:type" content="website"><meta property="og:image" content="http://s3.amazonaws.com/coursera/media/Coursera_Computer_Narrow.png"><meta property="og:url" content="https://www.coursera.org/"><meta property="og:site_name" content="Coursera"><meta property="og:locale" content="en_US"><meta property="og:description" content="Take free online classes from 80+ top universities and organizations. Coursera is a social entrepreneurship company partnering with Stanford University, Yale University, Princeton University and others around the world to offer courses online for anyone to take, for free. We believe in connecting people to a great education so that anyone around the world can learn without limits."><meta property="fb:admins" content="727836538,4807654"><meta property="fb:app_id" content="274998519252278"><meta name="twitter:site" content="Coursera"><meta name="twitter:app:name:iphone" content="Coursera"><meta name="twitter:app:name:ipad" content="Coursera"><meta name="twitter:app:name:googleplay" content="Coursera"><meta name="twitter:app:id:iphone" content="id736535961"><meta name="twitter:app:id:ipad" content="id736535961"><meta name="twitter:app:id:googleplay" content="org.coursera.android"><meta name="description" content="Take free online classes from 80+ top universities and organizations. Coursera is a social entrepreneurship company partnering with Stanford University, Yale University, Princeton University and others around the world to offer courses online for anyone to take, for free. We believe in connecting people to a great education so that anyone around the world can learn without limits."><meta name="image" content="http://s3.amazonaws.com/coursera/media/Coursera_Computer_Narrow.png"><meta name="apple-itunes-app" content="app-id=736535961"><title>An Introduction to Interactive Programming in Python (Part 2) | Coursera</title>    <link href="blackjack_files/spark.css" rel="stylesheet" type="text/css">
+      <link href="blackjack_files/course.css" rel="stylesheet" type="text/css">
+      <link href="blackjack_files/hg.css" rel="stylesheet" type="text/css">
+    <link href="https://spark-public.s3.amazonaws.com/interactivepython2/static/images/favicon.ico" rel="icon">
+<script src="blackjack_files/MathJax.js" async="" type="text/javascript"></script><script src="blackjack_files/ga.js" async="" type="text/javascript"></script><script src="blackjack_files/routes.js" data-requiremodule="pages/hg/js/app/routes" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/confirmNavigation.js" data-requiremodule="bundles/confirmNavigation/nls/es/confirmNavigation" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/moment.js" data-requiremodule="js/lib/nls/es/moment.lang" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/popup.js" data-requiremodule="bundles/helpwidget/nls/es/popup" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/toolbar.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/toolbar-code.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-code" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/toolbar-link.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-link" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/toolbar-modal-link.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-modal-link" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/toolbar-modes.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-modes" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/footer-source.js" data-requiremodule="bundles/wysihtml5/nls/es/footer-source" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/footer-markdown.js" data-requiremodule="bundles/wysihtml5/nls/es/footer-markdown" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/footer-rich.js" data-requiremodule="bundles/wysihtml5/nls/es/footer-rich" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/toolbar-transloadit.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-transloadit" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/toolbar-modal-transloadit.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-modal-transloadit" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/toolbar-latex.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-latex" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/toolbar-modal-latex.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-modal-latex" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/toolbar-textbook.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-textbook" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/toolbar-modal-textbook.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-modal-textbook" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/204.js" data-requiremodule="js/lib/204" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/400.js" data-requiremodule="js/lib/400" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/header.js" data-requiremodule="pages/spark/views/template/header" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/sidebar_002.js" data-requiremodule="pages/spark/views/template/sidebar" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/catalogApi.js" data-requiremodule="pages/spark-survey/catalogApi" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/readme.js" data-requiremodule="js/lib/readme" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/header_004.js" data-requiremodule="pages/spark/views/template/header.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/LearnerStoriesCollection.js" data-requiremodule="pages/analytics/models/LearnerStoriesCollection" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/assessApi.js" data-requiremodule="pages/spark-survey/assessApi" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/abUtils.js" data-requiremodule="pages/spark-survey/util/abUtils" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/sidebar_003.js" data-requiremodule="pages/spark/views/template/sidebar.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/signature_track.js" data-requiremodule="spark/app/signature/js/signature_track" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/LearnerStoryModel.js" data-requiremodule="pages/analytics/models/LearnerStoryModel" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/header_002.js" data-requiremodule="pages/spark/views/template/nls/header" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/sidebar_004.js" data-requiremodule="pages/spark/views/template/nls/sidebar" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/signatureTrackLastChanceModal.js" data-requiremodule="spark/app/signature/js/signatureTrackLastChanceModal.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/flexjoinLastChanceModal.js" data-requiremodule="spark/app/signature/js/flexjoinLastChanceModal.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/path.js" data-requiremodule="js/lib/path" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/header_003.js" data-requiremodule="pages/spark/views/template/nls/es/header" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="blackjack_files/sidebar.js" data-requiremodule="pages/spark/views/template/nls/es/sidebar" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuTitle {background-color: #CCCCCC; margin: -5px 0 0 0; text-align: center; font-style: italic; font-size: 80%; color: #444444; padding: 2px 0; overflow: hidden}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head><body><div style="display: none;" id="MathJax_Message"></div><div id="fb-root"></div><div id="spark-help" class="hide"></div><a href="https://learner.coursera.help/hc/requests/new" target="_blank"><div style="z-index: 1" data-networkprioritysupportwidget="" role="button" class="helpwidget-tab hide">Premium Support</div></a><!-- - track IE8 and less browser for eventing purposes--><!--[if lte IE 8]><script>window._204 = window._204 || [];
+window._gaq = window._gaq || [];
+window._gaq.push(
+    ['_setAccount', 'UA-28377374-1'],
+    ['_setDomainName', window.location.hostname],
+    ['_setAllowLinker', true],
+    ['_trackPageview', window.location.pathname]);
+window._204.push(
+  ['client', 'home'],
+  {key:"pageview", value:window.location.pathname});</script><script src="https://dw0ugk4msqulk.cloudfront.net/c3bdeb1a14fabb29492bd91d780dbccaa56111d2/js/lib/204.js"></script><script src="https://ssl.google-analytics.com/ga.js"></script><![endif]--><div id="fb-root"></div><div id="origami" data-js="origami"><div><div><div class="coursera-page"><div class="coursera-header" role="menubar"><div class="hidden">Esta página utiliza la tecnología Mathjax para desplegar fórmulas matemáticas.
+Si estás usando un lector de pantallas, por favor visita <a href="http://www.dessci.com/en/products/mathplayer/">MathPlayer</a>
+ para descargar la extensión (plugin) para tu navegador. Ten en cuenta, 
+por favor, que esta extensión es -por el momento- compatible únicamente 
+con Internet Explorer.</div><h1 class="hidden">An Introduction to Interactive Programming in Python (Part 2)</h1><!-- UNTIL dashboard announcement expires 2014-12-01 (then delete this code)--><div class="helpcenter-announcement"><div style="visibility: visible; display: none;" class="readme" data-readme="helpcenter-announcement" data-readme-show-count="1" data-readme-show-until-closed="data-readme-show-until-closed" data-readme-expires="Mar 31, 2015"><div>Need technical help? Visit our new <a href="https://learner.coursera.help/" data-readme-close="data-readme-close">Learner Help Center!</a></div><div data-readme-close="data-readme-close" class="readme-close-icon"><span class="icon-remove"></span></div></div></div><div role="banner" class="course-topbar container-fluid"><div class="row-fluid"><div class="span3"><a href="https://www.coursera.org/" data-if-linkable="add-referrer" class="course-topbar-logo"></a></div><div style="float:right;" class="course-topbar-nav-container span9"><h2 class="hidden">Barra superior de navegación</h2><ul class="course-topbar-nav-list"><li class="course-topbar-nav-list-item"><a href="https://www.coursera.org/courses" data-if-linkable="add-referrer">Cursos</a></li><li tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-owns="course-topbar-my" data-popup="#course-topbar-my" data-popup-bind-open="mouseenter" data-popup-close="data-popup-close" style="cursor:pointer;" data-popup-direction="se" class="course-topbar-nav-list-item"><a data-user-id="8717605">Fernando Gonzalez Rodriguez<i class="icon-caret-down"></i></a></li></ul></div></div><div id="course-topbar-aboutus" class="course-topbar-sublist"><a href="https://www.coursera.org//about/" target="_new" data-if-linkable="add-referrer" class="internal-about course-topbar-sublist-item">Nosotros</a><a href="https://www.coursera.org//about/careers" target="_new" data-if-linkable="add-referrer" class="internal-about course-topbar-sublist-item">Empleo</a><a href="https://www.coursera.org//about/people" target="_new" data-if-linkable="add-referrer" class="internal-about course-topbar-sublist-item">Integrantes</a><a href="https://www.coursera.org//about/contact" target="_new" data-if-linkable="add-referrer" class="internal-about course-topbar-sublist-item">Página de contacto</a></div><div id="course-topbar-my" class="course-topbar-sublist"><a data-popup-close="data-popup-close" href="https://www.coursera.org/" target="_new" class="course-topbar-sublist-item">Mis cursos</a><a data-popup-close="data-popup-close" href="https://www.coursera.org/account/profile" target="_new" class="course-topbar-sublist-item">Perfil</a><a data-popup-close="data-popup-close" href="https://www.coursera.org/account/accomplishments" target="_new" class="course-topbar-sublist-item">Registros de Cursos</a><a href="https://www.coursera.org/account/settings" target="_new" class="course-topbar-sublist-item">Ajustes</a><a href="https://class.coursera.org/interactivepython2-003/class/preferences" class="course-topbar-sublist-item">Preferencias del curso</a><a href="https://class.coursera.org/interactivepython2-003/auth/logout" class="course-topbar-sublist-item">Cerrar sesión</a></div></div><div class="course-topbanner-wrapper"><div class="course-topbanner"><div class="course-topbanner-university-logo"><a href="https://www.coursera.org/rice" target="_blank" data-if-linkable="add-referrer" title="https://www.coursera.org/rice" class="coursera-university-color"><img src="blackjack_files/university_logo.png" alt="rice"></a></div><h1 class="course-topbanner-header"><a href="https://class.coursera.org/interactivepython2-003/" data-if-linkable="modal-lock" class="course-topbanner-name coursera-university-color">An Introduction to Interactive Programming in Python (Part 2)</a><br><span style="" class="course-topbanner-instructor">por Joe Warren, Scott Rixner, John Greiner, Stephen Wong</span></h1></div></div></div><div style="position:relative;" class="container-fluid"><div class="row-fluid"><div id="course-page-sidebar" role="navigation"><div class="coursera-sidebar" role="menubar"><div id="course-page-sidebar" role="navigation"><div class="course-navbar-container"><a href="https://class.coursera.org/interactivepython2-003" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_index"><img src="blackjack_files/logo.png" style="width: 205px;height: 116px;margin: -15px 0px 8px 1px; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);" alt="Course Home Page"></a><div data-coursera-course-search-nav-widget="data-coursera-course-search-nav-widget" class="input-append course-search-nav-box"><form method="get" action="/interactivepython2-003/class/search" data-js-search-form="data-js-search-form" class="form-inline minimized-search"><label for="course-search-nav-input" class="accessible-text-for-reader">Explora este curso</label><input id="course-search-nav-input" name="q" data-js-search-input="data-js-search-input" type="text">&nbsp;<button type="submit" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="search" class="btn icon-search"><span class="accessible-text-for-reader">Busca</span></button></form></div><h2 class="hidden">Barra lateral de navegación</h2><ul class="course-navbar-list"><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/class/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Home" class="coursera-university-color"><span>Home </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/quiz/index?quiz_type=survey" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Surveys" class="coursera-university-color"><span>Surveys </span><span></span></a></li><li class="course-navbar-item"><h3>Class</h3></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/lecture/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Video_Lectures" class="coursera-university-color"><span>Video Lectures </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/quiz/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Quizzes" class="coursera-university-color"><span>Quizzes </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/human_grading/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Mini-projects" class="coursera-university-color"><span>Mini-projects </span><span></span></a></li><li class="course-navbar-item"><h3>Tools</h3></li><li class="course-navbar-item"><a href="http://www.codeskulptor.org/" target="_blank" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_CodeSkulptor" class="coursera-university-color"><span>CodeSkulptor </span><span class="icon-share"></span><span class="accessible-text-for-reader">se abre en una nueva pestaña del navegador.</span></a></li><li class="course-navbar-item"><a href="http://codeskulptor.org/viz" target="_blank" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Viz_Mode" class="coursera-university-color"><span>Viz Mode </span><span class="icon-share"></span><span class="accessible-text-for-reader">se abre en una nueva pestaña del navegador.</span></a></li><li class="course-navbar-item"><h3>Practice and Help</h3></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/forum/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Discussion_Forums" class="coursera-university-color"><span>Discussion Forums </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/overview" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Concepts_and_Examples" class="coursera-university-color"><span>Concepts and Examples </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/practice_overview" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Practice_Exercises" class="coursera-university-color"><span>Practice Exercises </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/viz_overview" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Viz_Mode_Tutorial" class="coursera-university-color"><span>Viz Mode Tutorial </span><span></span></a></li><li class="course-navbar-item"><h3>Administrivia</h3></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/honorcode" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Honor_Code_(Please_read!)" class="coursera-university-color"><span>Honor Code (Please read!) </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/faq" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_FAQ" class="coursera-university-color"><span>FAQ </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/syllabus" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Syllabus" class="coursera-university-color"><span>Syllabus </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/coursestaff" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Course_Staff" class="coursera-university-color"><span>Course Staff </span><span></span></a></li></ul><ul style="list-style-type:none;margin-left: 10px;"><li><a href="https://accounts.coursera.org/i/zendesk/courserahelp?return_to=https://learner.coursera.help/hc/" target="_blank" title="Open help articles in new window" class="coursera-university-color"><i class="icon-question-sign"></i>Help Center</a></li></ul><ul style="list-style-type:none;margin-left: 10px;"></ul></div></div></div></div><div id="course-page-content" role="main"><div style="display: block;" id="spark" class="hide"><div id="main"><div id="AssessmentsLayout">
+<div id="hg-data" style="display: none">
+  <input value="submitting" id="hg-data-phase" type="hidden">
+  <input value="submitting" id="hg-data-step" type="hidden">
+  <input value="" id="hg-data-step-page" type="hidden">
+  <input value="{&quot;submission_id&quot;:&quot;new&quot;}" id="hg-data-data" type="hidden">
+</div><a data-coursera-admin-helpwidget-link="data-coursera-admin-helpwidget-link" rel="help" href="https://class.coursera.org/mooc/help/peer" title="Peer Assessments" target="_blank" style="display:none;">Learn more</a>
+<div id="assessmentContainer" aria-live="polite" class="container-fluid">
+  <div id="assessmentNavigationRegion" class="navigationRegion"><div id="AssessmentNavigationView">
+<ul class="breadcrumb">
+  <li><a href="https://class.coursera.org/interactivepython2-003/human_grading/">Peer Assessments</a></li>
+  <li><span class="divider">/</span>Mini-project # 6 - Blackjack (late)</li><a target="_blank" href="https://accounts.coursera.org/i/zendesk/courserahelp?return_to=https://learner.coursera.help/hc" title="Click here if you're experiencing technical problems or found errors in the course materials." class="coursera-reporter-link">Help Center</a>
+</ul>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <ul id="hg-nav" class="nav">
+        <li data-hg-date-status="current" id="hg-nav-phase-submitting" class="hg-nav-phase hg-nav-border-left hg-nav-border-right hg-phase-active hg-phase-relevant">
+          <div class="hg-nav-top-row">
+            <div class="progress progress-info">
+              <div style="width: 90%;" class="bar"></div>
+            </div>
+            <div class="hg-asst-interval">
+              <div style="display: none;" class="hg-asst-interval-part hg-asst-interval-open"><span data-hg-date-status="" title="opened on Sun 26 Jul 2015  8:01 AM CEST
+(6 days, 9 hours ago)" style="height: 0px; width: 0px;" data-livetimer-date-original="Sun 26 Jul 2015  8:01 AM CEST" data-livetimer-date-primitive="1437890460000" class="hg-date"><span style="display: none;" class="livetimer-absolute">opened Sun 26 Jul 2015  8:01 AM CEST</span><span class="livetimer-relative">opened 6day 9h ago</span></span></div>
+              <div class="hg-asst-interval-part hg-asst-interval-close"><span data-hg-date-status="" title="is due on Sun  2 Aug 2015  7:01 AM CEST
+(in 14 hours, 1 minute)" style="height: 0px; width: 0px;" data-livetimer-date-original="Sun  2 Aug 2015  7:01 AM CEST" data-livetimer-date-primitive="1438491660000" class="hg-date"><span style="display: none;" class="livetimer-absolute">due Sun  2 Aug 2015  7:01 AM CEST</span><span class="livetimer-relative">due in 14hr 1m</span></span></div>
+            </div>
+            <div class="hg-asst-phase-reload"><a href="#" class="hg-internal hg-reload">Reload</a>&nbsp;to open</div>
+            <div class="hg-nav-phase-header"><span>Submission Phase</span></div>
+          </div>
+          <ul class="nav hg-nav-bottom-row">
+            <li id="hg-nav-step-submitting" class="hg-nav-step active"><a data-original-title="" href="https://class.coursera.org/interactivepython2-003/human_grading/view/courses/974687/assessments/46/submissions" class="hg-internal"><span class="step">1.</span><span>Do assignment</span><span class="hg-nav-step-status hg-nav-step-status-select-todo"><span class="hg-nav-step-status-todo icon-check-empty"></span><span class="hg-nav-step-status-other"></span></span></a></li>
+          </ul>
+        </li>
+        <li data-hg-date-status="future" id="hg-nav-phase-grading" class="hg-nav-phase hg-nav-border-left hg-nav-border-right">
+          <div class="hg-nav-top-row">
+            <div class="progress progress-info">
+              <div style="width: 0px;" class="bar"></div>
+            </div>
+            <div class="hg-asst-interval">
+              <div class="hg-asst-interval-part hg-asst-interval-open"><span data-hg-date-status="" title="opens on Sun  2 Aug 2015  8:01 AM CEST
+(in 15 hours, 1 minute)" style="height: 0px; width: 0px;" data-livetimer-date-original="Sun  2 Aug 2015  8:01 AM CEST" data-livetimer-date-primitive="1438495260000" class="hg-date"><span style="display: none;" class="livetimer-absolute">open Sun  2 Aug 2015  8:01 AM CEST</span><span class="livetimer-relative">open in 15hr 1m</span></span></div>
+              <div style="display: none;" class="hg-asst-interval-part hg-asst-interval-close"><span data-hg-date-status="" title="is due on Wed  5 Aug 2015  7:01 PM CEST
+(in 4 days, 3 hours)" style="height: 0px; width: 0px;" data-livetimer-date-original="Wed  5 Aug 2015  7:01 PM CEST" data-livetimer-date-primitive="1438794060000" class="hg-date"><span style="display: none;" class="livetimer-absolute">due Wed  5 Aug 2015  7:01 PM CEST</span><span class="livetimer-relative">due in 4day 3h</span></span></div>
+            </div>
+            <div class="hg-asst-phase-reload"><a href="#" class="hg-internal hg-reload">Reload</a>&nbsp;to open</div>
+            <div class="hg-nav-phase-header"><span>Evaluation Phase</span></div>
+          </div>
+          <ul class="nav hg-nav-bottom-row">
+            <li id="hg-nav-step-peerGrading" class="hg-nav-step"><a disabled="disabled" data-original-title="" href="https://class.coursera.org/interactivepython2-003/human_grading/view/courses/974687/assessments/46/peerGradingSets" class="hg-internal disabled"><span class="step">2.</span><span>Evaluate peers</span><span class="hg-nav-step-status hg-nav-step-status-select-other"><span class="hg-nav-step-status-todo icon-check-empty"></span><span class="hg-nav-step-status-other icon-lock"></span></span></a></li>
+            <li id="hg-nav-step-selfGrading" class="hg-nav-step"><a disabled="disabled" data-original-title="" href="https://class.coursera.org/interactivepython2-003/human_grading/view/courses/974687/assessments/46/selfGradingSets" class="hg-internal disabled"><span class="step">3.</span><span>Self-evaluate</span><span class="hg-nav-step-status hg-nav-step-status-select-other"><span class="hg-nav-step-status-todo icon-check-empty"></span><span class="hg-nav-step-status-other icon-lock"></span></span></a></li>
+          </ul>
+        </li>
+        <li data-hg-date-status="future" id="hg-nav-phase-results" class="hg-nav-phase hg-nav-border-left hg-nav-border-right">
+          <div class="hg-nav-top-row">
+            <div class="progress progress-info">
+              <div style="width: 0px;" class="bar"></div>
+            </div>
+            <div class="hg-asst-interval">
+              <div class="hg-asst-interval-part hg-asst-interval-available"><span data-hg-date-status="" title="available Wed  5 Aug 2015  8:01 PM CEST
+(in 4 days, 4 hours)" style="height: 0px; width: 0px;" data-livetimer-date-original="Wed  5 Aug 2015  8:01 PM CEST" data-livetimer-date-primitive="1438797660000" class="hg-date"><span style="display: none;" class="livetimer-absolute">available Wed  5 Aug 2015  8:01 PM CEST</span><span class="livetimer-relative">in 4day 4h</span></span></div>
+            </div>
+            <div class="hg-asst-phase-reload"><a href="#" class="hg-internal hg-reload">Reload</a>&nbsp;to open</div>
+            <div class="hg-nav-phase-header"><span>Results Phase</span></div>
+          </div>
+          <ul class="nav hg-nav-bottom-row">
+            <li id="hg-nav-step-results" class="hg-nav-step"><a disabled="disabled" data-original-title="" href="https://class.coursera.org/interactivepython2-003/human_grading/view/courses/974687/assessments/46/results/mine" class="hg-internal disabled"><span class="step">4.</span><span>See results</span><span class="hg-nav-step-status hg-nav-step-status-select-other"><span class="hg-nav-step-status-other icon-lock"></span></span></a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div></div></div>
+  <div id="assessmentMessages"></div>
+  <div id="assessmentContentRegion" class="contentRegion"><div style="display: block;">
+<!-- h1.assessmentTitle Mini-project # 6 - Blackjack (late)-->
+<div id="assessmentForm">
+  <div id="topContentToolbar" class="contentToolbar form-actions">
+<div class="assessmentActionBar"><div class="contentToolbarButtons"><div class="pull-left" style="text-align: left;"><p><label><input class="honorCode" id="honorCode" type="checkbox">&nbsp;In
+ accordance with the Honor Code, I certify that my answers here are my 
+own work, and that I have appropriately acknowledged all external 
+sources (if any) that were used in this work.</label></p></div><div class="pull-right"><a id="assessmentSave" href="#" role="button" class="hg-internal btn">Save draft</a><a disabled="disabled" id="assessmentSubmit" href="#" role="button" class="assessmentSubmit hg-internal btn disabled">Submit for grading</a></div></div></div></div>
+  <div id="assessmentFormContent"><div class="submissionForm"><div id="assessmentHead"><div id="forumThreadLinkSection"></div></div><div id="evaluatedGroup-7465ba66200a7d29" class="assessmentSection"><div class="assessmentExposition"><div class="assessmentText" dir="auto"><h3> A reminder about the Honor Code</h3>
+For previous mini-projects, we have had instances of students submitting
+ solutions that have been copied from the web. Remember, if you can find
+ code on the web for one of the mini-projects, we can also find that 
+code. Submitting copied code violates
+the <a target="">Honor Code</a> for this class as well as Coursera's 
+Terms of Service. Please write your own code and refrain from copying. 
+If, during peer evaluation, you
+suspect a submitted mini-project includes copied code, please evaluate 
+as usual and email the assignment details to <a href="mailto:iipphonorcode@online.rice.edu">iipphonorcode@online.rice.edu</a>. We will investigate and handle as appropriate.
+
+<h2>Mini-project description - Blackjack (late version - half credit)</h2>
+
+<p>Blackjack is a simple, popular card game that is played in many 
+casinos. Cards in Blackjack have the following values: an ace may be 
+valued as either 1 or 11 (player's choice), face cards (kings, queens 
+and jacks) are valued at 10 and the value of the
+    remaining cards corresponds to their number. During a round of 
+Blackjack, the players plays against a dealer with the goal of building a
+ hand (a collection of cards) whose cards have a total value that is 
+higher than the value of the dealer's hand,
+    but not over 21. &nbsp;(A round of Blackjack is also sometimes 
+referred to as a hand.)</p>The game logic for our <i>simplified</i> version of Blackjack is as follows. The player and the dealer are each dealt two cards initially with one of the dealer's
+cards being dealt faced down (his <i>hole</i> card). The player may then
+ ask for the dealer to repeatedly "hit" his hand by dealing him another 
+card. If, at any point, the value of the player's hand exceeds 21, the 
+player is "busted" and loses immediately.
+At any point prior to busting, the player may "stand" and the dealer 
+will then hit his hand until the value of his hand is 17 or more. (For 
+the dealer, aces count as 11 unless it causes the dealer's hand to 
+bust). If the dealer busts, the player wins.
+Otherwise, the player and dealer then compare the values of their hands 
+and the hand with the higher value wins. <b>The dealer wins ties in our version.</b>
+
+
+<h3> Mini-project development process </h3>We suggest you develop your 
+Blackjack game in two phases. The first phase will concentrate on 
+implementing the basic logic of Blackjack while the second phase will 
+focus on building a more full-featured version. In phase one, you will 
+use buttons to control
+the game and print the state of the game to the console using print 
+statements. In the second phase, you will replace the print statements 
+by drawing images and text on the canvas and add some extra game logic.
+<p></p>
+<p>In phase one, we will provide testing templates for four of the 
+steps. The templates are designed to check whether your class 
+implementations work correctly. You should copy your class definition 
+into the testing template and compare the console output
+    generated by running the template with the provided output. If the 
+output matches, it is likely that your implementation of the class is 
+correct. <b> DO NOT PROCEED TO THE NEXT STEP UNTIL YOUR CODE WORKS WITH THE PROVIDED TESTING TEMPLATE.</b>
+ Debugging
+    code that uses incorrectly implemented classes is extremely 
+difficult. Avoid this problem by using our provided testing templates.</p>
+<p><b>Phase one</b>
+
+</p>
+<ol>
+    <li>Download the <a href="http://www.codeskulptor.org/#examples-blackjack_template.py" target=""><b>program template</b></a> for this mini-project and review the class definition for the <code>Card</code> class. This class is already implemented so your task
+        is to familiarize yourself with the code. Start by pasting the <code>Card</code> class definition into the provided <a href="http://www.codeskulptor.org/#examples-card_template.py" target=""><b>testing template</b></a> and verifying that our implementation
+        works as expected.</li>
+    <li>Implement the methods <code>__init__, __str__, add_card</code> for the <code>Hand</code> class. We suggest modeling a hand as a list of Card objects that are stored in a field in the Hand object.  The <code>__init__</code> method should initialize the Hand object to have an empty list of Card objects.  The <code>add_card</code> should append a Card object to this list of cards.  The <code>__str__</code> method should return a string representation of a Hand object in a human-readable form.  
+<p></p><p>
+For help in implementing the <code>__str__</code> method, refer back to <a href="http://www.codeskulptor.org/#exercises_mouse_join_solution.py" target="">the solution</a>
+ to question four in the Practice Exercises for week 5a.  Remember to 
+use the string method for Card objects to convert each card in the 
+hand's list of cards into a string.   (Don't convert a Card object into a
+ string in <code>add_card</code> to make your string method work.) Once you have implemented the <code>Hand</code> class, test it using the provided <a href="http://www.codeskulptor.org/#examples-hand_template.py" target=""><b>testing template</b></a>.</p></li>
+    <li>Implement the methods for the <code>Deck</code> class listed in 
+the mini-project template. We suggest modeling a deck of cards as list 
+of cards. You can generate this list using a pair of nested <code>for</code>
+        loops or a list comprehension. Remember to use the <code>Card</code> initializer to create your cards. Use <code>random.shuffle()</code> to shuffle this deck of cards. Once you have implemented the <code>Deck</code> class, test your Deck class using
+        the provided <a href="http://www.codeskulptor.org/#examples-deck_template.py" target=""><b>testing template</b></a>.
+ Remember that the deck is randomized after shuffling, so the output of 
+the testing template should match the output in the comments
+        in form but not in exact value.</li>
+    <li>Implement the handler for a "Deal" button that shuffles the deck
+ and deals the two cards to both the dealer and the player. The event 
+handler <code>deal</code> for this button should shuffle the deck 
+(stored as a global variable), create new player
+        and dealer hands (stored as global variables), and add two cards
+ to each hand. To transfer a card from the deck to a hand, you should 
+use the <code>deal_card</code> method of the <code>Deck</code> class and the <code>add_card</code> method of <code>Hand</code>
+ class
+        in combination. The resulting hands should be printed to the 
+console with an appropriate message indicating which hand is which.</li>
+    <li>Implement the <code>get_value</code> method for the <code>Hand</code> class. You should use the provided <code>VALUE</code>
+ dictionary to look up the value of a single card in conjunction with 
+the logic explained in the video lecture for this project to
+        compute the value of a hand. Once you have implemented the <code>get_value</code> method, test it using the provided
+        <a href="http://www.codeskulptor.org/#examples-getvalue_template.py" target=""><b>testing template</b>
+            </a>.&nbsp;</li>
+    <li>Implement the handler for a "Hit" button. If the value of the 
+hand is less than or equal to 21, clicking this button adds an extra 
+card to player's hand. If the value exceeds 21 after being hit, print 
+"You have busted".</li>
+    <li>Implement the handler for a "Stand" button. If the player has 
+busted, remind the player that they have busted. Otherwise, repeatedly 
+hit the dealer until his hand has value 17 or more (using a while loop).
+ If the dealer busts, let the player know.
+        Otherwise, compare the value of the player's and dealer's hands.
+ If the value of the player's hand is less than or equal to the dealer's
+ hand, the dealer wins. Otherwise the player has won. <b>Remember the dealer wins ties in our version. </b>
+
+    </li>
+</ol>
+<p>In our version of Blackjack, a hand is automatically dealt to the 
+player and dealer when the program starts. In particular, the program 
+template includes a call to the <code>deal()</code> function during initialization. At this point, we would suggest testing
+    your implementation of Blackjack extensively.</p><b>Phase two</b>
+
+<p>In the second phase of your implementation, you will add five 
+features. For those involving drawing with global variables, remember to
+ initialize these variables to appropriate values (like creating empty 
+hands for the player and dealer) just before starting
+    the frame. &nbsp;</p>
+<ol>
+    <li>Implement your own <code>draw</code> method for the <code>Hand</code> class using the <code>draw</code> method of the <code>Card</code> class. We suggest drawing a hand as a horizontal sequence of cards where the parameter <code>pos</code>
+ is the position of
+        the upper left corner of the leftmost card. To simplify your 
+code, you may assume that only the first five cards of a player's hand 
+need to be visible on the canvas.</li>
+    <li>Replace printing in the console by drawing text messages on the canvas. We suggest adding a global <code>outcome</code> string that is drawn in the draw handler using <code>draw_text</code>.
+ These messages should prompt the player to take some require
+        action and have a form similar to "Hit or stand?" and "New 
+deal?". Also, draw the title of the game, "Blackjack", somewhere on the 
+canvas.</li>
+    <li>Add logic using the global variable <code> in_play</code> that 
+keeps track of whether the player's hand is still being played. If the 
+round is still in play, you should draw an image of the back of a card 
+(provided in the template) over the dealer's
+        first (hole) card to hide it. Once the round is over, the 
+dealer's hole card should be displayed.</li>
+    <li>Add a score counter that keeps track of wins and losses for your
+ Blackjack session. In the simplest case (see our demo), the program 
+displays wins minus losses. However, you are welcome to implement a more
+ sophisticated betting/scoring system.</li>
+    <li>Modify the logic for the "Deal" button to create and shuffle a 
+new deck (or restock and shuffle an existing deck) each time the "Deal" 
+button is clicked. This change avoids the situation where the deck 
+becomes empty during play.</li>
+    <li>Finally, modify the <code>deal</code> function such that, if the
+ "Deal" button is clicked during the middle of a round, the program 
+reports that the player lost the round and updates the score 
+appropriately.</li>
+</ol>Congratulations! You have just built Blackjack. To wrap things up, 
+please review the demo of our version of Blackjack in the Blackjack 
+video lecture to ensure that your version has full functionality.
+<p>
+For more helpful tips on implementing this mini-project, please visit the <a href="https://class.coursera.org/interactivepython2-003/wiki/blackjack_tips" target="">Code Clinic tips</a> page for this mini-project.
+
+</p><h3> Grading rubric - 18 pts total (scaled to 100) </h3>
+You must implement the simplified rules of Blackjack specified in this 
+description. Small variations from our demo version are acceptable such 
+as displaying the value of a hand or implementing a betting system. <b>But, you may not change the logic of the game.</b>
+ After
+the submission deadline, you are welcome to post enhanced versions of 
+Blackjack to the Hall of Fame with more realistic game logic such as 
+pushes on ties, splitting pairs and doubling down.
+<ul>
+    <li>1 pt - The program displays the title "Blackjack" on the canvas.</li>
+    <li>1 pt - The program displays 3 buttons ("Deal", "Hit" and "Stand") in the control area.</li>
+    <li>2 pts - The program graphically displays the player's hand using card images. (1 pt if text is displayed in the console instead)</li>
+    <li>2 pts - The program graphically displays the dealer's hand using
+ card images. Displaying both of the dealer's cards face up is allowable
+ when evaluating this bullet. (1 pt if text displayed in the console 
+instead)</li>
+    <li>1 pt - The dealer's hole card is hidden until the current round is over. After the round is over, it is displayed.</li>
+    <li>2 pts - Pressing the "Deal" button deals out two cards each to the player and dealer. (1 pt per player)</li>
+    <li>1 pt - Pressing the "Deal" button in the middle of the round causes the player to lose the current round.</li>
+    <li>1 pt - Pressing the "Hit" button deals another card to the player.</li>
+    <li>1 pt - Pressing the "Stand" button deals cards to the dealer as necessary.</li>
+    <li>1 pt - The program correctly recognizes the player busting.</li>
+    <li>1 pt - The program correctly recognizes the dealer busting.</li>
+    <li>1 pt - The program correctly computes hand values and declares a winner. Evaluate based on messages.</li>
+    <li>2 pts - The program accurately prompts the player for an action 
+with messages similar to "Hit or stand?" and "New deal?". (1 pt per 
+message)</li>
+    <li>1 pt - The program implements a scoring system that correctly 
+reflects wins and losses. Please be generous in evaluating this item.</li>
+</ul></div></div></div><div id="evaluatedGroup-4ff31e0d1beb49e" class="assessmentSection"><div id="evaluatedGroup-2cdc14c88e273391" class="assessmentGroup"><div class="assessmentExposition"><div id="assessmentText-2cdc14c88e273391" class="assessmentText" dir="auto"><p>In
+ the submission phase, cut and paste the URL for your cloud-saved 
+mini-project into the box below. Click the Honor Code box and hit the 
+"Submit for grading" button when you are ready to submit your 
+mini-project. &nbsp;(You may submit as many times as you like before the
+ deadline so we suggest that you use "Submit" instead of "Save".) &nbsp;<b>IMPORTANT:
+ Please use the "Review your work" link that appears at the top of the 
+subsequent submission page to verify that you submitted a working link 
+for the final version of your mini-project.&nbsp;</b></p></div></div><div class="assessmentAnswer" aria-labelledby="assessmentText-2cdc14c88e273391"><input id="textfield-e89656c5196ebff8" data-modelbind="submission.fields.e89656c5196ebff8" aria-labelledby="assessmentText-2cdc14c88e273391" dir="auto" style="width: 100%" type="text"></div></div></div> </div></div>
+  <div id="bottomContentToolbar" class="contentToolbar form-actions">
+<div class="assessmentActionBar"><div class="contentToolbarButtons"><div class="pull-left" style="text-align: left;"><p><label><input class="honorCode" id="honorCode" type="checkbox">&nbsp;In
+ accordance with the Honor Code, I certify that my answers here are my 
+own work, and that I have appropriately acknowledged all external 
+sources (if any) that were used in this work.</label></p></div><div class="pull-right"><a id="assessmentSave" href="#" role="button" class="hg-internal btn">Save draft</a><a disabled="disabled" id="assessmentSubmit" href="#" role="button" class="assessmentSubmit hg-internal btn disabled">Submit for grading</a></div></div></div></div>
+</div>
+<div class="coursera-signature-modal"></div>
+<div id="coursera-signature-pending-modal" style="display:none">
+  <div class="coursera-signature-please-complete-modal modal">
+    <div style="height: 2px; background: black; position: relative; width: 558px;">
+      <div class="coursera-signature-modal-header modal-header"><a class="close coursera-signature-close-button">×</a><img src="blackjack_files/ribbon_stripes.png" class="coursera-signature-modal-ribbon">
+        <p class="coursera-signature-modal-signature-track">Signature Track</p>
+        <p class="coursera-signature-modal-title">Signature Track Profile incomplete</p>
+      </div>
+      <div style="position: relative; top: -10px; margin: 30px 10px 10px 70px;"><i style="margin-left: 60px; color: #c43b3b; font-size: 40px" class="icon-warning-sign"></i><span style="font-weight: bold; font-size: 16px">Oops! You have submitted your work, but you can't authenticate your coursework yet. </span>
+ You still need to complete your Signature Track profile by registering 
+your unique typing patterns and submitting webcam photos. You need to 
+authenticate most of your assignments to get a Verified Certificate.
+        <p style="margin-top: 10px; font-weight: bold;">Please complete your profile as soon as possible.</p>
+      </div>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <h4 style="margin-bottom: 0px;">You will need:</h4>
+        <div style="width: 40%; display: inline-block; vertical-align: top;">
+          <div style="height: 85px;"><img src="blackjack_files/webcam_keyboard.jpg" alt="Illustration of keyboard and camera" style="height: 85px;"></div>
+          <div> Keyboard and Webcam</div>
+        </div>
+        <div style="width: 40%; display: inline-block; vertical-align: top;">
+          <div style="height: 85px;"><img src="blackjack_files/government_id.jpg" alt="Illustration of identification card" style="margin-top: 14px"></div>
+          <div>Goverment-issued Photo ID</div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-bottom: 10px;"><a href="https://dw0ugk4msqulk.cloudfront.net/signature/phrase/interactivepython2/974687">
+          <button style="margin-top: 0px; padding: 15px 25px;" class="coursera-signature-next-button">Complete my profile now</button></a></div><a style="font-size: smaller; float: right; margin-right: 20px; margin-bottom: 20px;" class="coursera-signature-nothanks">No thanks, I'll do this later. »</a>
+    </div>
+  </div>
+</div></div></div>
+</div></div></div>
+
+</div></div></div></div></div><div class="coursera-footer"></div></div></div></div><!--[if gte IE 9]><script>document.getElementById("coursera-loading-js").style.display = 'block';</script><![endif]-->
+<!--[if lte IE 8]><script>document.getElementById("coursera-loading-nojs").style.display = 'block';</script><![endif]-->
+<!--[if !IE]> --><script>document.getElementById("coursera-loading-js").style.display = 'block';</script><!-- <![endif]--><script>if (/zh/i.test(window.localStorage ? localStorage.getItem('locale') : '') || '{{ locale }}') {
+  document.getElementById('get-browser-zh').style.display = 'block';
+}</script><!--[if !IE]> --><script>document.getElementById('coursera-loading-js').style.display = 'block';</script><!-- <![endif]-->
+    <script src="blackjack_files/modernizr-custom.js"></script>
+  <script src="blackjack_files/require.js"></script><script data-baseurl="https://dw0ugk4msqulk.cloudfront.net/c3bdeb1a14fabb29492bd91d780dbccaa56111d2/" data-version="c3bdeb1a14fabb29492bd91d780dbccaa56111d2" data-timestamp="1438305168453" data-debug="0" data-locale="es_ES" id="_require">if(document.getElementById('coursera-loading-js').style.display == 'block') {
+  (function(el) {
+     require.config({
+       //enforceDefine: true,
+       waitSeconds: 75,
+       baseUrl: el.getAttribute('data-baseurl'),
+       urlArgs: el.getAttribute('data-debug') == '1' ? 'v=' + el.getAttribute('data-timestamp') : '',
+       shim: {
+          'underscore': {
+             exports: '_'
+          },
+          'backbone': {
+             deps: ['underscore', 'jquery'],
+             exports: 'Backbone',
+             init: function(_, $) {
+               Backbone.$ = $;
+               return Backbone;
+             }
+          },
+          'pages/hg/thirdparty/js/backbone.marionette': {
+            deps: ['backbone']
+          },
+          'pages/hg/thirdparty/js/webshims/polyfiller': {
+            deps: ['jquery']
+          },
+          'pages/hg/thirdparty/js/webshims/extras/mousepress': {
+            deps: ['jquery', 'pages/hg/thirdparty/js/webshims/polyfiller']
+          },
+          'pages/hg/thirdparty/js/jquery.throttle': {
+            deps: ['jquery']
+          },
+          'js/lib/jquery.linkify': {
+            deps: ['jquery']
+          },
+          'pages/hg/thirdparty/js/js/bootstrap/alert': {
+            deps: ['jquery', 'pages/hg/thirdparty/js/bootstrap/transition']
+          },
+          'spark/core/js/jquery_ui': {
+            deps: ['jquery']
+          },
+          'spark/core/js/jquery.history': {
+            deps: ['jquery']
+          },
+          'js/lib/bootstrap.tooltip': {
+            deps: ['jquery']
+          },
+          'pages/hg/thirdparty/js/bootstrap/transition': {
+            deps: ['jquery']
+          },
+          'pages/hg/thirdparty/js/bootstrap/tab': {
+            deps: ['jquery']
+          },
+          'bundles/videojs/lib/video.4.3.0': {
+            exports: 'vjs'
+          }
+       },
+       paths: {
+          'q': 'js/vendor/q.v1-0-1',
+          'react-with-addons': 'js/vendor/react-with-addons.v0-12',
+          'jquery':                         'pages/spark/jquery',
+          'underscore':                     'js/vendor/underscore.v1-5-2',
+          'backbone':                       'js/vendor/backbone.v1-1-0',
+          'backbone.relational':            'js/lib/backbone.relational.0.8.6',
+          'i18n':                           'js/lib/i18n._t',
+          'css':                            'js/vendor/require.css.v0-1-2',
+          'memoize':                        'js/lib/require.memoize.v0-0-1',
+          'pages/spark/models/user.json':   'empty:',
+          'pages/spark/models/course.json': 'empty:',
+          'pages/spark/models/navbar.json': 'empty:'
+       },
+       callback: function() {
+                    require(['pages/hg/js/app/routes']);
+                },
+       config: {
+         i18n: {
+           locale: (window.localStorage ? localStorage.getItem('locale') : '') || el.getAttribute('data-locale')
+         }
+       }
+     });
+  })(document.getElementById('_require'));
+}
+</script><script>define('pages/spark/models/user.json', [], function(){
+      return JSON.parse("{\"id\":8717605,\"email_address\":\"fer.gonzalez.rodriguez@gmail.com\",\"full_name\":\"Fernando Gonzalez Rodriguez\",\"locale\":\"es_ES\",\"timezone\":\"Europe\\\/Madrid\",\"access_group_id\":\"4\",\"registration_time\":\"1435592451\",\"last_access_time\":\"1438439027\",\"last_access_ip\":\"93.156.73.23\",\"signature_track_register_time\":\"0\",\"email_announcement\":\"1\",\"email_forum\":\"1\",\"in_signature_track\":\"0\",\"wishes_proctored_exam\":\"0\",\"first_name\":\"Fernando\",\"permissions\":[\"default\",\"allow_site_access\"],\"group\":\"Student\",\"anonymous\":false,\"forum_title\":\"Student\",\"signature_track_state\":1,\"verified_quizzes\":[\"43\"],\"submitted_quizzes\":[\"43\",\"44\"],\"scheduled_proctored_exam\":null,\"last_chance_modal\":1,\"flexjoin_last_chance_modal\":null}");
+  });
+define('pages/spark/models/course.json', [], function(){
+      return JSON.parse("{\"id\":974687,\"isPrivate\":false,\"type\":\"public\",\"name\":\"An Introduction to Interactive Programming in Python (Part 2)\",\"instructor\":\"Joe Warren, Scott Rixner, John Greiner, Stephen Wong\",\"sessionName\":\"interactivepython2-003\",\"externalBaseURL\":\"https:\\\/\\\/www.coursera.org\\\/\",\"shortname\":\"interactivepython2\",\"host\":\"https:\\\/\\\/www.coursera.org\\\/\",\"assetUnversionedLink\":\"https:\\\/\\\/dw0ugk4msqulk.cloudfront.net\\\/\",\"cheggID\":\"\",\"hasLTI\":true,\"badgevilleDomain\":\"\",\"linkable\":false,\"universityShortname\":\"rice\",\"signatureTrackStatus\":{\"signature_track_enabled\":1},\"courseURLs\":{\"log_in_link\":\"https:\\\/\\\/www.coursera.org\\\/login?post_redirect=https%3A%2F%2Fwww.coursera.org%2Flogin%3Fuser_action%3Dclass%26course_id%3D974687%26post_redirect%3Dhttps%253A%252F%252Fclass.coursera.org%252Finteractivepython2-003%252Fauth%252Fauth_redirector%253Ftype%253Dlogin%2526subtype%253Dnormal%2526visiting%253D\",\"sign_up_link\":\"https:\\\/\\\/www.coursera.org\\\/signup?enroll_cid=974687&enroll_sn=interactivepython2&enroll_n=An Introduction to Interactive Programming in Python (Part 2)\",\"view_course_info_link\":\"https:\\\/\\\/www.coursera.org\\\/course\\\/interactivepython2\",\"sign_up_link_cant_enroll\":\"https:\\\/\\\/www.coursera.org\\\/signup?post_redirect=https%3A%2F%2Fwww.coursera.org%2Fcourse%2Finteractivepython2\"},\"courseBase\":\"https:\\\/\\\/class.coursera.org\\\/interactivepython2-003\\\/\",\"search\":true,\"hideWiki\":true,\"aceStartRegistrationDate\":\"Thu  1 Jan 1970  1:00 AM CET\",\"aceEndRegistrationDate\":\"Thu  1 Jan 1970  1:00 AM CET\",\"aceExamStartDate\":\"Thu  1 Jan 1970  1:00 AM CET\",\"aceExamEndDate\":\"Thu  1 Jan 1970  1:00 AM CET\",\"aceExamRules\":\"\",\"aceExamDuration\":\"\",\"aceBeforeExam\":false,\"aceAfterExam\":true,\"aceHours\":null,\"aceCreditType\":\"\",\"acePrice\":null,\"aceExamID\":null,\"aceEligible\":false,\"canRegisterForACE\":false,\"specialization\":{\"numCourse\":6,\"image\":\"https:\\\/\\\/d15cw65ipctsrr.cloudfront.net\\\/36\\\/f74e20a2a811e4ba29d775ee5247cc\\\/FoC-Spsn-logo.jpg\",\"id\":37,\"short_name\":\"fundamentalscomputing2\",\"name\":\"Fundamentals of Computing\"},\"supportForums\":true,\"textbooks\":\"\",\"inVideoQuizV2\":false,\"in_flexjoin\":1,\"honorCodeExtraText\":\"\",\"honorCodeCustomTitle\":\"\",\"honorCodeCustomButton\":\"\",\"studentAccessDisabled\":0,\"disableQQs\":false}");
+  });
+  define('pages/spark/models/navbar.json', [], function(){
+      return JSON.parse("{\"items\":[{\"name\":\"Home\",\"icon\":\"home\",\"link_type\":\"circuit\",\"link_data\":\"class:index\"},{\"name\":\"Surveys\",\"icon\":\"quiz\",\"link_type\":\"circuit\",\"link_data\":\"quiz:index?quiz_type=survey\"},{\"name\":\"Class\",\"icon\":\"\",\"link_type\":\"heading\",\"link_data\":\"\"},{\"name\":\"Video Lectures\",\"icon\":\"lecture\",\"link_type\":\"circuit\",\"link_data\":\"lecture:index\"},{\"name\":\"Quizzes\",\"icon\":\"quiz\",\"link_type\":\"circuit\",\"link_data\":\"quiz:index\"},{\"name\":\"Mini-projects\",\"icon\":\"assignment\",\"link_type\":\"circuit\",\"link_data\":\"human_grading:index\"},{\"name\":\"Tools\",\"icon\":\"\",\"link_type\":\"heading\",\"link_data\":\"\"},{\"name\":\"CodeSkulptor\",\"icon\":\"assignment\",\"link_type\":\"window_link\",\"link_data\":\"http:\\\/\\\/www.codeskulptor.org\"},{\"name\":\"Viz Mode\",\"icon\":\"\",\"link_type\":\"window_link\",\"link_data\":\"http:\\\/\\\/codeskulptor.org\\\/viz\"},{\"name\":\"Practice and Help\",\"icon\":\"\",\"link_type\":\"heading\",\"link_data\":\"\"},{\"name\":\"Discussion Forums\",\"icon\":\"forum\",\"link_type\":\"circuit\",\"link_data\":\"forum:index\"},{\"name\":\"Concepts and Examples\",\"icon\":\"wiki\",\"link_type\":\"wiki\",\"link_data\":\"overview\"},{\"name\":\"Practice Exercises\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"practice_overview\"},{\"name\":\"Viz Mode Tutorial\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"viz_overview\"},{\"name\":\"Administrivia\",\"icon\":\"\",\"link_type\":\"heading\",\"link_data\":\"\"},{\"name\":\"Honor Code (Please read!)\",\"icon\":\"wiki\",\"link_type\":\"wiki\",\"link_data\":\"honorcode\"},{\"name\":\"FAQ\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"faq\"},{\"name\":\"Syllabus\",\"icon\":\"wiki\",\"link_type\":\"wiki\",\"link_data\":\"syllabus\"},{\"name\":\"Course Staff\",\"icon\":\"wiki\",\"link_type\":\"wiki\",\"link_data\":\"coursestaff\"}]}");
+  });
+</script><script>var coursera_enable_new_help_center = true;
+</script><div class="hide confirm-navigation modal"><div class="modal-header"><h3>Confirmar navegación</h3></div><div class="modal-body"><div class="confirm-navigation-message"></div><div>¿Estás seguro/a de que quieres abandonar esta página?</div></div><div class="modal-footer"><button data-modal-close="data-modal-close" class="btn confirm-navigation-stay">Permanecer en esta página</button><button data-modal-close="data-modal-close" class="btn btn-danger confirm-navigation-leave">Abandonar esta página</button></div></div><div style="display: none;" class="coursera-async-message"></div></body></html>

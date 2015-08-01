@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html class="supports-svg" xmlns:fb="http://ogp.me/ns/fb#" itemtype="http://schema.org"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=IE7"><meta name="fragment" content="!"><meta name="robots" content="NOODP"><meta charset="utf-8"><meta property="og:title" content="Coursera"><meta property="og:type" content="website"><meta property="og:image" content="http://s3.amazonaws.com/coursera/media/Coursera_Computer_Narrow.png"><meta property="og:url" content="https://www.coursera.org/"><meta property="og:site_name" content="Coursera"><meta property="og:locale" content="en_US"><meta property="og:description" content="Take free online classes from 80+ top universities and organizations. Coursera is a social entrepreneurship company partnering with Stanford University, Yale University, Princeton University and others around the world to offer courses online for anyone to take, for free. We believe in connecting people to a great education so that anyone around the world can learn without limits."><meta property="fb:admins" content="727836538,4807654"><meta property="fb:app_id" content="274998519252278"><meta name="twitter:site" content="Coursera"><meta name="twitter:app:name:iphone" content="Coursera"><meta name="twitter:app:name:ipad" content="Coursera"><meta name="twitter:app:name:googleplay" content="Coursera"><meta name="twitter:app:id:iphone" content="id736535961"><meta name="twitter:app:id:ipad" content="id736535961"><meta name="twitter:app:id:googleplay" content="org.coursera.android"><meta name="description" content="Take free online classes from 80+ top universities and organizations. Coursera is a social entrepreneurship company partnering with Stanford University, Yale University, Princeton University and others around the world to offer courses online for anyone to take, for free. We believe in connecting people to a great education so that anyone around the world can learn without limits."><meta name="image" content="http://s3.amazonaws.com/coursera/media/Coursera_Computer_Narrow.png"><meta name="apple-itunes-app" content="app-id=736535961"><title>An Introduction to Interactive Programming in Python (Part 2) | Coursera</title>    <link href="spaceship_files/spark.css" rel="stylesheet" type="text/css">
+      <link href="spaceship_files/course.css" rel="stylesheet" type="text/css">
+      <link href="spaceship_files/hg.css" rel="stylesheet" type="text/css">
+    <link href="https://spark-public.s3.amazonaws.com/interactivepython2/static/images/favicon.ico" rel="icon">
+<script src="spaceship_files/MathJax.js" async="" type="text/javascript"></script><script src="spaceship_files/ga.js" async="" type="text/javascript"></script><script src="spaceship_files/routes.js" data-requiremodule="pages/hg/js/app/routes" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/confirmNavigation.js" data-requiremodule="bundles/confirmNavigation/nls/es/confirmNavigation" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/moment.js" data-requiremodule="js/lib/nls/es/moment.lang" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/popup.js" data-requiremodule="bundles/helpwidget/nls/es/popup" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/toolbar.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/toolbar-code.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-code" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/toolbar-link.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-link" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/toolbar-modal-link.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-modal-link" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/toolbar-modes.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-modes" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/footer-source.js" data-requiremodule="bundles/wysihtml5/nls/es/footer-source" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/footer-markdown.js" data-requiremodule="bundles/wysihtml5/nls/es/footer-markdown" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/footer-rich.js" data-requiremodule="bundles/wysihtml5/nls/es/footer-rich" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/toolbar-transloadit.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-transloadit" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/toolbar-modal-transloadit.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-modal-transloadit" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/toolbar-latex.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-latex" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/toolbar-modal-latex.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-modal-latex" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/toolbar-textbook.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-textbook" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/toolbar-modal-textbook.js" data-requiremodule="bundles/wysihtml5/nls/es/toolbar-modal-textbook" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/204.js" data-requiremodule="js/lib/204" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/400.js" data-requiremodule="js/lib/400" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/header.js" data-requiremodule="pages/spark/views/template/header" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/sidebar_002.js" data-requiremodule="pages/spark/views/template/sidebar" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/catalogApi.js" data-requiremodule="pages/spark-survey/catalogApi" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/readme.js" data-requiremodule="js/lib/readme" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/header_004.js" data-requiremodule="pages/spark/views/template/header.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/LearnerStoriesCollection.js" data-requiremodule="pages/analytics/models/LearnerStoriesCollection" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/assessApi.js" data-requiremodule="pages/spark-survey/assessApi" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/abUtils.js" data-requiremodule="pages/spark-survey/util/abUtils" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/sidebar_003.js" data-requiremodule="pages/spark/views/template/sidebar.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/signature_track.js" data-requiremodule="spark/app/signature/js/signature_track" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/LearnerStoryModel.js" data-requiremodule="pages/analytics/models/LearnerStoryModel" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/header_002.js" data-requiremodule="pages/spark/views/template/nls/header" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/sidebar_004.js" data-requiremodule="pages/spark/views/template/nls/sidebar" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/signatureTrackLastChanceModal.js" data-requiremodule="spark/app/signature/js/signatureTrackLastChanceModal.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/flexjoinLastChanceModal.js" data-requiremodule="spark/app/signature/js/flexjoinLastChanceModal.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/path.js" data-requiremodule="js/lib/path" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/header_003.js" data-requiremodule="pages/spark/views/template/nls/es/header" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="spaceship_files/sidebar.js" data-requiremodule="pages/spark/views/template/nls/es/sidebar" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuTitle {background-color: #CCCCCC; margin: -5px 0 0 0; text-align: center; font-style: italic; font-size: 80%; color: #444444; padding: 2px 0; overflow: hidden}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head><body><div style="display: none;" id="MathJax_Message"></div><div id="fb-root"></div><div id="spark-help" class="hide"></div><a href="https://learner.coursera.help/hc/requests/new" target="_blank"><div style="z-index: 1" data-networkprioritysupportwidget="" role="button" class="helpwidget-tab hide">Premium Support</div></a><!-- - track IE8 and less browser for eventing purposes--><!--[if lte IE 8]><script>window._204 = window._204 || [];
+window._gaq = window._gaq || [];
+window._gaq.push(
+    ['_setAccount', 'UA-28377374-1'],
+    ['_setDomainName', window.location.hostname],
+    ['_setAllowLinker', true],
+    ['_trackPageview', window.location.pathname]);
+window._204.push(
+  ['client', 'home'],
+  {key:"pageview", value:window.location.pathname});</script><script src="https://dw0ugk4msqulk.cloudfront.net/c3bdeb1a14fabb29492bd91d780dbccaa56111d2/js/lib/204.js"></script><script src="https://ssl.google-analytics.com/ga.js"></script><![endif]--><div id="fb-root"></div><div id="origami" data-js="origami"><div><div><div class="coursera-page"><div class="coursera-header" role="menubar"><div class="hidden">Esta página utiliza la tecnología Mathjax para desplegar fórmulas matemáticas.
+Si estás usando un lector de pantallas, por favor visita <a href="http://www.dessci.com/en/products/mathplayer/">MathPlayer</a>
+ para descargar la extensión (plugin) para tu navegador. Ten en cuenta, 
+por favor, que esta extensión es -por el momento- compatible únicamente 
+con Internet Explorer.</div><h1 class="hidden">An Introduction to Interactive Programming in Python (Part 2)</h1><!-- UNTIL dashboard announcement expires 2014-12-01 (then delete this code)--><div class="helpcenter-announcement"><div style="visibility: visible; display: none;" class="readme" data-readme="helpcenter-announcement" data-readme-show-count="1" data-readme-show-until-closed="data-readme-show-until-closed" data-readme-expires="Mar 31, 2015"><div>Need technical help? Visit our new <a href="https://learner.coursera.help/" data-readme-close="data-readme-close">Learner Help Center!</a></div><div data-readme-close="data-readme-close" class="readme-close-icon"><span class="icon-remove"></span></div></div></div><div role="banner" class="course-topbar container-fluid"><div class="row-fluid"><div class="span3"><a href="https://www.coursera.org/" data-if-linkable="add-referrer" class="course-topbar-logo"></a></div><div style="float:right;" class="course-topbar-nav-container span9"><h2 class="hidden">Barra superior de navegación</h2><ul class="course-topbar-nav-list"><li class="course-topbar-nav-list-item"><a href="https://www.coursera.org/courses" data-if-linkable="add-referrer">Cursos</a></li><li tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-owns="course-topbar-my" data-popup="#course-topbar-my" data-popup-bind-open="mouseenter" data-popup-close="data-popup-close" style="cursor:pointer;" data-popup-direction="se" class="course-topbar-nav-list-item"><a data-user-id="8717605">Fernando Gonzalez Rodriguez<i class="icon-caret-down"></i></a></li></ul></div></div><div id="course-topbar-aboutus" class="course-topbar-sublist"><a href="https://www.coursera.org//about/" target="_new" data-if-linkable="add-referrer" class="internal-about course-topbar-sublist-item">Nosotros</a><a href="https://www.coursera.org//about/careers" target="_new" data-if-linkable="add-referrer" class="internal-about course-topbar-sublist-item">Empleo</a><a href="https://www.coursera.org//about/people" target="_new" data-if-linkable="add-referrer" class="internal-about course-topbar-sublist-item">Integrantes</a><a href="https://www.coursera.org//about/contact" target="_new" data-if-linkable="add-referrer" class="internal-about course-topbar-sublist-item">Página de contacto</a></div><div id="course-topbar-my" class="course-topbar-sublist"><a data-popup-close="data-popup-close" href="https://www.coursera.org/" target="_new" class="course-topbar-sublist-item">Mis cursos</a><a data-popup-close="data-popup-close" href="https://www.coursera.org/account/profile" target="_new" class="course-topbar-sublist-item">Perfil</a><a data-popup-close="data-popup-close" href="https://www.coursera.org/account/accomplishments" target="_new" class="course-topbar-sublist-item">Registros de Cursos</a><a href="https://www.coursera.org/account/settings" target="_new" class="course-topbar-sublist-item">Ajustes</a><a href="https://class.coursera.org/interactivepython2-003/class/preferences" class="course-topbar-sublist-item">Preferencias del curso</a><a href="https://class.coursera.org/interactivepython2-003/auth/logout" class="course-topbar-sublist-item">Cerrar sesión</a></div></div><div class="course-topbanner-wrapper"><div class="course-topbanner"><div class="course-topbanner-university-logo"><a href="https://www.coursera.org/rice" target="_blank" data-if-linkable="add-referrer" title="https://www.coursera.org/rice" class="coursera-university-color"><img src="spaceship_files/university_logo.png" alt="rice"></a></div><h1 class="course-topbanner-header"><a href="https://class.coursera.org/interactivepython2-003/" data-if-linkable="modal-lock" class="course-topbanner-name coursera-university-color">An Introduction to Interactive Programming in Python (Part 2)</a><br><span style="" class="course-topbanner-instructor">por Joe Warren, Scott Rixner, John Greiner, Stephen Wong</span></h1></div></div></div><div style="position:relative;" class="container-fluid"><div class="row-fluid"><div id="course-page-sidebar" role="navigation"><div class="coursera-sidebar" role="menubar"><div id="course-page-sidebar" role="navigation"><div class="course-navbar-container"><a href="https://class.coursera.org/interactivepython2-003" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_index"><img src="spaceship_files/logo.png" style="width: 205px;height: 116px;margin: -15px 0px 8px 1px; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);" alt="Course Home Page"></a><div data-coursera-course-search-nav-widget="data-coursera-course-search-nav-widget" class="input-append course-search-nav-box"><form method="get" action="/interactivepython2-003/class/search" data-js-search-form="data-js-search-form" class="form-inline minimized-search"><label for="course-search-nav-input" class="accessible-text-for-reader">Explora este curso</label><input id="course-search-nav-input" name="q" data-js-search-input="data-js-search-input" type="text">&nbsp;<button type="submit" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="search" class="btn icon-search"><span class="accessible-text-for-reader">Busca</span></button></form></div><h2 class="hidden">Barra lateral de navegación</h2><ul class="course-navbar-list"><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/class/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Home" class="coursera-university-color"><span>Home </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/quiz/index?quiz_type=survey" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Surveys" class="coursera-university-color"><span>Surveys </span><span></span></a></li><li class="course-navbar-item"><h3>Class</h3></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/lecture/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Video_Lectures" class="coursera-university-color"><span>Video Lectures </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/quiz/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Quizzes" class="coursera-university-color"><span>Quizzes </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/human_grading/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Mini-projects" class="coursera-university-color"><span>Mini-projects </span><span></span></a></li><li class="course-navbar-item"><h3>Tools</h3></li><li class="course-navbar-item"><a href="http://www.codeskulptor.org/" target="_blank" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_CodeSkulptor" class="coursera-university-color"><span>CodeSkulptor </span><span class="icon-share"></span><span class="accessible-text-for-reader">se abre en una nueva pestaña del navegador.</span></a></li><li class="course-navbar-item"><a href="http://codeskulptor.org/viz" target="_blank" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Viz_Mode" class="coursera-university-color"><span>Viz Mode </span><span class="icon-share"></span><span class="accessible-text-for-reader">se abre en una nueva pestaña del navegador.</span></a></li><li class="course-navbar-item"><h3>Practice and Help</h3></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/forum/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Discussion_Forums" class="coursera-university-color"><span>Discussion Forums </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/overview" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Concepts_and_Examples" class="coursera-university-color"><span>Concepts and Examples </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/practice_overview" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Practice_Exercises" class="coursera-university-color"><span>Practice Exercises </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/viz_overview" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Viz_Mode_Tutorial" class="coursera-university-color"><span>Viz Mode Tutorial </span><span></span></a></li><li class="course-navbar-item"><h3>Administrivia</h3></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/honorcode" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Honor_Code_(Please_read!)" class="coursera-university-color"><span>Honor Code (Please read!) </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/faq" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_FAQ" class="coursera-university-color"><span>FAQ </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/syllabus" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Syllabus" class="coursera-university-color"><span>Syllabus </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/interactivepython2-003/wiki/coursestaff" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Course_Staff" class="coursera-university-color"><span>Course Staff </span><span></span></a></li></ul><ul style="list-style-type:none;margin-left: 10px;"><li><a href="https://accounts.coursera.org/i/zendesk/courserahelp?return_to=https://learner.coursera.help/hc/" target="_blank" title="Open help articles in new window" class="coursera-university-color"><i class="icon-question-sign"></i>Help Center</a></li></ul><ul style="list-style-type:none;margin-left: 10px;"></ul></div></div></div></div><div id="course-page-content" role="main"><div style="display: block;" id="spark" class="hide"><div id="main"><div id="AssessmentsLayout">
+<div id="hg-data" style="display: none">
+  <input id="hg-data-phase" type="hidden">
+  <input id="hg-data-step" type="hidden">
+  <input id="hg-data-step-page" type="hidden">
+  <input id="hg-data-data" type="hidden">
+</div><a data-coursera-admin-helpwidget-link="data-coursera-admin-helpwidget-link" rel="help" href="https://class.coursera.org/mooc/help/peer" title="Peer Assessments" target="_blank" style="display:none;">Learn more</a>
+<div id="assessmentContainer" aria-live="polite" class="container-fluid">
+  <div id="assessmentNavigationRegion" class="navigationRegion"><div id="AssessmentNavigationView">
+<ul class="breadcrumb">
+  <li><a href="https://class.coursera.org/interactivepython2-003/human_grading/">Peer Assessments</a></li>
+  <li><span class="divider">/</span>Mini-project # 7 - Spaceship</li><a target="_blank" href="https://accounts.coursera.org/i/zendesk/courserahelp?return_to=https://learner.coursera.help/hc" title="Click here if you're experiencing technical problems or found errors in the course materials." class="coursera-reporter-link">Help Center</a>
+</ul>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <ul id="hg-nav" class="nav">
+        <li data-hg-date-status="current" id="hg-nav-phase-submitting" class="hg-nav-phase hg-nav-border-left hg-nav-border-right hg-phase-active hg-phase-relevant">
+          <div class="hg-nav-top-row">
+            <div class="progress progress-info">
+              <div style="width: 90%;" class="bar"></div>
+            </div>
+            <div class="hg-asst-interval">
+              <div style="display: none;" class="hg-asst-interval-part hg-asst-interval-open"><span data-hg-date-status="" title="opened on Sat 25 Jul 2015  7:01 AM CEST
+(1 week, 1 day ago)" style="height: 0px; width: 0px;" data-livetimer-date-original="Sat 25 Jul 2015  7:01 AM CEST" data-livetimer-date-primitive="1437800460000" class="hg-date"><span style="display: none;" class="livetimer-absolute">opened Sat 25 Jul 2015  7:01 AM CEST</span><span class="livetimer-relative">opened 1wk 1d ago</span></span></div>
+              <div class="hg-asst-interval-part hg-asst-interval-close"><span data-hg-date-status="" title="is due on Sun  2 Aug 2015  7:01 AM CEST
+(in 14 hours, 3 minutes)" style="height: 0px; width: 0px;" data-livetimer-date-original="Sun  2 Aug 2015  7:01 AM CEST" data-livetimer-date-primitive="1438491660000" class="hg-date"><span style="display: none;" class="livetimer-absolute">due Sun  2 Aug 2015  7:01 AM CEST</span><span class="livetimer-relative">due in 14hr 3m</span></span></div>
+            </div>
+            <div class="hg-asst-phase-reload"><a href="#" class="hg-internal hg-reload">Reload</a>&nbsp;to open</div>
+            <div class="hg-nav-phase-header"><span>Submission Phase</span></div>
+          </div>
+          <ul class="nav hg-nav-bottom-row">
+            <li id="hg-nav-step-submitting" class="hg-nav-step active"><a data-original-title="" href="https://class.coursera.org/interactivepython2-003/human_grading/view/courses/974687/assessments/34/submissions" class="hg-internal"><span class="step">1.</span><span>Do assignment</span><span class="hg-nav-step-status hg-nav-step-status-select-todo"><span class="hg-nav-step-status-todo icon-check-empty"></span><span class="hg-nav-step-status-other"></span></span></a></li>
+          </ul>
+        </li>
+        <li data-hg-date-status="future" id="hg-nav-phase-grading" class="hg-nav-phase hg-nav-border-left hg-nav-border-right">
+          <div class="hg-nav-top-row">
+            <div class="progress progress-info">
+              <div style="width: 0px;" class="bar"></div>
+            </div>
+            <div class="hg-asst-interval">
+              <div class="hg-asst-interval-part hg-asst-interval-open"><span data-hg-date-status="" title="opens on Sun  2 Aug 2015  8:01 AM CEST
+(in 15 hours, 3 minutes)" style="height: 0px; width: 0px;" data-livetimer-date-original="Sun  2 Aug 2015  8:01 AM CEST" data-livetimer-date-primitive="1438495260000" class="hg-date"><span style="display: none;" class="livetimer-absolute">open Sun  2 Aug 2015  8:01 AM CEST</span><span class="livetimer-relative">open in 15hr 3m</span></span></div>
+              <div style="display: none;" class="hg-asst-interval-part hg-asst-interval-close"><span data-hg-date-status="" title="is due on Wed  5 Aug 2015  7:01 PM CEST
+(in 4 days, 3 hours)" style="height: 0px; width: 0px;" data-livetimer-date-original="Wed  5 Aug 2015  7:01 PM CEST" data-livetimer-date-primitive="1438794060000" class="hg-date"><span style="display: none;" class="livetimer-absolute">due Wed  5 Aug 2015  7:01 PM CEST</span><span class="livetimer-relative">due in 4day 3h</span></span></div>
+            </div>
+            <div class="hg-asst-phase-reload"><a href="#" class="hg-internal hg-reload">Reload</a>&nbsp;to open</div>
+            <div class="hg-nav-phase-header"><span>Evaluation Phase</span></div>
+          </div>
+          <ul class="nav hg-nav-bottom-row">
+            <li id="hg-nav-step-peerGrading" class="hg-nav-step"><a disabled="disabled" data-original-title="" href="https://class.coursera.org/interactivepython2-003/human_grading/view/courses/974687/assessments/34/peerGradingSets" class="hg-internal disabled"><span class="step">2.</span><span>Evaluate peers</span><span class="hg-nav-step-status hg-nav-step-status-select-other"><span class="hg-nav-step-status-todo icon-check-empty"></span><span class="hg-nav-step-status-other icon-lock"></span></span></a></li>
+            <li id="hg-nav-step-selfGrading" class="hg-nav-step"><a disabled="disabled" data-original-title="" href="https://class.coursera.org/interactivepython2-003/human_grading/view/courses/974687/assessments/34/selfGradingSets" class="hg-internal disabled"><span class="step">3.</span><span>Self-evaluate</span><span class="hg-nav-step-status hg-nav-step-status-select-other"><span class="hg-nav-step-status-todo icon-check-empty"></span><span class="hg-nav-step-status-other icon-lock"></span></span></a></li>
+          </ul>
+        </li>
+        <li data-hg-date-status="future" id="hg-nav-phase-results" class="hg-nav-phase hg-nav-border-left hg-nav-border-right">
+          <div class="hg-nav-top-row">
+            <div class="progress progress-info">
+              <div style="width: 0px;" class="bar"></div>
+            </div>
+            <div class="hg-asst-interval">
+              <div class="hg-asst-interval-part hg-asst-interval-available"><span data-hg-date-status="" title="available Wed  5 Aug 2015  8:01 PM CEST
+(in 4 days, 4 hours)" style="height: 0px; width: 0px;" data-livetimer-date-original="Wed  5 Aug 2015  8:01 PM CEST" data-livetimer-date-primitive="1438797660000" class="hg-date"><span style="display: none;" class="livetimer-absolute">available Wed  5 Aug 2015  8:01 PM CEST</span><span class="livetimer-relative">in 4day 4h</span></span></div>
+            </div>
+            <div class="hg-asst-phase-reload"><a href="#" class="hg-internal hg-reload">Reload</a>&nbsp;to open</div>
+            <div class="hg-nav-phase-header"><span>Results Phase</span></div>
+          </div>
+          <ul class="nav hg-nav-bottom-row">
+            <li id="hg-nav-step-results" class="hg-nav-step"><a disabled="disabled" data-original-title="" href="https://class.coursera.org/interactivepython2-003/human_grading/view/courses/974687/assessments/34/results/mine" class="hg-internal disabled"><span class="step">4.</span><span>See results</span><span class="hg-nav-step-status hg-nav-step-status-select-other"><span class="hg-nav-step-status-other icon-lock"></span></span></a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div></div></div>
+  <div id="assessmentMessages"></div>
+  <div id="assessmentContentRegion" class="contentRegion"><div style="display: block;">
+<!-- h1.assessmentTitle Mini-project # 7 - Spaceship-->
+<div id="assessmentForm">
+  <div id="topContentToolbar" class="contentToolbar form-actions">
+<div class="assessmentActionBar"><div class="contentToolbarButtons"><div class="pull-left" style="text-align: left;"><p><label><input class="honorCode" id="honorCode" type="checkbox">&nbsp;In
+ accordance with the Honor Code, I certify that my answers here are my 
+own work, and that I have appropriately acknowledged all external 
+sources (if any) that were used in this work.</label></p></div><div class="pull-right"><a id="assessmentSave" href="#" role="button" class="hg-internal btn">Save draft</a><a disabled="disabled" id="assessmentSubmit" href="#" role="button" class="assessmentSubmit hg-internal btn disabled">Submit for grading</a></div></div></div></div>
+  <div id="assessmentFormContent"><div class="submissionForm"><div id="assessmentHead"><div id="forumThreadLinkSection"></div></div><div id="evaluatedGroup-7465ba66200a7d29" class="assessmentSection"><div class="assessmentExposition"><div class="assessmentText" dir="auto"><h3> A reminder about the Honor Code</h3>
+For previous mini-projects, we have had instances of students submitting
+ solutions that have been copied from the web. Remember, if you can find
+ code on the web for one of the mini-projects, we can also find that 
+code. Submitting copied code violates
+the <a target="">Honor Code</a> for this class as well as Coursera's 
+Terms of Service. Please write your own code and refrain from copying. 
+If, during peer evaluation, you
+suspect a submitted mini-project includes copied code, please evaluate 
+as usual and email the assignment details to <a href="mailto:iipphonorcode@online.rice.edu">iipphonorcode@online.rice.edu</a>. We will investigate and handle as appropriate.
+
+<h2> Mini-project description - Spaceship </h2>
+
+<p>In our last two mini-projects, we will build a 2D space game <i>RiceRocks</i> that is inspired by the classic arcade game <i>Asteroids</i> (1979). <i>Asteroids</i>
+ is a relatively simple game by today's standards, but was still 
+immensely popular during its
+    time. (Joe spent countless quarters playing it.) In the game, the 
+player controls a spaceship via four buttons: two buttons that rotate 
+the spaceship clockwise or counterclockwise (independent of its current 
+velocity), a thrust button that accelerates
+    the ship in its forward direction and a fire button that shoots 
+missiles. Large asteroids spawn randomly on the screen with random 
+velocities. The player's goal is to destroy these asteroids before they 
+strike the player's ship. In the arcade version,
+    a large rock hit by a missile split into several fast moving small 
+asteroids that themselves must be destroyed. Occasionally, a flying 
+saucer also crosses the screen and attempts to destroy the player's 
+spaceship. Searching for "asteroids arcade"
+    yields links to multiple versions of <i>Asteroids</i> that are available on the web (including an updated version by <i>Atari</i>, the original creator of <i>Asteroids</i>).</p>
+
+<h3> Mini-project development process </h3>
+For this mini-project, you will implement a working spaceship plus add a
+ single asteroid and a single missile. We have provided art for your 
+game so its look and feel is that of a more modern game. You should 
+begin by loading the <a href="http://www.codeskulptor.org/#examples-spaceship_template.py" target=""><b>program template</b></a>.The
+ program template includes all necessary image and audio files. 
+Unfortunately, no audio format is supported by all major browsers so we 
+have decided to provided sounds in the <code>mp3</code> format which is supported
+by Chrome (but not by Firefox on some systems). (<code>ogg</code> versions are also available.) <b>We highly recommend using Chrome for the last two weeks of the class.</b> We have found that Chrome typically has better performance on games with more substantial
+drawing requirements and standardization on a common browser will make peer assessing projects more reliable.
+<p><b> Phase one - Spaceship </b>
+
+</p>
+<p>In this phase, you will implement the control scheme for the 
+spaceship.This includes a complete Spaceship class and the appropriate 
+keyboard handlers to control the spaceship. Your spaceship should behave
+ as follows:</p>
+<ul>
+    <li>The left and right arrows should control the orientation of your
+ spaceship. While the left arrow is held down, your spaceship should 
+turn counter-clockwise. While the right arrow is down, your spaceship 
+should turn clockwise. When neither key is down,
+        your ship should maintain its orientation. You will need to pick
+ some reasonable angular velocity at which your ship should turn.
+    </li>
+    <li>The up arrow should control the thrusters of your spaceship. The
+ thrusters should be on when the up arrow is down and off when it is up.
+ When the thrusters are on, you should draw the ship with thrust flames.
+ When the thrusters are off, you should
+        draw the ship without thrust flames.</li>
+    <li>When thrusting, the ship should accelerate in the direction of 
+its forward vector. This vector can be computed from the 
+orientation/angle of the ship using the provided helper function <code>angle_to_vector</code>. You will need to experiment with
+        scaling each component of this acceleration vector to generate a reasonable acceleration.</li>
+    <li>Remember that while the ship accelerates in its forward 
+direction, but the ship always moves in the direction of its velocity 
+vector. Being able to accelerate in a direction different than the 
+direction that you are moving is a hallmark of <i>Asteroids</i>.</li>
+    <li>Your ship should always experience some amount of friction. 
+(Yeah, we know, "Why is there friction in the vacuum of space?". Just 
+trust us there is in this game.) This choice means that the velocity 
+should always be multiplied by a constant factor
+        less than one to slow the ship down. It will then come to a stop
+ eventually after you stop the thrusters.</li>
+</ul>Now, implement these behaviors above in order. Each step should require just a few lines of code. Here are some hints:
+<ol>
+    <li>Modify the draw method for the Ship class to draw the ship image
+ (without thrust flames) instead of a circle. This method should 
+incorporate the ship's position and angle. Note that the angle should be
+ in radians, not degrees. Since a call to the
+        ship's draw method already exists in the draw handler, you 
+should now see the ship image. Experiment with different positions and 
+angles for the ship.</li>
+    <li>Implement an initial version of the update method for the ship. 
+This version should update the position of the ship based on its 
+velocity. Since a call to the update method also already exists in the 
+draw handler, the ship should move in response
+        to different initial velocities.</li>
+    <li>Modify the update method for the ship to increment its angle by its angular velocity.
+    </li>
+    <li>Make your ship turn in response to the left/right arrow keys. 
+Add keydown and keyup handlers that check the left and right arrow keys.
+ Add methods to the Ship class to increment and decrement the angular 
+velocity by a fixed amount. (There is some
+        flexibility in how you structure these methods.) Call these 
+methods in the keyboard handlers appropriately and verify that you can 
+turn your ship as you expect.</li>
+    <li>Modify the keyboard handlers to turn the ship's thrusters 
+on/off. Add a method to the Ship class to turn the thrusters on/off (you
+ can make it take a Boolean argument which is True or False to decide if
+ they should be on or off).</li>
+    <li>Modify the ship's draw method to draw the thrust image when it 
+is on. (The ship image is tiled and contains both images of the ship.)</li>
+    <li>Modify the ship's thrust method to play the thrust sound when the thrust is on. Rewind the sound when the thrust turns off.</li>
+    <li>Add code to the ship's update method to use the given helper function <code>angle_to_vector</code> to compute the forward vector pointing in the direction the ship is facing based on the ship's angle.</li>
+    <li>Next, add code to the ship's update method to accelerate the 
+ship in the direction of this forward vector when the ship is thrusting.
+ You will need to update the velocity vector by a small fraction of the 
+forward acceleration vector so that the ship
+        does not accelerate too fast.</li>
+    <li>Then, modify the ship's update method such that the ship's 
+position wraps around the screen when it goes off the edge (use modular 
+arithmetic!).</li>
+    <li>Up to this point, your ship will never slow down. Finally, add 
+friction to the ship's update method as shown in the "Acceleration and 
+Friction" video by multiplying each component of the velocity by a 
+number slightly less than 1 during each update.</li>
+</ol>You should now have a ship that flies around the screen,as you would like for <i>RiceRocks</i>. Adjust the constants as you would like to get it to fly how you want.
+<p></p>
+<p>
+    <b> Phase two - Rocks </b>
+
+</p>
+<p>To implement rocks, we will use the provided Sprite class. Note that 
+the update method for the sprite will be very similar to the update 
+method for the ship. The primary difference is that the ship's velocity 
+and rotation are controlled by keys, whereas
+    sprites have these set randomly when they are created. Rocks should 
+screen wrap in the same manner as the ship.</p>
+<p>In the template, the global variable <code>a_rock</code> is created at the start with zero velocity. Instead, we want to create version of <code>a_rock</code> once every second in the timer handler. Next week, we will add multiple rocks. This week, the ship
+    will not die if it hits a rock. We'll add that next week. To implement rocks, we suggest the following:</p>
+<ol>
+    <li>Complete the Sprite class (as shown in the "Sprite class" video)
+ by modifying the draw handler to draw the actual image and the update 
+handler to make the sprite move and rotate. Rocks do not accelerate or 
+experience friction, so the sprite update
+        method should be simpler than the ship update method. Test this 
+by giving <code>a_rock</code>&nbsp;different starting parameters and ensuring it behaves as you expect.</li>
+    <li>Implement the timer handler <code>rock_spawner</code>. In particular, set <code>a_rock</code>
+        to be a new rock on every tick. (Don't forget to declare <code>a_rock</code>
+ as a global in the timer handler.) Choose a velocity, position, and 
+angular velocity randomly for the rock. You will want to tweak the 
+ranges of these random numbers, as
+        that will affect how fun the game is to play. Make sure you 
+generated rocks that spin in both directions and, likewise, move in all 
+directions.</li>
+</ol>
+<b> Phase three - Missiles </b>
+
+<p>To implement missiles, we will use the same sprite class as for 
+rocks. Missiles will always have a zero angular velocity. They will also
+ have a lifespan (they should disappear after a certain amount of time 
+or you will eventually have missiles all over
+    the place), but we will ignore that this week. Also, for now, we 
+will only allow a single missile and it will not yet blow up rocks. 
+We'll add more next week.</p>
+<p>Your missile should be created when you press the spacebar, not on a 
+timer like rocks. They should screen wrap just as the ship and rocks do.
+ Otherwise, the process is very similar:</p>
+<ol>
+    <li>Add a <code>shoot</code> method to your ship class. This should spawn a new missile (for now just replace the old missile in <code>a_missile</code>). The missile's initial position should be the tip of your ship's "cannon". Its velocity should be the
+        sum of the ship's velocity and a multiple of the ship's forward vector.</li>
+    <li>Modify the keydown handler to call this shoot method when the spacebar is pressed.</li>
+    <li>Make sure that the missile sound is passed to the sprite 
+initializer so that the shooting sound is played whenever you shoot a 
+missile.</li>
+</ol>
+<b> Phase four - User interface </b>
+
+<p>Our user interface for <i>RiceRocks</i> simply shows the number of 
+lives remaining and the score. This week neither of those elements ever 
+change, but they will next week. Add code to the draw event handler to 
+draw these on the canvas. Use the <code>lives</code> and <code>score</code> global
+    variables as the current lives remaining and score.</p>
+<p>
+For more helpful tips on implementing this mini-project, please visit the <a href="https://class.coursera.org/interactivepython2-003/wiki/spaceship_tips" target="">Code Clinic tips</a> page for this mini-project.
+
+</p><h3> Grading rubric  - 20 pts total (scaled to 100 pts) </h3>
+When testing the functionality of your peer's projects, remember that 
+some keyboards don't register more three or more simultaneous key 
+presses correctly.
+So please assess based on single key presses or combinations of two key 
+presses. Also, please assess your peer's mini-projects in Chrome. <b>If,
+ for some reason, you must use Firefox or another browser (or had issues
+ playing sounds in Chrome), please give your peers full credit on the 
+two sound-related rubric items.</b>
+
+<ul>
+    <li>1 pt - The program draws the ship as an image.</li>
+    <li>1 pt - The ship flies in a straight line when not under thrust.</li>
+    <li>1 pt - The ship rotates at a constant angular velocity in a counter clockwise direction when the left arrow key is held down.</li>
+    <li>1 pt - The ship rotates at a constant angular velocity in the clockwise direction when the right arrow key is held down.</li>
+    <li>1 pt - The ship's orientation is independent of its velocity.</li>
+    <li>1 pt - The program draws the ship with thrusters on when the up arrow is held down.</li>
+    <li>1 pt - The program plays the thrust sound only when the up arrow key is held down.</li>
+    <li>1 pt - The ship accelerates in its forward direction when the thrust key is held down.</li>
+    <li>1 pt - The ship's position wraps to the other side of the screen when it crosses the edge of the screen.</li>
+    <li>1 pt - The ship's velocity slows to zero while the thrust is not being applied.
+    </li>
+    <li>1 pt - The program draws a rock as an image.</li>
+    <li>1 pt - The rock travels in a straight line at a constant velocity.</li>
+    <li>1 pt - The rock is respawned once every second by a timer.</li>
+    <li>1 pt - The rock has a random spawn position, spin direction and velocity.</li>
+    <li>1 pt - The program spawns a missile when the space bar is pressed.</li>
+    <li>1 pt - The missile spawns at the tip of the ship's cannon.</li>
+    <li>1 pt - The missile's velocity is the sum of the ship's velocity and a multiple of its forward vector.</li>
+    <li>1 pt - The program plays the missile firing sound when the missile is spawned.
+    </li>
+    <li>1 pt - The program draws appropriate text for lives on the upper left portion of the canvas.</li>
+    <li>1 pt - The program draws appropriate text for score on the upper right portion of the canvas.</li>
+</ul></div></div></div><div id="evaluatedGroup-4ff31e0d1beb49e" class="assessmentSection"><div id="evaluatedGroup-2cdc14c88e273391" class="assessmentGroup"><div class="assessmentExposition"><div id="assessmentText-2cdc14c88e273391" class="assessmentText" dir="auto"><p>In
+ the submission phase, cut and paste the URL for your cloud-saved 
+mini-project into the box below. Click the Honor Code box and hit the 
+"Submit for grading" button when you are ready to submit your 
+mini-project. &nbsp;(You may submit as many times as you like before the
+ deadline so we suggest that you use "Submit" instead of "Save".) &nbsp;<b>IMPORTANT:
+ Please use the "Review your work" link that appears at the top of the 
+subsequent submission page to verify that you submitted a working link 
+for the final version of your mini-project.</b></p></div></div><div class="assessmentAnswer" aria-labelledby="assessmentText-2cdc14c88e273391"><input id="textfield-e89656c5196ebff8" data-modelbind="submission.fields.e89656c5196ebff8" aria-labelledby="assessmentText-2cdc14c88e273391" dir="auto" style="width: 100%" type="text"></div></div></div> </div></div>
+  <div id="bottomContentToolbar" class="contentToolbar form-actions">
+<div class="assessmentActionBar"><div class="contentToolbarButtons"><div class="pull-left" style="text-align: left;"><p><label><input class="honorCode" id="honorCode" type="checkbox">&nbsp;In
+ accordance with the Honor Code, I certify that my answers here are my 
+own work, and that I have appropriately acknowledged all external 
+sources (if any) that were used in this work.</label></p></div><div class="pull-right"><a id="assessmentSave" href="#" role="button" class="hg-internal btn">Save draft</a><a disabled="disabled" id="assessmentSubmit" href="#" role="button" class="assessmentSubmit hg-internal btn disabled">Submit for grading</a></div></div></div></div>
+</div>
+<div class="coursera-signature-modal"></div>
+<div id="coursera-signature-pending-modal" style="display:none">
+  <div class="coursera-signature-please-complete-modal modal">
+    <div style="height: 2px; background: black; position: relative; width: 558px;">
+      <div class="coursera-signature-modal-header modal-header"><a class="close coursera-signature-close-button">×</a><img src="spaceship_files/ribbon_stripes.png" class="coursera-signature-modal-ribbon">
+        <p class="coursera-signature-modal-signature-track">Signature Track</p>
+        <p class="coursera-signature-modal-title">Signature Track Profile incomplete</p>
+      </div>
+      <div style="position: relative; top: -10px; margin: 30px 10px 10px 70px;"><i style="margin-left: 60px; color: #c43b3b; font-size: 40px" class="icon-warning-sign"></i><span style="font-weight: bold; font-size: 16px">Oops! You have submitted your work, but you can't authenticate your coursework yet. </span>
+ You still need to complete your Signature Track profile by registering 
+your unique typing patterns and submitting webcam photos. You need to 
+authenticate most of your assignments to get a Verified Certificate.
+        <p style="margin-top: 10px; font-weight: bold;">Please complete your profile as soon as possible.</p>
+      </div>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <h4 style="margin-bottom: 0px;">You will need:</h4>
+        <div style="width: 40%; display: inline-block; vertical-align: top;">
+          <div style="height: 85px;"><img src="spaceship_files/webcam_keyboard.jpg" alt="Illustration of keyboard and camera" style="height: 85px;"></div>
+          <div> Keyboard and Webcam</div>
+        </div>
+        <div style="width: 40%; display: inline-block; vertical-align: top;">
+          <div style="height: 85px;"><img src="spaceship_files/government_id.jpg" alt="Illustration of identification card" style="margin-top: 14px"></div>
+          <div>Goverment-issued Photo ID</div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-bottom: 10px;"><a href="https://dw0ugk4msqulk.cloudfront.net/signature/phrase/interactivepython2/974687">
+          <button style="margin-top: 0px; padding: 15px 25px;" class="coursera-signature-next-button">Complete my profile now</button></a></div><a style="font-size: smaller; float: right; margin-right: 20px; margin-bottom: 20px;" class="coursera-signature-nothanks">No thanks, I'll do this later. »</a>
+    </div>
+  </div>
+</div></div></div>
+</div></div></div>
+
+</div></div></div></div></div><div class="coursera-footer"></div></div></div></div><!--[if gte IE 9]><script>document.getElementById("coursera-loading-js").style.display = 'block';</script><![endif]-->
+<!--[if lte IE 8]><script>document.getElementById("coursera-loading-nojs").style.display = 'block';</script><![endif]-->
+<!--[if !IE]> --><script>document.getElementById("coursera-loading-js").style.display = 'block';</script><!-- <![endif]--><script>if (/zh/i.test(window.localStorage ? localStorage.getItem('locale') : '') || '{{ locale }}') {
+  document.getElementById('get-browser-zh').style.display = 'block';
+}</script><!--[if !IE]> --><script>document.getElementById('coursera-loading-js').style.display = 'block';</script><!-- <![endif]-->
+    <script src="spaceship_files/modernizr-custom.js"></script>
+  <script src="spaceship_files/require.js"></script><script data-baseurl="https://dw0ugk4msqulk.cloudfront.net/c3bdeb1a14fabb29492bd91d780dbccaa56111d2/" data-version="c3bdeb1a14fabb29492bd91d780dbccaa56111d2" data-timestamp="1438305168453" data-debug="0" data-locale="es_ES" id="_require">if(document.getElementById('coursera-loading-js').style.display == 'block') {
+  (function(el) {
+     require.config({
+       //enforceDefine: true,
+       waitSeconds: 75,
+       baseUrl: el.getAttribute('data-baseurl'),
+       urlArgs: el.getAttribute('data-debug') == '1' ? 'v=' + el.getAttribute('data-timestamp') : '',
+       shim: {
+          'underscore': {
+             exports: '_'
+          },
+          'backbone': {
+             deps: ['underscore', 'jquery'],
+             exports: 'Backbone',
+             init: function(_, $) {
+               Backbone.$ = $;
+               return Backbone;
+             }
+          },
+          'pages/hg/thirdparty/js/backbone.marionette': {
+            deps: ['backbone']
+          },
+          'pages/hg/thirdparty/js/webshims/polyfiller': {
+            deps: ['jquery']
+          },
+          'pages/hg/thirdparty/js/webshims/extras/mousepress': {
+            deps: ['jquery', 'pages/hg/thirdparty/js/webshims/polyfiller']
+          },
+          'pages/hg/thirdparty/js/jquery.throttle': {
+            deps: ['jquery']
+          },
+          'js/lib/jquery.linkify': {
+            deps: ['jquery']
+          },
+          'pages/hg/thirdparty/js/js/bootstrap/alert': {
+            deps: ['jquery', 'pages/hg/thirdparty/js/bootstrap/transition']
+          },
+          'spark/core/js/jquery_ui': {
+            deps: ['jquery']
+          },
+          'spark/core/js/jquery.history': {
+            deps: ['jquery']
+          },
+          'js/lib/bootstrap.tooltip': {
+            deps: ['jquery']
+          },
+          'pages/hg/thirdparty/js/bootstrap/transition': {
+            deps: ['jquery']
+          },
+          'pages/hg/thirdparty/js/bootstrap/tab': {
+            deps: ['jquery']
+          },
+          'bundles/videojs/lib/video.4.3.0': {
+            exports: 'vjs'
+          }
+       },
+       paths: {
+          'q': 'js/vendor/q.v1-0-1',
+          'react-with-addons': 'js/vendor/react-with-addons.v0-12',
+          'jquery':                         'pages/spark/jquery',
+          'underscore':                     'js/vendor/underscore.v1-5-2',
+          'backbone':                       'js/vendor/backbone.v1-1-0',
+          'backbone.relational':            'js/lib/backbone.relational.0.8.6',
+          'i18n':                           'js/lib/i18n._t',
+          'css':                            'js/vendor/require.css.v0-1-2',
+          'memoize':                        'js/lib/require.memoize.v0-0-1',
+          'pages/spark/models/user.json':   'empty:',
+          'pages/spark/models/course.json': 'empty:',
+          'pages/spark/models/navbar.json': 'empty:'
+       },
+       callback: function() {
+                    require(['pages/hg/js/app/routes']);
+                },
+       config: {
+         i18n: {
+           locale: (window.localStorage ? localStorage.getItem('locale') : '') || el.getAttribute('data-locale')
+         }
+       }
+     });
+  })(document.getElementById('_require'));
+}
+</script><script>define('pages/spark/models/user.json', [], function(){
+      return JSON.parse("{\"id\":8717605,\"email_address\":\"fer.gonzalez.rodriguez@gmail.com\",\"full_name\":\"Fernando Gonzalez Rodriguez\",\"locale\":\"es_ES\",\"timezone\":\"Europe\\\/Madrid\",\"access_group_id\":\"4\",\"registration_time\":\"1435592451\",\"last_access_time\":\"1438439027\",\"last_access_ip\":\"93.156.73.23\",\"signature_track_register_time\":\"0\",\"email_announcement\":\"1\",\"email_forum\":\"1\",\"in_signature_track\":\"0\",\"wishes_proctored_exam\":\"0\",\"first_name\":\"Fernando\",\"permissions\":[\"default\",\"allow_site_access\"],\"group\":\"Student\",\"anonymous\":false,\"forum_title\":\"Student\",\"signature_track_state\":1,\"verified_quizzes\":[\"43\"],\"submitted_quizzes\":[\"43\",\"44\"],\"scheduled_proctored_exam\":null,\"last_chance_modal\":1,\"flexjoin_last_chance_modal\":null}");
+  });
+define('pages/spark/models/course.json', [], function(){
+      return JSON.parse("{\"id\":974687,\"isPrivate\":false,\"type\":\"public\",\"name\":\"An Introduction to Interactive Programming in Python (Part 2)\",\"instructor\":\"Joe Warren, Scott Rixner, John Greiner, Stephen Wong\",\"sessionName\":\"interactivepython2-003\",\"externalBaseURL\":\"https:\\\/\\\/www.coursera.org\\\/\",\"shortname\":\"interactivepython2\",\"host\":\"https:\\\/\\\/www.coursera.org\\\/\",\"assetUnversionedLink\":\"https:\\\/\\\/dw0ugk4msqulk.cloudfront.net\\\/\",\"cheggID\":\"\",\"hasLTI\":true,\"badgevilleDomain\":\"\",\"linkable\":false,\"universityShortname\":\"rice\",\"signatureTrackStatus\":{\"signature_track_enabled\":1},\"courseURLs\":{\"log_in_link\":\"https:\\\/\\\/www.coursera.org\\\/login?post_redirect=https%3A%2F%2Fwww.coursera.org%2Flogin%3Fuser_action%3Dclass%26course_id%3D974687%26post_redirect%3Dhttps%253A%252F%252Fclass.coursera.org%252Finteractivepython2-003%252Fauth%252Fauth_redirector%253Ftype%253Dlogin%2526subtype%253Dnormal%2526visiting%253D\",\"sign_up_link\":\"https:\\\/\\\/www.coursera.org\\\/signup?enroll_cid=974687&enroll_sn=interactivepython2&enroll_n=An Introduction to Interactive Programming in Python (Part 2)\",\"view_course_info_link\":\"https:\\\/\\\/www.coursera.org\\\/course\\\/interactivepython2\",\"sign_up_link_cant_enroll\":\"https:\\\/\\\/www.coursera.org\\\/signup?post_redirect=https%3A%2F%2Fwww.coursera.org%2Fcourse%2Finteractivepython2\"},\"courseBase\":\"https:\\\/\\\/class.coursera.org\\\/interactivepython2-003\\\/\",\"search\":true,\"hideWiki\":true,\"aceStartRegistrationDate\":\"Thu  1 Jan 1970  1:00 AM CET\",\"aceEndRegistrationDate\":\"Thu  1 Jan 1970  1:00 AM CET\",\"aceExamStartDate\":\"Thu  1 Jan 1970  1:00 AM CET\",\"aceExamEndDate\":\"Thu  1 Jan 1970  1:00 AM CET\",\"aceExamRules\":\"\",\"aceExamDuration\":\"\",\"aceBeforeExam\":false,\"aceAfterExam\":true,\"aceHours\":null,\"aceCreditType\":\"\",\"acePrice\":null,\"aceExamID\":null,\"aceEligible\":false,\"canRegisterForACE\":false,\"specialization\":{\"numCourse\":6,\"image\":\"https:\\\/\\\/d15cw65ipctsrr.cloudfront.net\\\/36\\\/f74e20a2a811e4ba29d775ee5247cc\\\/FoC-Spsn-logo.jpg\",\"id\":37,\"short_name\":\"fundamentalscomputing2\",\"name\":\"Fundamentals of Computing\"},\"supportForums\":true,\"textbooks\":\"\",\"inVideoQuizV2\":false,\"in_flexjoin\":1,\"honorCodeExtraText\":\"\",\"honorCodeCustomTitle\":\"\",\"honorCodeCustomButton\":\"\",\"studentAccessDisabled\":0,\"disableQQs\":false}");
+  });
+  define('pages/spark/models/navbar.json', [], function(){
+      return JSON.parse("{\"items\":[{\"name\":\"Home\",\"icon\":\"home\",\"link_type\":\"circuit\",\"link_data\":\"class:index\"},{\"name\":\"Surveys\",\"icon\":\"quiz\",\"link_type\":\"circuit\",\"link_data\":\"quiz:index?quiz_type=survey\"},{\"name\":\"Class\",\"icon\":\"\",\"link_type\":\"heading\",\"link_data\":\"\"},{\"name\":\"Video Lectures\",\"icon\":\"lecture\",\"link_type\":\"circuit\",\"link_data\":\"lecture:index\"},{\"name\":\"Quizzes\",\"icon\":\"quiz\",\"link_type\":\"circuit\",\"link_data\":\"quiz:index\"},{\"name\":\"Mini-projects\",\"icon\":\"assignment\",\"link_type\":\"circuit\",\"link_data\":\"human_grading:index\"},{\"name\":\"Tools\",\"icon\":\"\",\"link_type\":\"heading\",\"link_data\":\"\"},{\"name\":\"CodeSkulptor\",\"icon\":\"assignment\",\"link_type\":\"window_link\",\"link_data\":\"http:\\\/\\\/www.codeskulptor.org\"},{\"name\":\"Viz Mode\",\"icon\":\"\",\"link_type\":\"window_link\",\"link_data\":\"http:\\\/\\\/codeskulptor.org\\\/viz\"},{\"name\":\"Practice and Help\",\"icon\":\"\",\"link_type\":\"heading\",\"link_data\":\"\"},{\"name\":\"Discussion Forums\",\"icon\":\"forum\",\"link_type\":\"circuit\",\"link_data\":\"forum:index\"},{\"name\":\"Concepts and Examples\",\"icon\":\"wiki\",\"link_type\":\"wiki\",\"link_data\":\"overview\"},{\"name\":\"Practice Exercises\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"practice_overview\"},{\"name\":\"Viz Mode Tutorial\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"viz_overview\"},{\"name\":\"Administrivia\",\"icon\":\"\",\"link_type\":\"heading\",\"link_data\":\"\"},{\"name\":\"Honor Code (Please read!)\",\"icon\":\"wiki\",\"link_type\":\"wiki\",\"link_data\":\"honorcode\"},{\"name\":\"FAQ\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"faq\"},{\"name\":\"Syllabus\",\"icon\":\"wiki\",\"link_type\":\"wiki\",\"link_data\":\"syllabus\"},{\"name\":\"Course Staff\",\"icon\":\"wiki\",\"link_type\":\"wiki\",\"link_data\":\"coursestaff\"}]}");
+  });
+</script><script>var coursera_enable_new_help_center = true;
+</script><div class="hide confirm-navigation modal"><div class="modal-header"><h3>Confirmar navegación</h3></div><div class="modal-body"><div class="confirm-navigation-message"></div><div>¿Estás seguro/a de que quieres abandonar esta página?</div></div><div class="modal-footer"><button data-modal-close="data-modal-close" class="btn confirm-navigation-stay">Permanecer en esta página</button><button data-modal-close="data-modal-close" class="btn btn-danger confirm-navigation-leave">Abandonar esta página</button></div></div><div style="display: none;" class="coursera-async-message"></div></body></html>
