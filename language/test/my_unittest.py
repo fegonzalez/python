@@ -46,7 +46,7 @@ if __name__ == '__main__':
 
 
 # b) shell:
-# python3 amy_unittest.py
+# python3 my_unittest.py
 #
 
 
