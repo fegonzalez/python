@@ -1,0 +1,7 @@
+ # File with one type of comments. This is the default comment character.
+ PARAMETER_DOG 1
+# This is the default comment character.
+ANOTHER_VALUE 3
+    YET_ANOTHER_VALUE 34
+# Final value comment
+FINAL_VALUE 22  

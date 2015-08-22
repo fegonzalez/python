@@ -1035,7 +1035,7 @@ WARNING Execution order:
 	2º) __main__
 
 
-# 4.1.2. The Module Search Path (sys.path) [1.5]
+# 4.1.2. The Module Search Path (sys.path) [1.5] [3.9]
 
   >>> import name
 
@@ -1050,7 +1050,7 @@ WARNING Execution order:
 
 	FOURTH: the installation dependent default path
 
-WARNING A program is free to modify 'sys.path' for its own purposes. Be careful!
+WARNING A program is free to modify 'sys.path' for its own purposes. Be 
 
 
 # 4.1.3. “Compiled” Python files
@@ -1970,6 +1970,22 @@ def reverse_iterator(data):
 # ...     print(char)
 
 
+WARNING Inner call to yield-return functions must be called with an explicit
+'return' statement.
+
+(e.g)
+
+def af(data):
+    return reverse_iterator(data)    # OK: 
+
+def af(data):
+    reverse_iterator(data) #ERROR: TypeError: 'NoneType' object is not iterable 
+                           
+# Because every function call returns something in Python, 'None' is the
+  default selected when 'return' is missing
+
+
+
 # 7.11. Generator Expressions  [5.1], [3.5] 
 
 - RECOMMENDED USE high performance, memory efficient generalization of list
@@ -2607,7 +2623,7 @@ http://www.tutorialspoint.com/python/python_command_line_arguments.htm
 
   [3.8] http://stackoverflow.com/questions/1706198/python-how-to-ignore-comment-lines-when-reading-in-a-file
 
-
+  [3.9] http://stackoverflow.com/questions/3108285/in-python-script-how-do-i-set-pythonpath
 
 [4] Environment
 

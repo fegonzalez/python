@@ -1,5 +1,7 @@
-# \file files.py
+# \file file_lib.py
 # Python file library
+# date: 2015-08-22
+# Author: Fernando Gonzalez Rodriguez
 
 
 #===============================================================================
@@ -10,10 +12,11 @@
 """ 
 \param file: the file to clean of commentaries and blanks characters.
 \param blanks: (string) array of blank expressions (i.e. " \t\n")
-
+    
 Given file:
 1) Remove all the blank lines.
-2) Return a 'generator object' the rest of the lines.
+2) Remove all the leading and trailing characters in the rest of the lines.
+3) Return a 'generator object' with the rest of the lines.
 """
 
 
@@ -25,7 +28,10 @@ Given file:
 Given file:
 1) Remove all the comment lines. (Lines beginning with 'comments')
 2) Return a 'generator object' the rest of the lines.
+WARNING Not removing any blank characters.
+        (e.g. ' PARAMETER_DOG 1\n   ANOTHER_VALUE 3  \n'
 """
+
 
 #def skip_blanks_and_comments(file, blanks=_DEF_BLANKS, comments=_DEF_COMMENTS):
 """
@@ -35,11 +41,26 @@ Given file:
 
 Given file:
 1) Remove all the blank lines.
-2) Remove all the comment lines.
-3) Return a 'generator object' the rest of the lines.
+2) Remove all the leading and trailing characters in the rest of the lines.
+3) Remove all the comment lines.
+4) Return a 'generator object' the rest of the lines.
 """
 
-            
+
+#===============================================================================
+# doc reference
+#===============================================================================
+
+# doc https://docs.python.org/3.1/library/stdtypes.html
+#
+# str.split([sep[, maxsplit]])
+#   Return a list of the words in the string, using sep as the delimiter string.
+#
+# str.strip([chars])
+#  Return a copy of the string with the leading and trailing characters removed.
+#
+
+
 #===============================================================================
 # constants
 #===============================================================================
@@ -47,7 +68,7 @@ Given file:
 # _EXAMPLE_FILE = "data/errors.data"
 _DEF_BLANKS = " \t\n"
 _DEF_COMMENTS = ["#"]
-            
+
 #===============================================================================
 
 def skip_blanks(file, blanks=_DEF_BLANKS):
@@ -57,13 +78,16 @@ def skip_blanks(file, blanks=_DEF_BLANKS):
     
     Given file:
     1) Remove all the blank lines.
-    2) Return a 'generator object' the rest of the lines.
+    2) Remove all the leading and trailing characters in the rest of the lines.
+    3) Return a 'generator object' with the rest of the lines.
     """
     assert(type(blanks) is str)
     assert(len(blanks)>0)
 
     for line in file:
-        yield line.strip(blanks)
+        line=line.strip(blanks)
+        if(not len(line) is 0):
+            yield line
 
 #-------------------------------------------------------------------------------
 
@@ -78,12 +102,12 @@ def skip_comments(file, comments=_DEF_COMMENTS):
     """
     assert(not file.closed)
     assert(type(comments) is list)
-    assert(len(comments>0))
-    
-    if len(comments > 1):
-        _skip_comments_multiple(file, comments)
+    assert(len(comments)>0)
+ 
+    if len(comments)>1:
+        return _skip_comments_multiple(file, comments)
     else:
-        _skip_comments_single(file, comments)
+        return _skip_comments_single(file, comments)
 
 #-------------------------------------------------------------------------------
 
@@ -95,19 +119,20 @@ def skip_blanks_and_comments(file, blanks=_DEF_BLANKS, comments=_DEF_COMMENTS):
 
     Given file:
     1) Remove all the blank lines.
-    2) Remove all the comment lines.
-    3) Return a 'generator object' the rest of the lines.
+    2) Remove all the leading and trailing characters in the rest of the lines.
+    3) Remove all the comment lines.
+    4) Return a 'generator object' the rest of the lines.
     """
     assert(not file.closed)
     assert(type(comments) is list)
-    assert(len(comments>0))
+    assert(len(comments)>0)
     assert(type(blanks) is str)
     assert(len(blanks)>0)
     
-    if len(comments > 1):
-        _skip_blanks_and_comments_multiple(file, comments, blanks)
+    if len(comments)>1:
+        return _skip_blanks_and_comments_multiple(file, comments, blanks)
     else:
-        _skip_blanks_and_comments_single(file, comments, blanks)
+        return _skip_blanks_and_comments_single(file, comments, blanks)
 
 #-------------------------------------------------------------------------------
 
@@ -128,10 +153,9 @@ def _skip_comments_single(file, comments):
     """
     assert(not file.closed)
     assert(type(comments) is list)
-    assert(len(comments==1))
+    assert(len(comments)==1)
     assert(type(comments[0]) is str)
     
-    # assert(len(comments.split() <= 1)
     for line in file:
         if not line.strip().startswith(comments[0]):
             yield line
@@ -172,13 +196,15 @@ def _skip_blanks_and_comments_single(file, comments, blanks):
     \param blanks: (string) array of blank expressions (i.e. " \t\n")
 
     Given file:
-    1) Remove all the comment lines.
-    2) Return a 'generator object' the rest of the lines.
+    1) Remove all the blank lines.
+    2) Remove all the leading and trailing characters in the rest of the lines.
+    3) Remove all the comment lines.
+    4) Return a 'generator object' the rest of the lines.
     """
 
     assert(not file.closed)
     assert(type(comments) is list)
-    assert(len(comments==1))
+    assert(len(comments)==1)
     assert(type(comments[0]) is str)
     assert(type(blanks) is str)
     assert(len(blanks)>0)
@@ -198,8 +224,9 @@ def _skip_blanks_and_comments_multiple(file, comments, blanks):
 
     Given file:
     1) Remove all the blank lines.
-    2) Remove all the comment lines.
-    3) Return a 'generator object' the rest of the lines.
+    2) Remove all the leading and trailing characters in the rest of the lines.
+    3) Remove all the comment lines.
+    4) Return a 'generator object' the rest of the lines.
     """
 
     assert(not file.closed)
@@ -207,6 +234,7 @@ def _skip_blanks_and_comments_multiple(file, comments, blanks):
     assert(len(comments)>1)
     assert(type(blanks) is str)
     assert(len(blanks)>0)
+
 
     for line in file:
         line = line.strip(blanks)
@@ -218,7 +246,8 @@ def _skip_blanks_and_comments_multiple(file, comments, blanks):
             if line.strip().startswith(comment_value):
                 valid_line=False
                 break
-            if valid_line:
-                yield line
+        if valid_line:
+            yield line
+
            
 #===============================================================================

@@ -1,0 +1,18 @@
+#
+% File with blank lines and three different comments characters: '#', ' %', '//'
+//
+
+
+# This is the default comment character.
+ PARAMETER_DOG 1
+
+ANOTHER_VALUE 3
+
+    YET_ANOTHER_VALUE 34
+
+
+// C++ comment style after two blank lines
+FINAL_VALUE 22  
+
+
+
