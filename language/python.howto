@@ -1035,7 +1035,7 @@ WARNING Execution order:
 	2º) __main__
 
 
-# 4.1.2. The Module Search Path (sys.path) [1.5] [3.9]
+# 4.1.2. The Module Search Path (sys.path) [1.5] [3.8]
 
   >>> import name
 
@@ -1246,7 +1246,7 @@ WARNING In text mode, the default (implicitly) when reading is to convert
 	\n; and vice versa. BUT this will corrupt BINARY data.
 
 
-# 5.2.1. Methods of File Objects [3.8]
+# 5.2.1. Methods of File Objects
 
   - open / close / read / readline / numchars = write / tell / seek / closed
 
@@ -1276,20 +1276,6 @@ BEST PRACTICE Use the with keyword when dealing with file objects -> Always
   ...     read_data = f.read()
   >>> f.closed()
   True
-
-
-Hint: skip_comments function example 
-
-  def skip_comments(file):
-    assert(not file.closed)
-      for line in file:
-          if not line.strip().startswith('#'):
-              yield line
-
-
-  >>> with open("one_file.txt", 'r') as afile:
-        for value in skip_comments(afile):
-            print(value)
 
 
 
@@ -2621,9 +2607,7 @@ http://www.tutorialspoint.com/python/python_command_line_arguments.htm
 
   [3.7] https://docs.python.org/2/library/unittest.html#unittest.TestCase
 
-  [3.8] http://stackoverflow.com/questions/1706198/python-how-to-ignore-comment-lines-when-reading-in-a-file
-
-  [3.9] http://stackoverflow.com/questions/3108285/in-python-script-how-do-i-set-pythonpath
+  [3.8] http://stackoverflow.com/questions/3108285/in-python-script-how-do-i-set-pythonpath
 
 [4] Environment
 

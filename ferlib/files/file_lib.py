@@ -59,6 +59,8 @@ Given file:
 # str.strip([chars])
 #  Return a copy of the string with the leading and trailing characters removed.
 #
+#
+# http://stackoverflow.com/questions/1706198/python-how-to-ignore-comment-lines-when-reading-in-a-file
 
 
 #===============================================================================
