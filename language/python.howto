@@ -1304,6 +1304,24 @@ BEST PRACTICE Use the with keyword when dealing with file objects -> Always
   [1, 'simple', 'list']
 
 
+# 5.2.3  pathlib [2]
+
+  # (i.e  _parse_operation_file(id) form stock_lib.py)
+  # read the file "../book/20.???/operation_record
+  # match: to find the name of the file beginning as "20."
+
+  from pathlib import Path
+  # (i.e. id = 20)
+  _BOOK_PATH = "/".join(["..", "book"])
+  _FILE2FOUND = "/".join([_BOOK_PATH, str(id)+'.'+'*'])
+  src_file = list((x for x in Path(_BOOK_PATH).iterdir() 
+               if (x.is_dir() and x.match(_FILE2FOUND)))).pop()
+  # PosixPath('../book/20.2015-09-02.bac')
+  src_file = src_file / "operation_record"
+  # PosixPath('../book/20.2015-09-02.bac/operation_record')    
+  with src_file.open() as afile:
+      ret_value = afile.read()
+  # '20;BAC;NYSE'
 
 ################################################################################
 # 6. Errors and Exceptions
