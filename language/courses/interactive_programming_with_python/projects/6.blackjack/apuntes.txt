@@ -1,0 +1,20 @@
+
+video w6/13.4.ClasesBlackjack
+
+
+class Card: image
+
+            actions:
+
+
+class Deck: collection of cards
+
+      	    live: all program life
+
+	    actions: hit, score
+
+class Hand: collection of cards  ( Hand is a subset of Deck)
+
+      	    live: during each game
+
+	    actions: shuffle, deal a card

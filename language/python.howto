@@ -1380,6 +1380,12 @@ BEST PRACTICE Use the with keyword when dealing with file objects -> Always
         f.close()
 
 
+WARNING assert() & catch-all clause: if using the catch-all clause, assertions
+	will be executed that the assert message and the assert line
+	information can be missed -> (Easy) remove 'except:' clause; (heavy)
+	handle 'AssertionError'.
+
+
 # 6.4. Raising Exceptions 
 
     >>> try:

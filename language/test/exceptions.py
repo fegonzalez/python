@@ -6,6 +6,30 @@ import sys
 
 ##------------------------------------------------------------------------------
 
+def assertions():
+    """ assertException
+    """
+    retval = 1
+
+    assert(False)
+            
+    print("se imrime esto???????????????????????")
+    
+    try:
+        print("dentro del try....................")
+
+    except:
+        print("cazada la exception", sys.exc_info()[0])
+
+    return retval
+
+
+def call_assertions():
+
+    return assertions()
+    
+##------------------------------------------------------------------------------
+
 def value_error():
     """ simple exception 
     """
