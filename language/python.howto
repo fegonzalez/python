@@ -193,6 +193,8 @@ Chapters 1 - 9:  The Python Tutorial [1]
        >>> print('\tf[a-z]*')
        f[a-z]*
 
+- string methods:  join, strip
+
 
 # iii) Indexing (strings, lists, ...)
 
