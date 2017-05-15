@@ -1,0 +1,25 @@
+#Integration with install server
+
+#Connection to iTEC System
+ITEC_LAN_1		127.0.0.1
+ITEC_LAN_2		127.0.0.1
+
+#Connection to SWIS/L system
+#Valid configuration
+#SWISL_LAN_1			%SWISL_LAN_1%
+#SWISL_LAN_2			%SWISL_LAN_2%
+#EIS_LAN                 %EIS%
+
+#Mandatory configuration
+
+SWISL_LAN_1		127.0.0.1
+SWISL_LAN_2		127.0.0.1
+EIS						127.0.0.1
+
+#Processor name
+#Replace %instance% with a number like installServer or replace the full string
+ITECNODE		itec_swis_1
+
+#Number from 0 to 255 representing the third number of a IP address
+MCAST_SUBNET		4
+
