@@ -1,0 +1,10 @@
+./TopologicalInfo_standalone.xml
+./SWInfo_standalone.xml
+./MOMInfo_standalone.xml
+./dep_swis_standalone.xml
+./TSSConfig_standalone.xml
+./JMSConnectorConfigCor.xml 
+./JMSConnectorConfigFp.xml 
+./JMSConnectorConfigSec.xml
+./JMSConnectorInitialContext.properties
+./startup_standalone.sh

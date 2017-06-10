@@ -811,6 +811,13 @@ WARNING {} is a dictionary, not a set.:
 
   >>> myset = {x for x in 'abracadabra' if x not in 'abc'}
 
+- setters:
+
+  a = set()
+  a.add(1)         # single element:  a = {1}
+  a = a | {1}      # single element:  a = {1}
+  a.update([3,4])  # iterable values
+
 
 # 3.5. dictionaries [1.4]
 
