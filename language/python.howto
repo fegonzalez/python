@@ -407,7 +407,6 @@ NOTICE since 2.7 we can use 'from __future__ import print_function' for python3
 
 # 1.1.1. Argument Passing  (sys.argv[0..n-1])
 
-
 - argv[1] .. argv[n-1] = argument values
 
 - argv[0]

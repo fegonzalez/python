@@ -9,17 +9,32 @@
 # included by that file; and then all the files included by those
 # included files, ..., and so on.
 #
-# By default, the result is stored in a file named "list_of_included_idls.out"
+# INFO The result is stored in a file named "list_of_included_idls.out"
 #
-#!\info This script ignores includes within one-line comments: //  #include 
+#!\warning This script can't detect includes within one-line
+#          comments, (i.e., //  #include )
 #
 #!\warning This script can't detect includes within multiple line
-#          comments /* .... #include */
+#          comments, (i.e., /* .... #include */)
+#
 
 
+import sys;
 import re;
 
-INIT_FILE="sdd_distribution_event.idl3"
+
+#assert len(sys.argv) == 2
+if len(sys.argv) != 2:
+    print("Usage: ", sys.argv[0], " ROOT-FILE")
+    sys.exit(1)
+else:
+    INIT_FILE=sys.argv[1]
+    print("Root file: ", INIT_FILE)
+
+
+#INIT_FILE="sdd_distribution_event.idl3"
+#INIT_FILE="events_lp.idl3"
+
 OUTPUT_FILE="list_of_included_idls.out"
 pattern1="#include.*\".*.idl\""
 pattern2="#include.*\".*.idl3\""
@@ -76,11 +91,23 @@ while len(lista_init)>0:
 # for file1 in temp_list[:]:  # write loop: Loop over a slice copy of the list
     for file1 in temp_list:   # read loop
 
+        # DEBUG-MODE
+        #print(file1)
+        #sys.stdout.flush()
+        
         # 1)
         the_complete_included_files_names.add(file1)
 
         # 2)
-        with open(file1, 'r') as f:
+
+#!\error runtimeerror: UnicodeDecodeError: 'utf-8' codec can't decode
+# byte 0xba in position 2705: invalid start byte grep:
+#
+# file: DDD_TRACK.idl
+#
+#        with open(file1, 'r') as f:
+ 
+        with open(file1, 'r', encoding="latin-1") as f:
             readf =f.read()
         f.close()
 
@@ -96,7 +123,10 @@ while len(lista_init)>0:
 #end of main loop
 
 #print(the_complete_included_files_names)
+the_complete_included_files_names=sorted(the_complete_included_files_names)
 with open(OUTPUT_FILE, 'w') as file_handler:
     for item in the_complete_included_files_names:
         file_handler.write("{}\n".format(item))
 
+
+print("DONE. Result stored at file: ", OUTPUT_FILE)

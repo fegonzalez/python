@@ -1,7 +1,37 @@
-List of scripts
+# library content
 
 
-get_includes_from_file.py
+#---------------------------------------------------------------------------------
+
+./files
+
+	# files related library
+
+
+	./files/file_lib-py
+
+	# library with generic functions over files:
+	# skip_blanks, skip_comments, ...
+		
+#---------------------------------------------------------------------------------
+		
+./maths
+
+	# maths related library
+  	
+#---------------------------------------------------------------------------------
+		
+./parsers
+
+	# parsers related library
+  	
+#---------------------------------------------------------------------------------
+
+./misc
+
+
+./misc/get_includes_from_file.py
+
 	# return the list of file names included in a hierarchy of files.
-
-  	 
+  	
+#---------------------------------------------------------------------------------
