@@ -409,7 +409,6 @@ NOTICE since 2.7 we can use 'from __future__ import print_function' for python3
 
 # 1.1.1. Argument Passing  (sys.argv[0..n-1])
 
-
 - argv[1] .. argv[n-1] = argument values
 
 - argv[0]
@@ -560,6 +559,40 @@ if __name__ == '__main__':
 # param (off-before call f) :  ['a1', 'b2', 33]
 # param (off-after  call f) :  [222.333, 'b2', 33, 'added_inside__function']
 
+
+# 2.6.3 How to use user-defined functions from a python script
+
+1) Create the library
+
+[ Example.- file functions.py
+
+import time
+import datetime
+
+def print_current_time():
+    ts = time.time()
+    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+    print (st)
+
+--end example ]
+
+
+2) Create the main program [as a python script]
+
+[ Example.- file main.py
+
+#!/usr/bin/env python3           # use file as a python script
+    
+import functions                 # import user-defined library
+
+functions.print_current_time()   # call user-defined function
+
+--end example ]
+
+
+3) Run script form Linux console
+
+>> python3 time_and_date.py
 
 
 # 2.7. More on Defining Functions
